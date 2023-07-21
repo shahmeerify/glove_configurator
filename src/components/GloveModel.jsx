@@ -148,4 +148,4 @@ export function GloveModel({rot}) {
   )
 }
 
-useGLTF.preload('/GloveModel.glb')
+useGLTF.preload('./Model/GloveModel.glb')

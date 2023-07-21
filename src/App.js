@@ -4,15 +4,17 @@ import { GloveModel } from "./components/GloveModel";
 import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
 
 export default function App() {
-  const [rotationValue, setRotationValue] = useState(31.05)
+  const [rotationValue, setRotationValue] = useState(31.05);
 
   const rotateLeft = () => {
-    setRotationValue((prevVal) => (prevVal - Math.PI / 2 + 2 * Math.PI) % (2 * Math.PI))
-  }
+    setRotationValue(
+      (prevVal) => (prevVal - Math.PI / 2 + 2 * Math.PI) % (2 * Math.PI)
+    );
+  };
 
   const rotateRight = () => {
-    setRotationValue((prevVal) => (prevVal + Math.PI / 2) % (2 * Math.PI))
-  }
+    setRotationValue((prevVal) => (prevVal + Math.PI / 2) % (2 * Math.PI));
+  };
   return (
     <div className="glove py-12">
       <div className="px-6">
@@ -38,21 +40,21 @@ export default function App() {
                       style={{ height: "752px" }}
                     >
                       <Canvas
+                        shadows
+                        dpr={[1, 2]}
                         width={750}
                         height={750}
                         className="sc-cMljjf jjRdFm lower-canvas"
                         style={{ width: "750px", height: "750px" }}
                       >
                         <ambientLight intensity={0.7} />
-                        <spotLight
-                          intensity={0.5}
-                          angle={0.1}
-                          penumbra={1}
+                        <directionalLight
+                          intensity={1}
                           position={[10, 15, 10]}
                         />
+                        <pointLight intensity={1} position={[-10, 10, -10]} />
                         <GloveModel rot={rotationValue} />
-                        <Environment preset="city" />
-
+                        {/* <Environment preset="city" /> */}
                         <OrbitControls
                           minPolarAngle={Math.PI / 2}
                           maxPolarAngle={Math.PI / 2}
