@@ -81,3 +81,70 @@ body,
   right: 10px;
 }
 
+/* Add this CSS to your styles */
+.color-picker-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-width: 300px;
+  margin-right: 20px;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  margin-right: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.canvas-container {
+  /* Add any desired styles for the canvas container */
+}
+
+/* Add this CSS to your styles */
+.color-picker-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 400px; /* Increased width for a better UI */
+  margin-right: 20px;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  margin-right: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.color-option.selected {
+  border: 2px solid #333;
+}
+
+.mesh-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.mesh-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.nav-button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
