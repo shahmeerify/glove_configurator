@@ -117,7 +117,7 @@ export default function Fielder() {
                           position={[0.5, 0, 0.866]} // 60 degrees
                         />
                     
-                        <New rot={rotationValue} />
+                        <New rot={rotationValue} colors={colors} />
                         <OrbitControls
                           minPolarAngle={Math.PI / 2}
                           maxPolarAngle={Math.PI / 2}
@@ -277,7 +277,7 @@ export default function Fielder() {
           </div>
         </div>
       </div> 
-      
+
     </div>
   );
 }

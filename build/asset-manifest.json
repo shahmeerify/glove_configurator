@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.3223d143.css",
-    "main.js": "/static/js/main.443e96de.js",
+    "main.js": "/static/js/main.a6f361aa.js",
     "static/media/fabric.png": "/static/media/fabric.c1c68481408e4a651e22.png",
     "static/media/leather_red.png": "/static/media/leather_red.6316ab47da2bcfdbc1cf.png",
     "static/media/tie-dyesnakeskin.jpg": "/static/media/tie-dyesnakeskin.19488edccc602518a395.jpg",
     "static/media/royalbluesnakeskin.jpg": "/static/media/royalbluesnakeskin.8446d5bc3604021aad1b.jpg",
     "index.html": "/index.html",
     "main.3223d143.css.map": "/static/css/main.3223d143.css.map",
-    "main.443e96de.js.map": "/static/js/main.443e96de.js.map"
+    "main.a6f361aa.js.map": "/static/js/main.a6f361aa.js.map"
   },
   "entrypoints": [
     "static/css/main.3223d143.css",
-    "static/js/main.443e96de.js"
+    "static/js/main.a6f361aa.js"
   ]
 }
