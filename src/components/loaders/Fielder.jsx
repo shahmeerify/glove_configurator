@@ -276,7 +276,8 @@ export default function Fielder() {
             </div>
           </div>
         </div>
-      </div>
+      </div> 
+      
     </div>
   );
 }
