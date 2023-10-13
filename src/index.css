@@ -10,6 +10,7 @@ body,
   background: radial-gradient(circle at 41% 50%, rgb(255, 255, 255), rgb(180, 180, 180));
 }
 
+/* Styling for the carousel and canvas container */
 .flickity-enabled {
   position: relative;
 }
@@ -27,9 +28,7 @@ body,
 .kufCep .flickity-slider > div {
   width: 100%;
   display: flex;
-  -webkit-box-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
   align-items: center;
 }
 
@@ -54,13 +53,12 @@ body,
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
 .flickity-button {
   position: absolute;
-  background: hsla(0,0%,100%,.75);
+  background: hsla(0, 0%, 100%, 0.75);
   border: none;
   color: #333;
 }
@@ -81,48 +79,12 @@ body,
   right: 10px;
 }
 
-/* Add this CSS to your styles */
-.color-picker-container {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  max-width: 300px;
-  margin-right: 20px;
-}
-
-.color-option {
-  width: 30px;
-  height: 30px;
-  border-radius: 4px;
-  margin-right: 5px;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.canvas-container {
-  /* Add any desired styles for the canvas container */
-}
-
-/* Add this CSS to your styles */
-.color-picker-container {
+.configurator-container {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   max-width: 400px; /* Increased width for a better UI */
   margin-right: 20px;
-}
-
-.color-option {
-  width: 30px;
-  height: 30px;
-  border-radius: 4px;
-  margin-right: 5px;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.color-option.selected {
-  border: 2px solid #333;
 }
 
 .mesh-label {
@@ -147,4 +109,77 @@ body,
 .nav-button[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
+.tab-button {
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.tab-button:hover {
+  color: #333;
+}
+
+.tab-button.active {
+  color: #000;
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+}
+
+.tab-heading {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Styling for the color options */
+.color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  margin-right: 5px;
+  display: inline-block;
+  cursor: pointer;
+  transition: border 0.3s;
+}
+
+.color-option.selected {
+  border: 2px solid #333;
+}
+
+/* Add this to your existing CSS or a separate stylesheet */
+.radio-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.radio-label {
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.radio-input {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.radio-input:checked {
+  border-color: #007bff; /* Change this to your desired checked color */
 }
