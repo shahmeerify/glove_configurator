@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+      - main
+name: JoSports
+jobs:
+  webdeploy:
+    name: JoSports Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Latest Code
+        uses: actions/checkout@v2
+
+      - name: Sync Files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: stags.me
+          local-dir: /build/
+          username: ${{ secrets.ftp_username }}
+          password: ${{ secrets.ftp_password }}
+          server-dir: /josports2/
