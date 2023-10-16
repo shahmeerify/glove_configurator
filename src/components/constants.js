@@ -90,7 +90,8 @@ export const colorOptions = [
     leather6: "#f8f8f8",
     leather7: "#f8f8f8",
     leather8: "#f8f8f8",
-    logo_01: "#f0f0f0", //Webbing Logo
+    logo: "#f0f0f0", //Webbing Logo
+    wristPlate: "#e0e0e0",
     palm: "#f8f8f8",
     stiches: "#808080",
     webStyle: "#f0f0f0",

@@ -24,7 +24,7 @@ export function New({rot, colors}) {
         <mesh geometry={nodes.polySurface307.geometry}  material-color={colors.palm} material={materials.blinn78} scale={0.025} />
       </group>
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.Lining.geometry}  material-color={colors.palm} material={materials.inside} scale={0.025} />
+        <mesh geometry={nodes.Lining.geometry}  material-color={"#000000"} material={materials.inside} scale={0.025} />
       </group>
       
       {/*Laces*/}
@@ -47,31 +47,31 @@ export function New({rot, colors}) {
 
       {/*Leathers*/}
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.Index_Inner.geometry}  material-color={colors.leather1} material={materials.Index_Inner1} scale={0.025} />
+        <mesh geometry={nodes.Index_Inner.geometry}  material-color={colors.leather2} material={materials.Index_Inner1} scale={0.025} />
       </group>
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.Index_Outer.geometry}  material-color={colors.leather1} material={materials.index_outer} scale={0.025} />
+        <mesh geometry={nodes.Index_Outer.geometry}  material-color={colors.leather3} material={materials.index_outer} scale={0.025} />
       </group>
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.Thumb_Outer.geometry}  material-color={colors.leather1} material={materials.thumb_outer} scale={0.025} />
+        <mesh geometry={nodes.Thumb_Outer.geometry}  material-color={colors.wingtipThumb} material={materials.thumb_outer} scale={0.025} />
       </group>
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.Middle_Inner.geometry}  material-color={colors.leather1} material={materials.middle_inner} scale={0.025} />
+        <mesh geometry={nodes.Middle_Inner.geometry}  material-color={colors.leather4} material={materials.middle_inner} scale={0.025} />
       </group>
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.Middle_Outer.geometry}  material-color={colors.leather1} material={materials.middle_outer} scale={0.025} />
+        <mesh geometry={nodes.Middle_Outer.geometry}  material-color={colors.leather5} material={materials.middle_outer} scale={0.025} />
       </group>
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.Ring_Inner.geometry}  material-color={colors.leather1} material={materials.ring_inner} scale={0.025} />
+        <mesh geometry={nodes.Ring_Inner.geometry}  material-color={colors.leather6} material={materials.ring_inner} scale={0.025} />
       </group>
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.Ring_Outer.geometry}  material-color={colors.leather1} material={materials.ring_outer} scale={0.025} />
+        <mesh geometry={nodes.Ring_Outer.geometry}  material-color={colors.leather7} material={materials.ring_outer} scale={0.025} />
       </group>
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.Pinky_Inner1.geometry}  material-color={colors.leather1} material={materials.pinky_inner} scale={0.025} />
+        <mesh geometry={nodes.Pinky_Inner1.geometry}  material-color={colors.leather8} material={materials.pinky_inner} scale={0.025} />
       </group>
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.Pinky_Outer.geometry}  material-color={colors.leather1} material={materials.pinky_outer} scale={0.025} />
+        <mesh geometry={nodes.Pinky_Outer.geometry}  material-color={colors.wingtipPinky} material={materials.pinky_outer} scale={0.025} />
       </group>
 
 
@@ -88,13 +88,13 @@ export function New({rot, colors}) {
 
       {/*SideLogo*/}
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.polySurface332.geometry}  material-color={colors.logo_01} material={materials.thumb_inner} scale={0.025} />
+        <mesh geometry={nodes.polySurface332.geometry}  material-color={colors.leather1} material={materials.thumb_inner} scale={0.025} />
       </group>
       <group position={[-0.039, -0.004, 0.008]} rotation={[3.082, 0.669, -2.905]} scale={0.471}>
-        <mesh geometry={nodes.polySurface333.geometry}  material-color={colors.logo_01} material={materials.side_logo} scale={0.025} />
+        <mesh geometry={nodes.polySurface333.geometry}  material-color={colors.logo} material={materials.side_logo} scale={0.025} />
       </group>
       <group position={[-0.039, -0.004, 0.008]} rotation={[3.082, 0.669, -2.905]} scale={0.471}>
-        <mesh geometry={nodes.polySurface334.geometry}  material-color={colors.logo_01} material={materials.side_logo} scale={0.025} />
+        <mesh geometry={nodes.polySurface334.geometry}  material-color={colors.logo} material={materials.side_logo} scale={0.025} />
       </group>
 
       {/*Stitches*/}
@@ -333,16 +333,16 @@ export function New({rot, colors}) {
         <mesh geometry={nodes.web11.geometry}  material-color={colors.webStyle} material={materials.base1} scale={0.025} />
       </group>
       <group scale={0.394}>
-        <mesh geometry={nodes.web11_stitches.geometry}  material-color={colors.webStyle} material={materials.web11stitches} scale={0.025} />
+        <mesh geometry={nodes.web11_stitches.geometry}  material-color={colors.stiches} material={materials.web11stitches} scale={0.025} />
       </group>
       <group position={[-0.007, 0, -0.006]} rotation={[Math.PI, 0.691, -Math.PI]} scale={0.394}>
-        <mesh geometry={nodes.weblogo.geometry}  material-color={colors.webStyle} material={materials.blinn76} scale={0.025} />
+        <mesh geometry={nodes.weblogo.geometry}  material-color={colors.logo} material={materials.blinn76} scale={0.025} />
       </group>
       <group position={[-0.007, 0, -0.006]} rotation={[Math.PI, 0.691, -Math.PI]} scale={0.394}>
         <mesh geometry={nodes.logoback.geometry}  material-color={colors.webStyle} material={materials.blinn77} scale={0.025} />
       </group>
       <group scale={0.394}>
-        <mesh geometry={nodes.web11_laces.geometry}  material-color={colors.webStyle} material={materials.web11laces} scale={0.025} />
+        <mesh geometry={nodes.web11_laces.geometry}  material-color={colors.laces} material={materials.web11laces} scale={0.025} />
       </group>
 
       {/*LaceY1*/}
@@ -376,20 +376,20 @@ export function New({rot, colors}) {
 
       {/*Circle Logo*/}
       <group scale={0.394}>
-        <mesh geometry={nodes.legend_logo.geometry}  material-color={colors.logo1} material={materials.circle_logo_fr} scale={0.025} />
+        <mesh geometry={nodes.legend_logo.geometry}  material-color={colors.logo} material={materials.circle_logo_fr} scale={0.025} />
       </group>
       <group scale={0.394}>
-        <mesh geometry={nodes.circle_logo001.geometry}  material-color={colors.logo1} material={materials.circle_logo1} scale={0.025} />
+        <mesh geometry={nodes.circle_logo001.geometry}  material-color={colors.wristPlate} material={materials.circle_logo1} scale={0.025} />
       </group>
       <group scale={0.394}>
-        <mesh geometry={nodes.logo_stitch_round.geometry}  material-color={colors.logo1} material={materials.blinn18} scale={0.025} />
+        <mesh geometry={nodes.logo_stitch_round.geometry}  material-color={colors.stiches} material={materials.blinn18} scale={0.025} />
       </group>
 
       {/*Logo with outline*/}
       {/* <group scale={0.394}>
-        <mesh geometry={nodes.legend_logo1.geometry}  material-color={colors.binding} material={materials.logo_with_outline1} scale={0.025} />
-      </group>
-      <group scale={0.394}>
+        <mesh geometry={nodes.legend_logo1.geometry}  material-color={colors.logo} material={materials.logo_with_outline1} scale={0.025} />
+      </group> */}
+      {/* <group scale={0.394}>
         <mesh geometry={nodes.logo_outline314.geometry}  material-color={colors.binding} material={materials.logo_outline_fr} scale={0.025} />
       </group> */}
       
