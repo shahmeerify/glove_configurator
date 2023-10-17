@@ -13,7 +13,7 @@ export function New({rot, colors}) {
   })
 
   return (
-    <group dispose={null} scale={[22, 22, 22]} position={[0, -1.6, 0]} ref={ref}>
+    <group dispose={null} scale={[28, 28, 28]} position={[0, -2.1, 0]} ref={ref}>
 
       {/*Palm*/}
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
