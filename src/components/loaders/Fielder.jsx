@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { New } from "../customizers/NewModel" ;
 import { OrbitControls } from "@react-three/drei";
 import { colorOptions, colorData, tabs, textureData, imagePaths, baseOptions, Options } from "../constants";
+import { HexColorPicker } from "react-colorful"
 
 export default function Fielder() {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [rotationValue, setRotationValue] = useState(0.35);
   const [currentMesh, setCurrentMesh] = useState("binding");
+  const [currentColor, setCurrentColor] = useState("#ff0000");
   const [colors, setColors] = useState(colorData);
   const [textures, setTextures] = useState(textureData);
   const [currentBase, setCurrentBase] = useState("size");
   const [baseConfig, setBaseConfig] = useState(baseOptions);
 
+  useEffect(() => {
+    setCurrentColor(colors[currentMesh]);
+  }, [currentMesh, colors]);
+  
   const rotateLeft = () => {
     setRotationValue(
       (prevVal) => (prevVal - Math.PI / 2 + 2 * Math.PI) % (2 * Math.PI)
@@ -32,7 +38,7 @@ export default function Fielder() {
       ...prevColors,
       [meshName]: newColor,
     }));
-
+    setCurrentColor(newColor);
   };
 
   const handleTextureChange = (meshName, img) => {
@@ -112,16 +118,18 @@ export default function Fielder() {
                         <ambientLight intensity={0.3} color={'#ffffff'} />
 
                         <directionalLight 
-                          intensity={0.7} // convert direct intensity to radians
+                          intensity={0.25 * Math.PI} // convert direct intensity to radians
                           color={'#ffffff'}
                           position={[0.5, 0, 0.866]} // 60 degrees
                         />
 
                         <directionalLight 
-                          intensity={0.7} // convert direct intensity to radians
+                          intensity={0.25 * Math.PI} // convert direct intensity to radians
                           color={'#ffffff'}
                           position={[-0.5, 0, -0.866]} // 60 degrees
                         />
+
+                        {/* <pointLight /> */}
                     
                         <New rot={rotationValue} colors={colors} />
                         <OrbitControls
@@ -270,6 +278,10 @@ export default function Fielder() {
                         onClick={() => handleTextureChange(currentMesh, img)}
                       />
                     ))}
+                  </div>
+                  <div className="block my-4">
+                    <HexColorPicker className="picker" color={currentColor} onChange={(newColor) => handleColorChange(currentMesh, newColor)} />
+                    <h1>{currentMesh}: {currentColor}</h1>
                   </div>
                 </div>
               )}
