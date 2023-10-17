@@ -112,13 +112,13 @@ export default function Fielder() {
                         <ambientLight intensity={0.3} color={'#ffffff'} />
 
                         <directionalLight 
-                          intensity={0.3} // convert direct intensity to radians
+                          intensity={0.7} // convert direct intensity to radians
                           color={'#ffffff'}
                           position={[0.5, 0, 0.866]} // 60 degrees
                         />
 
                         <directionalLight 
-                          intensity={0.3} // convert direct intensity to radians
+                          intensity={0.7} // convert direct intensity to radians
                           color={'#ffffff'}
                           position={[-0.5, 0, -0.866]} // 60 degrees
                         />
