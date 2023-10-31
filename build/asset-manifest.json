@@ -1,17 +1,36 @@
 {
   "files": {
-    "main.css": "/static/css/main.1e8a8bfd.css",
-    "main.js": "/static/js/main.bc3400e6.js",
-    "static/media/fabric.png": "/static/media/fabric.c1c68481408e4a651e22.png",
-    "static/media/leather_red.png": "/static/media/leather_red.6316ab47da2bcfdbc1cf.png",
-    "static/media/tie-dyesnakeskin.jpg": "/static/media/tie-dyesnakeskin.19488edccc602518a395.jpg",
-    "static/media/royalbluesnakeskin.jpg": "/static/media/royalbluesnakeskin.8446d5bc3604021aad1b.jpg",
+    "main.css": "/static/css/main.15549af2.css",
+    "main.js": "/static/js/main.1cf83573.js",
+    "static/media/a_skin.png": "/static/media/a_skin.af62c3a717fc93adf4d3.png",
+    "static/media/inlay_initialShadingGroup_Diffuse.png": "/static/media/inlay_initialShadingGroup_Diffuse.a0f266f6c82f689be04d.png",
+    "static/media/snake skin brown.png": "/static/media/snake skin brown.408b2e4cb640cb253b16.png",
+    "static/media/snake skin red.png": "/static/media/snake skin red.269324448a63456b3b38.png",
+    "static/media/snake skin light blue.png": "/static/media/snake skin light blue.c84ef730aa0a9834b423.png",
+    "static/media/snake skin purple.png": "/static/media/snake skin purple.759efc081c2dc636d956.png",
+    "static/media/stipe.jpg": "/static/media/stipe.802117713989e1f8ac67.jpg",
+    "static/media/snake skin pink.png": "/static/media/snake skin pink.a4fa3479e6e8d6bfb061.png",
+    "static/media/snake skin tan.png": "/static/media/snake skin tan.bc2f2b179737bb0ed31e.png",
+    "static/media/snake skin blonde.png": "/static/media/snake skin blonde.6e615e54632b56e0a3fd.png",
+    "static/media/snake skin white.png": "/static/media/snake skin white.8849f4f36043b04883aa.png",
+    "static/media/snake skin grey.png": "/static/media/snake skin grey.4ad7c53bd15eeb6266b4.png",
+    "static/media/snake skin teal.png": "/static/media/snake skin teal.7fa7916a9f0786a2e1e7.png",
+    "static/media/cow skin furred.png": "/static/media/cow skin furred.08c40b11d7085da40818.png",
+    "static/media/green camo.jpg": "/static/media/green camo.9199c7560e6514739a59.jpg",
+    "static/media/snake skin black.png": "/static/media/snake skin black.6b64ab504f377019dceb.png",
+    "static/media/elephant skin.png": "/static/media/elephant skin.66eead650505f0872cc1.png",
+    "static/media/invert-elephant-skin.jpg": "/static/media/invert-elephant-skin.4dc51b1117302fd39a22.jpg",
+    "static/media/red camo.webp": "/static/media/red camo.5fa782b4f0df4894e9a3.webp",
+    "static/media/reptile.jpg": "/static/media/reptile.d8471de65804e0476577.jpg",
+    "static/media/cross.png": "/static/media/cross.4ea8f00e40ea2454f9a9.png",
+    "static/media/grey camoflauge.jpg": "/static/media/grey camoflauge.24a4975e31319ee8a425.jpg",
+    "static/media/base_base_BaseColor.png": "/static/media/base_base_BaseColor.0893348a2120c8fc7d5f.png",
     "index.html": "/index.html",
-    "main.1e8a8bfd.css.map": "/static/css/main.1e8a8bfd.css.map",
-    "main.bc3400e6.js.map": "/static/js/main.bc3400e6.js.map"
+    "main.15549af2.css.map": "/static/css/main.15549af2.css.map",
+    "main.1cf83573.js.map": "/static/js/main.1cf83573.js.map"
   },
   "entrypoints": [
-    "static/css/main.1e8a8bfd.css",
-    "static/js/main.bc3400e6.js"
+    "static/css/main.15549af2.css",
+    "static/js/main.1cf83573.js"
   ]
 }
