@@ -143,18 +143,73 @@ body,
 }
 
 /* Styling for the color options */
+.color-options {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 300px; /* 4 rows at 60px height */
+  overflow-y: auto;
+  padding-right: 10px; /* Add padding for scrollbar */
+}
+
 .color-option {
-  width: 30px;
-  height: 30px;
-  border-radius: 4px;
-  margin-right: 5px;
-  display: inline-block;
-  cursor: pointer;
-  transition: border 0.3s;
+  width: 72.9px; 
+  height: 60px;
+  margin-right: 10px;
+  flex: 0 0 calc(25% - 10px);
+  position: relative;
+  margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .color-option.selected {
+border: 2px solid #333;
+}
+
+.texture-option {
+  width: 72.9px; 
+  height: 60px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  flex: 0 0 calc(25% - 10px);
+  position: relative;
+  border-radius: 10px;
+}
+
+.texture-option.selected {
   border: 2px solid #333;
+}
+
+.color-label {
+  /* other styles */
+  flex-direction: column;
+  font-size: 14px;
+  text-align: center;
+  max-width: 60px; 
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.texture-option-wrapper {
+  display: flex;
+  flex-direction: column; 
+}
+
+.color-option-wrapper {
+  width: 82.9px;
+  height: 134.39px;
+}
+
+.texture-label {
+  flex-direction: column; 
+  font-size: 14px;
+  text-align: center;
+  max-width: 60px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 /* Add this to your existing CSS or a separate stylesheet */

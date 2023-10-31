@@ -1,12 +1,30 @@
 import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { useGLTF,  useTexture } from '@react-three/drei'
 import { useFrame, useLoader } from '@react-three/fiber';
 import { PlaneGeometry, MeshBasicMaterial, TextureLoader } from 'three';
 
-export function New({rot, colors}) {
+const MeshWithTexture = ({ nodes, colors, materials, texture }) => {
+  const textureMap = useTexture(texture);
+  return (
+    <mesh geometry={nodes.body_palm.geometry}  material-color={colors.palm} material={materials.blinn78} scale={0.025} >
+      <meshBasicMaterial map={textureMap} />
+    </mesh> 
+  );
+};
+
+const MeshWithoutTexture = ({ geometry, material, color, position, rotation, scale }) => {
+  return (
+    <mesh geometry={geometry} material={material} material-color={color} position={position} rotation={rotation} scale={scale} >
+    </mesh>
+  );
+};
+
+export function New({rot, colors, textures}) {
 
   const ref = useRef();
   const { nodes, materials } = useGLTF('./Model/new.glb')
+
+  console.log(textures)
 
   useFrame(() => {
     ref.current.rotation.y = rot
@@ -17,7 +35,14 @@ export function New({rot, colors}) {
 
       {/*Palm*/}
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
-        <mesh geometry={nodes.body_palm.geometry}  material-color={colors.palm} material={materials.blinn78} scale={0.025} />
+        {/* <mesh geometry={nodes.body_palm.geometry}  material-color={colors.palm} material={materials.blinn78} scale={0.025} >
+          <meshBasicMaterial map={textureMap} />
+        </mesh>    */}
+        {textures.binding ? (
+          <MeshWithTexture nodes={nodes} colors={colors} materials={materials} texture={textures.palm} />
+        ) : (
+          <mesh geometry={nodes.body_palm.geometry}  material-color={colors.palm} material={materials.blinn78} scale={0.025} />
+        )}
       </group>
       <group position={[-0.007, 0.013, 0.009]} rotation={[3.118, 0.689, -3.032]} scale={0.317}>
         <mesh geometry={nodes.polySurface307.geometry}  material-color={colors.palm} material={materials.blinn78} scale={0.025} />

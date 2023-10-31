@@ -3,21 +3,15 @@ import { Canvas } from "@react-three/fiber";
 import { New } from "../customizers/NewModel" ;
 import { OrbitControls } from "@react-three/drei";
 import { colorOptions, colorData, tabs, textureData, imagePaths, baseOptions, Options } from "../constants";
-import { HexColorPicker } from "react-colorful"
 
 export default function Fielder() {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [rotationValue, setRotationValue] = useState(0.35);
   const [currentMesh, setCurrentMesh] = useState("binding");
-  const [currentColor, setCurrentColor] = useState("#ff0000");
   const [colors, setColors] = useState(colorData);
   const [textures, setTextures] = useState(textureData);
   const [currentBase, setCurrentBase] = useState("size");
   const [baseConfig, setBaseConfig] = useState(baseOptions);
-
-  useEffect(() => {
-    setCurrentColor(colors[currentMesh]);
-  }, [currentMesh, colors]);
   
   const rotateLeft = () => {
     setRotationValue(
@@ -38,7 +32,6 @@ export default function Fielder() {
       ...prevColors,
       [meshName]: newColor,
     }));
-    setCurrentColor(newColor);
   };
 
   const handleTextureChange = (meshName, img) => {
@@ -131,7 +124,7 @@ export default function Fielder() {
 
                         {/* <pointLight /> */}
                     
-                        <New rot={rotationValue} colors={colors} />
+                        <New rot={rotationValue} colors={colors} textures={textures} />
                         <OrbitControls
                           minPolarAngle={Math.PI / 2}
                           maxPolarAngle={Math.PI / 2}
@@ -253,35 +246,42 @@ export default function Fielder() {
                       {">"}
                     </button>
                   </div>
+                  <div className="mesh-label">
+                    Current Mesh: {currentMesh}
+                  </div>
                   <div className="color-options">
-                    <div className="mesh-label">
-                      Current Mesh: {currentMesh}
-                    </div>
-                    {colorOptions.map((color) => (
-                      <div
-                        key={color}
-                        className={`color-option ${
-                          colors[currentMesh] === color ? "selected" : ""
-                        }`}
-                        style={{ backgroundColor: color }}
-                        onClick={() => handleColorChange(currentMesh, color)}
-                      />
+                    {Object.entries(colorOptions).map(([label, color]) => (
+                      <div class="color-option-wrapper">
+                        <div
+                          key={color}
+                          className={`color-option ${
+                            colors[currentMesh] === color ? "selected" : ""
+                          }`}
+                          style={{ backgroundColor: color }}
+                          onClick={() => handleColorChange(currentMesh, color)}
+                        /> 
+                        <div className="color-label">
+                          {label} 
+                        </div>
+                      </div>
                     ))}
                     <br/>
-                    {imagePaths.map((img) => (
-                      <img
-                        className={`color-option ${
-                          textures[currentMesh] === img ? "selected" : ""}`}
-                        key={img}
-                        src={img}
-                        alt='texture'
-                        onClick={() => handleTextureChange(currentMesh, img)}
-                      />
+                    {Object.entries(imagePaths).map(([label, img]) => (
+                      <div class="texture-option-wrapper">
+                        <img
+                          className={`texture-option ${
+                            textures[currentMesh] === img ? "selected" : ""  
+                          }`}
+                          key={img}
+                          src={img}
+                          alt='texture'
+                          onClick={() => handleTextureChange(currentMesh, img)}
+                        />
+                        <div className="texture-label">
+                          {label}
+                        </div>
+                      </div>
                     ))}
-                  </div>
-                  <div className="block my-4">
-                    <HexColorPicker className="picker" color={currentColor} onChange={(newColor) => handleColorChange(currentMesh, newColor)} />
-                    <h1>{currentMesh}: {currentColor}</h1>
                   </div>
                 </div>
               )}

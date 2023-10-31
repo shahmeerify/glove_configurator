@@ -1,106 +1,106 @@
-import bluedenim from '../assets/textures/bluedenim.jpg'
-import bluesteel from '../assets/textures/bluesteel.jpg'
-import redsuede from '../assets/textures/redsuede.jpg'
-import redsnakeskin from '../assets/textures/redsnakeskin.jpg'
-import camosnakeskin from '../assets/textures/camosnakeskin.jpg'
-import black44 from '../assets/textures/black44.jpg'
-import blackgator from '../assets/textures/blackgator.jpg'
-import blackpeforated from '../assets/textures/blackpeforated.jpg'
-import blacksnakeskin from '../assets/textures/blacksnakeskin.jpg'
-import blacksuede from '../assets/textures/blacksuede.jpg'
-import blonde44 from '../assets/textures/blonde44.jpg'
-import blondesnakeskin from '../assets/textures/blondesnakeskin.jpg'
-import bluesuede from '../assets/textures/bluesuede.jpg'
-import cottoncandysnakeskin from '../assets/textures/cottoncandysnakeskin.jpg'
-import elephantskin from '../assets/textures/elephantskin.jpg'
-import greysnakeskin from '../assets/textures/greysnakeskin.jpg'
-import paisleygold from '../assets/textures/paisleygold.jpg'
-import paisleytan from '../assets/textures/paisleytan.jpg'
-import redsteel from '../assets/textures/redsteel.jpg'
-import royalbluesnakeskin from '../assets/textures/royalbluesnakeskin.jpg'
-import snakeskin from '../assets/textures/snakeskin.jpg'
-import tansnakeskin from '../assets/textures/tansnakeskin.jpg'
-import tie_diesnakeskin from '../assets/textures/tie-dyesnakeskin.jpg'
-import white44 from '../assets/textures/white44.jpg'
-import whitepeforated from '../assets/textures/whitepeforated.jpg'
-import leather_red from '../assets/textures/leather_red.png'
-import red_white_fabric from '../assets/textures/fabric.png'
+import alligatorskin from '../assets/textures/alligator skin/a_skin.png'
+import bluepinktie from '../assets/textures/blue pink tie/inlay_initialShadingGroup_Diffuse.png'
+import greencamo from '../assets/textures/camo/green camo.jpg'
+import blueshiny from '../assets/textures/blue shiny/base_base_BaseColor.png'
+import graycamo from '../assets/textures/camo grey/grey camoflauge.jpg'
+import redcamo from '../assets/textures/camo red/red camo.webp'
+import furredskincow from '../assets/textures/Cow skin Furred/cow skin furred.png'
+import crosspattern from '../assets/textures/cross pattern/cross.png'
+import goldshiny from '../assets/textures/gold shiny/base_base_BaseColor.png'
+import elephantskin from '../assets/textures/elephant skin/elephant skin.png'
+import invertedelephaantskin from '../assets/textures/Interved Elephant Skin/invert-elephant-skin.jpg'
+import redelephantskin from '../assets/textures/Red Elephant Skin/elephant skin.png'
+import redshiny from '../assets/textures/red shiny/base_base_BaseColor.png'
+import reptileskin from '../assets/textures/reptile skin/reptile.jpg'
+import silvershiny from '../assets/textures/silver shiny/base_base_BaseColor.png'
+import snakeblack from '../assets/textures/snake black/snake skin black.png'
+import snakeblonde from '../assets/textures/snake blonde/snake skin blonde.png'
+import snakebrown from '../assets/textures/snake brown/snake skin brown.png'
+import snakegray from '../assets/textures/snake grey/snake skin grey.png'
+import snakelblue from '../assets/textures/snake light blue/snake skin light blue.png'
+import snakepink from '../assets/textures/snake pink/snake skin pink.png'
+import snakepurple from '../assets/textures/snake purple/snake skin purple.png'
+import snakered from '../assets/textures/snake red/snake skin red.png'
+import snaketan from '../assets/textures/snake tan/snake skin tan.png'
+import snaketeal from '../assets/textures/snake teal/snake skin teal.png'
+import snakewhite from '../assets/textures/snake white/snake skin white.png'
+import stripepattern from '../assets/textures/stripe pattern/stipe.jpg'
 
 
-export const imagePaths = [
-  bluedenim,
-  bluesteel,
-  redsuede,
-  redsnakeskin,
-  camosnakeskin,
-  black44,
-  blackgator,
-  blackpeforated,
-  blacksnakeskin,
-  blacksuede,
-  blonde44,
-  blondesnakeskin,
-  bluesuede,
-  cottoncandysnakeskin,
-  elephantskin,
-  greysnakeskin,
-  paisleygold,
-  paisleytan,
-  redsteel,
-  royalbluesnakeskin,
-  snakeskin,
-  tansnakeskin,
-  tie_diesnakeskin,
-  white44,
-  whitepeforated,
-  // leather_red,
-  // red_white_fabric,
-];
+export const imagePaths = {
+  "Shiny Silver": silvershiny,
+  "Shiny Gold": goldshiny ,
+  "Shiny Red": redshiny ,
+  "Shiny Blue": blueshiny,
+  "Blue Pink Tie": bluepinktie ,
+  "Green Camo": greencamo ,
+  "Gray Camo": graycamo ,
+  "Red Camo": redcamo ,
+  "Reptile Skin": reptileskin ,
+  "Aligator Skin": alligatorskin,
+  "Furred Cow Skin": furredskincow ,
+  "Elephant Skin": elephantskin,
+  "Inverted Elephant Skin": invertedelephaantskin ,
+  "Red Elephant Skin": redelephantskin ,
+  "Black Snake": snakeblack ,
+  "Gray Snake": snakegray ,
+  "White Snake": snakewhite,
+  "Red Snake": snakered,
+  "Blue Snake": snakelblue ,
+  "Blonde Snake": snakeblonde ,
+  "Brown Snake": snakebrown ,
+  "Pink Snake": snakepink ,
+  "Purple Snake": snakepurple ,
+  "Tan Snake": snaketan ,
+  "Teal Snake": snaketeal ,
+  "Cross Pattern": crosspattern ,
+  "Stripe Pattern": stripepattern, 
+};
 
-export const colorOptions = [
-    "#1a1a1a",
-    "#84837E",
-    "#FFFFFF",
-    "#FCD48F",
-    "#EFD115",
-    "#E57E00",
-    "#FF6D1F",
-    "#D3480F",
-    "#9B4E2B",
-    "#694E3B",
-    "#D21E1E",
-    "#943535",
-    "#F07693",
-    "#58357D",
-    "#262740",
-    "#2143BF",
-    "#0BB4C7",
-    "#334F30",
-    "#65DDA3",
-    "#9D9D99",
-    "#29E600",
-  ];
+export const colorOptions = {
+    "Black": "#1a1a1a",
+    "Gray": "#84837E",
+    "White": "#FFFFFF",
+    "Blonde": "#FCD48F",
+    "Yellow": "#EFD115",
+    "Tan": "#E57E00",
+    "Orange": "#FF6D1F",
+    "Orange Tan": "#D3480F",
+    "Oiled Chestnut": "#9B4E2B",
+    "Brown": "#694E3B",
+    "Red": "#D21E1E",
+    "Maroon": "#943535",
+    "Pink": "#F07693",
+    "Purple": "#58357D",
+    "Navy Blue": "#262740",
+    "Royal Blue": "#2143BF",
+    "Sky Blue": "#0BB4C7",
+    "Forest Green": "#334F30",
+    "Mint": "#65DDA3",
+    "Light Gray": "#9D9D99",
+    "Lime Green": "#29E600",
+};
 
   export const colorData = {
-    binding: "#f5f5f5",
-    laces: "#e0e0e0",
-    leather1: "#f8f8f8",
-    leather2: "#f8f8f8",
-    leather3: "#f8f8f8",
-    leather4: "#f8f8f8",
-    leather5: "#f8f8f8",
-    leather6: "#f8f8f8",
-    leather7: "#f8f8f8",
-    leather8: "#f8f8f8",
-    logo: "#f0f0f0", //Webbing Logo
-    wristPlate: "#e0e0e0",
-    palm: "#f8f8f8",
-    stiches: "#808080",
+    binding: "#E2E2E2",
+    laces: "#E2E2E2",
+    leather1: "#EBEBEB",
+    leather2: "#EBEBEB",
+    leather3: "#EBEBEB",
+    leather4: "#EBEBEB",
+    leather5: "#EBEBEB",
+    leather6: "#EBEBEB",
+    leather7: "#EBEBEB",
+    leather8: "#EBEBEB",
+    logo: "#E2E2E2", //Webbing Logo
+    wristPlate: "#E1E1E1",
+    palm: "#EBEBEB",
+    stiches: "#D3D3D3",
     webStyle: "#f0f0f0",
-    welt: "#e0e0e0", //Edgings
-    wingtipThumb: "#f8f8f8",
-    wingtipPinky: "#f8f8f8",
-    wrist: "#f8f8f8",
+    welt: "#E2E2E2", //Edgings
+    wingtipThumb: "#EBEBEB",
+    wingtipPinky: "#EBEBEB",
+    wrist: "#EBEBEB",
     // logo4_replace: "#808080", //Palm Logo
     // slice: "#f8f8f8", //Extension of Palm to Back
     // blackPiece: "#f0f0f0", //Back Hole Cover
