@@ -137,8 +137,10 @@ export const colorOptions = {
   export const baseOptions = {
     size: "11",
     logo_style: "Embroidered",
+    embroidered_flag: "USA",
     logo_outline: null,
     finger_option: "None",
+    finger_hood_or_pad_placement: "Index Finger",
     inlay: null,
     lace_length: "Normal",
     wrist_linning: "Traditional Fur",
@@ -151,8 +153,10 @@ export const colorOptions = {
   export const Options = {
     size: ["11", "11.25", "11.5", "12", "12.25"],
     logo_style: ["Embroidered", "Embroidered Flag", "Circle Patch", "Square Patch"],
+    embroidered_flag: ["USA", "Korea", "Venezuela", "Dominican Republic", "Japan", "Australia", "Mexico", "Canada", "Italy", "Puerto Rico", "Netherlands"],
     logo_outline: ["Enable Logo Outline"],
     finger_option: ["None", "Hood", "Pad"],
+    finger_hood_or_pad_placement: ["Index Finger", "Middle Finger"],
     inlay: ["Inlay"],
     lace_length: ["Normal", "Long"],
     wrist_linning: ["Traditional Fur", "Moisture Wickening Performance Wrist Pad"],

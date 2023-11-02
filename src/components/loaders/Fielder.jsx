@@ -201,7 +201,7 @@ export default function Fielder() {
                       {">"}
                     </button>
                   </div>
-                  <div className="color-options">
+                  <div className="base-options">
                     <div className="mesh-label">
                       Current: {currentBase}
                     </div>

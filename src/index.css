@@ -150,6 +150,12 @@ body,
   overflow-y: auto;
   padding-right: 10px; /* Add padding for scrollbar */
 }
+.base-options {
+  flex-direction: column;
+  max-height: 300px; /* 4 rows at 60px height */
+  overflow-y: auto;
+  padding-right: 10px; /* Add padding for scrollbar */
+}
 
 .color-option {
   width: 72.9px; 
@@ -217,6 +223,10 @@ border: 2px solid #333;
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+  flex-wrap: wrap;
+  max-height: 300px; /* 4 rows at 60px height */
+  overflow-y: auto;
+  padding-right: 10px; /* Add padding for scrollbar */
 }
 
 .radio-label {
@@ -225,10 +235,11 @@ border: 2px solid #333;
 }
 
 .radio-input {
+  position: relative;
   appearance: none;
   width: 16px;
   height: 16px;
-  border: 2px solid #ccc;
+  border: 2px solid #000000;
   border-radius: 50%;
   outline: none;
   transition: border-color 0.2s ease-in-out;
