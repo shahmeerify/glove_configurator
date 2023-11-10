@@ -19,15 +19,36 @@ const MeshWithoutTexture = ({ geometry, material, color, position, rotation, sca
   );
 };
 
+const saveToFile = (data, fileName) => {
+  const jsonContent = JSON.stringify(data, null, 2);
+  const blob = new Blob([jsonContent], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = fileName;
+  link.click();
+};
+
 export function New({rot, colors, textures}) {
 
+  const fileName = 'materials.json';
+
   const ref = useRef();
-  const { nodes, materials } = useGLTF('./Model/com.glb')
+  const { nodes, materials } = useGLTF('./Model/NewTest.glb')
+
+  // console.log("Here: ", materials)
+
+  for (const materialName in materials) {
+    materials[materialName].metalness = 0;
+    materials[materialName].roughness = 0.5; 
+  }
+
+  // saveToFile(materials.Middle_Inner, 'materials_orignal.json');
 
   useFrame(() => {
     ref.current.rotation.y = rot
   })
-  
+
+
   return (
     <group dispose={null} position={[0, -2.1, 0]} scale={[26, 26, 26]} ref={ref}>
 
@@ -164,6 +185,7 @@ export function New({rot, colors, textures}) {
           <MeshWithTexture geometry={nodes.Welt3.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
           <MeshWithTexture geometry={nodes.Welt2.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
           <MeshWithTexture geometry={nodes.Welt1.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+          <MeshWithTexture geometry={nodes.Wire.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
         </>
       ) : (
         <>
@@ -184,6 +206,7 @@ export function New({rot, colors, textures}) {
           <mesh geometry={nodes.Welt3.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
           <mesh geometry={nodes.Welt2.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
           <mesh geometry={nodes.Welt1.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          <mesh geometry={nodes.Wire.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
         </>   
       )}
 
@@ -280,10 +303,7 @@ export function New({rot, colors, textures}) {
       {/* <mesh geometry={nodes.web12_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_10} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
       <mesh geometry={nodes.web12.geometry} material-color={colors.palm} material={materials.Web_Body_Y} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
       <mesh geometry={nodes.web12_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_10} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
-
-      {/*Wire-Welt*/}
-      <mesh geometry={nodes.Wire.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-
+      
       {/*Laces*/}
       {textures.laces ? (
         <MeshWithTexture geometry={nodes.Wire1.geometry} material-color={colors.laces} material={materials.Laces} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.laces} />
@@ -319,4 +339,4 @@ export function New({rot, colors, textures}) {
   )
 }
 
-useGLTF.preload('./Model/com.glb')
+useGLTF.preload('./Model/NewTest.glb')
