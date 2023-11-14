@@ -2,9 +2,13 @@ import React, { useRef } from 'react'
 import { useGLTF,  useTexture } from '@react-three/drei'
 import { useFrame, useLoader } from '@react-three/fiber';
 import { PlaneGeometry, MeshBasicMaterial, TextureLoader } from 'three';
+import * as THREE from 'three';
 
 const MeshWithTexture = ({ geometry, material, color, position, rotation, scale, texture }) => {
   const textureMap = useTexture(texture);
+  textureMap.repeat.set(4, 4)
+  textureMap.wrapS = THREE.RepeatWrapping 
+  textureMap.wrapT = THREE.RepeatWrapping
   return (
     <mesh geometry={geometry} material={material} material-color={color} position={position} rotation={rotation} scale={scale} >
       <meshBasicMaterial map={textureMap} />
