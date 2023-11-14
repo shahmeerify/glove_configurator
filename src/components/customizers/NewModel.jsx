@@ -6,7 +6,7 @@ import * as THREE from 'three';
 
 const MeshWithTexture = ({ geometry, material, color, position, rotation, scale, texture }) => {
   const textureMap = useTexture(texture);
-  textureMap.repeat.set(8.25, 8.25)
+  textureMap.repeat.set(9.25, 9.25)
   textureMap.wrapS = THREE.RepeatWrapping 
   textureMap.wrapT = THREE.RepeatWrapping
   return (

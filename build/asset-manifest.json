@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.8263c3f1.css",
-    "main.js": "/static/js/main.deebc04b.js",
+    "main.js": "/static/js/main.d50b93fa.js",
     "static/media/a_skin.png": "/static/media/a_skin.af62c3a717fc93adf4d3.png",
     "static/media/inlay_initialShadingGroup_Diffuse.png": "/static/media/inlay_initialShadingGroup_Diffuse.a0f266f6c82f689be04d.png",
     "static/media/snake skin brown.png": "/static/media/snake skin brown.408b2e4cb640cb253b16.png",
@@ -27,10 +27,10 @@
     "static/media/base_base_BaseColor.png": "/static/media/base_base_BaseColor.0893348a2120c8fc7d5f.png",
     "index.html": "/index.html",
     "main.8263c3f1.css.map": "/static/css/main.8263c3f1.css.map",
-    "main.deebc04b.js.map": "/static/js/main.deebc04b.js.map"
+    "main.d50b93fa.js.map": "/static/js/main.d50b93fa.js.map"
   },
   "entrypoints": [
     "static/css/main.8263c3f1.css",
-    "static/js/main.deebc04b.js"
+    "static/js/main.d50b93fa.js"
   ]
 }
