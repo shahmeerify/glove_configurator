@@ -171,6 +171,27 @@ body,
 border: 2px solid #333;
 }
 
+.exclusive-label {
+  margin-top: 10px;
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap; 
+  grid-column: 1 / span 4;
+}
+
+.texture-options,
+.exclusive-textures {
+  display: flex;
+  flex-wrap: wrap; 
+  grid-column: 1 / span 4;
+}
+
+.textures {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px; 
+}
+
 .texture-option {
   width: 72.9px; 
   height: 60px;
@@ -179,6 +200,7 @@ border: 2px solid #333;
   flex: 0 0 calc(25% - 10px);
   position: relative;
   border-radius: 10px;
+  grid-column: 1 / span 4;
 }
 
 .texture-option.selected {

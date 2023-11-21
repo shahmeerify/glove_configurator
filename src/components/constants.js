@@ -38,10 +38,7 @@ export const imagePaths = {
   "Red Camo": redcamo ,
   "Reptile Skin": reptileskin ,
   "Aligator Skin": alligatorskin,
-  "Furred Cow Skin": furredskincow ,
   "Elephant Skin": elephantskin,
-  "Inverted Elephant Skin": invertedelephaantskin ,
-  "Red Elephant Skin": redelephantskin ,
   "Black Snake": snakeblack ,
   "Gray Snake": snakegray ,
   "White Snake": snakewhite,
@@ -55,10 +52,13 @@ export const imagePaths = {
   "Teal Snake": snaketeal ,
   "Cross Pattern": crosspattern ,
   "Stripe Pattern": stripepattern, 
+  "Furred Cow Skin": furredskincow ,
+  "Inverted Elephant Skin": invertedelephaantskin ,
+  "Red Elephant Skin": redelephantskin ,
 };
 
 export const colorOptions = {
-    "Black": "#1a1a1a",
+  "Black": "#1a1a1a",
     "Gray": "#84837E",
     "White": "#FFFFFF",
     "Blonde": "#FCD48F",
@@ -137,10 +137,10 @@ export const colorOptions = {
   export const baseOptions = {
     size: "11",
     logo_style: "Embroidered",
-    embroidered_flag: "USA",
+    // embroidered_flag: "USA",
     logo_outline: null,
     finger_option: "None",
-    finger_hood_or_pad_placement: "Index Finger",
+    finger_hood_or_pad_placement: "Middle",
     inlay: null,
     lace_length: "Normal",
     wrist_linning: "Traditional Fur",
@@ -152,7 +152,7 @@ export const colorOptions = {
 
   export const Options = {
     size: ["11", "11.25", "11.5", "12", "12.25"],
-    logo_style: ["Embroidered", "Embroidered Flag", "Circle Patch", "Square Patch"],
+    logo_style: ["Embroidered", "Embroidered Flag", "Square Patch"],
     embroidered_flag: ["USA", "Korea", "Venezuela", "Dominican Republic", "Japan", "Australia", "Mexico", "Canada", "Italy", "Puerto Rico", "Netherlands"],
     logo_outline: ["Enable Logo Outline"],
     finger_option: ["None", "Hood", "Pad"],
@@ -161,7 +161,7 @@ export const colorOptions = {
     lace_length: ["Normal", "Long"],
     wrist_linning: ["Traditional Fur", "Moisture Wickening Performance Wrist Pad"],
     dual_welting: ["Dual Welting"],
-    web_style: ["I-Web", "I-Web (No Logo)",  "I-Web (Spiral Lace)", "Y-Web", "E-Web", "H-Web", "Laced H-Web", "T-Web", "Basket Web", "Hinge Post Web", "Dual-Hinge Web", "Mod T Web", "Mod Loop Web", "Cross Web", "1 Piece Web", "2 Piece Web"],
+    web_style: ["I-Web", "I-Web (No Logo)",  "I-Web (Spiral Lace)", "Y-Web", "E-Web", "H-Web", "Laced H-Web", "T-Web", "Basket Web", "Cross Web", "Net Style Web" ,"1 Piece Web", "2 Piece Web"],
     glove_stiffness: ["Pro Stiff", "Standard"],
     throwing_hand: ["Left", "Right"],
   }

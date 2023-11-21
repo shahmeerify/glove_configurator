@@ -47,6 +47,10 @@ export default function Fielder() {
   };
 
   const handleBaseChange = (option, value) => {
+    if (baseConfig[option] === value) {
+      // If clicking on already selected option, set to null 
+      value = null; 
+    }
     setBaseConfig((prevOption) => ({
       ...prevOption,
       [option]: value,
@@ -124,7 +128,7 @@ export default function Fielder() {
 
                         {/* <pointLight /> */}
                     
-                        <New rot={rotationValue} colors={colors} textures={textures} />
+                        <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} />
                         <OrbitControls
                           minPolarAngle={Math.PI / 2}
                           maxPolarAngle={Math.PI / 2}
@@ -266,7 +270,7 @@ export default function Fielder() {
                       </div>
                     ))}
                     <br/>
-                    {Object.entries(imagePaths).map(([label, img]) => (
+                    {Object.entries(imagePaths).slice(0,-3).map(([label, img]) => (
                       <div class="texture-option-wrapper">
                         <img
                           className={`texture-option ${
@@ -282,6 +286,28 @@ export default function Fielder() {
                         </div>
                       </div>
                     ))}
+                    
+                    <div className="exclusive-textures"> 
+                    <div className="exclusive-label">Exclusive Textures</div>
+
+                      {Object.entries(imagePaths).slice(-3).map(([label, img]) => (
+                        <div class="texture-option-wrapper">
+                          <img
+                            className={`texture-option ${
+                              textures[currentMesh] === img ? "selected" : ""  
+                            }`}
+                            key={img}
+                            src={img}
+                            alt='texture'
+                            onClick={() => handleTextureChange(currentMesh, img)}
+                          />
+                          <div className="texture-label">
+                            {label}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
                   </div>
                 </div>
               )}

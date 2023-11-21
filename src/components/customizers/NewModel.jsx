@@ -32,12 +32,14 @@ const saveToFile = (data, fileName) => {
   link.click();
 };
 
-export function New({rot, colors, textures}) {
+export function New({rot, base, colors, textures}) {
 
   const fileName = 'materials.json';
 
   const ref = useRef();
   const { nodes, materials } = useGLTF('./Model/NewTest.glb')
+
+  console.log(base);
 
   // console.log("Here: ", materials)
 
@@ -96,16 +98,73 @@ export function New({rot, colors, textures}) {
       )}
      
 
-      {/*Index Hood*/}
-      {/* <mesh geometry={nodes.index_finger_hood.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.index_finger_pad.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.polySurface312.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {/*Index Hood or Pad*/}
+      {base.finger_option === "Hood" ? (
+        <>
+          {base.finger_hood_or_pad_placement === "Index Finger" ? (
+            <>
+              <mesh geometry={nodes.index_finger_hood.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+              <mesh geometry={nodes.MASH1_ReproMesh.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+              <mesh geometry={nodes.polySurface311.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            </>
+          ) :(
+            <>
+              <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+            </>
+          )}
+          {base.finger_hood_or_pad_placement === "Middle Finger" ? (
+            <>
+              <mesh geometry={nodes.middle_finger_pad.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+              <mesh geometry={nodes.MASH2_ReproMesh.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+              <mesh geometry={nodes.polySurface313.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            </>
+          ) :(
+            <>
+              <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+            </>
+          )}
+
+        </>
+      ) :(
+        <>
+          {base.finger_option === "Pad" ? (
+            <>
+              {base.finger_hood_or_pad_placement === "Index Finger" ? (
+                <>
+                  <mesh geometry={nodes.index_finger_pad.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                  <mesh geometry={nodes.MASH1_ReproMesh.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                  <mesh geometry={nodes.polySurface311.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                </>
+              ) :(
+                <>
+                  <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+                </>
+              )}
+              {base.finger_hood_or_pad_placement === "Middle Finger" ? (
+                <>
+                  <mesh geometry={nodes.middle_finger_pad1.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                  <mesh geometry={nodes.MASH2_ReproMesh.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                  <mesh geometry={nodes.polySurface313.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                </>
+              ) :(
+                <>
+                  <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+                </>
+              )}
+            </>
+          ):(
+            <>
+              <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+            </>
+          )}
+        </>
+      )}
       
-      {/*Index Pad*/}
-      {/* <mesh geometry={nodes.middle_finger_pad.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.middle_finger_pad1.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.polySurface311.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.polySurface313.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      
+      {/*Middle Hood or Pad*/}
+      {/* <mesh geometry={nodes.polySurface311.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+      <mesh geometry={nodes.polySurface313.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />  */}
 
       {/*Leathers*/}
       {textures.leather2 ? (
@@ -155,71 +214,83 @@ export function New({rot, colors, textures}) {
       )}
 
       {/*Inlay*/}
-      {/* <mesh geometry={nodes.inlay.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.polySurface328.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.071, 0.03, 0.01]} rotation={[-2.025, 0.713, 1.43]} scale={-0.01} /> */}
+      {base.inlay ?(
+        <>
+          <mesh geometry={nodes.inlay.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.polySurface328.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.071, 0.03, 0.01]} rotation={[-2.025, 0.713, 1.43]} scale={-0.01} />
+        </>
+      ):(
+        <></>
+        )}
 
       {/*Stiches*/}
-      {/* <mesh geometry={nodes.MASH1_ReproMesh.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.MASH1_ReproMesh1.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.MASH2_ReproMesh1.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.MASH2_ReproMesh.geometry} material-color={colors.palm} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
       {textures.stiches ? (
         <MeshWithTexture geometry={nodes.stitches1.geometry} material-color={colors.stiches} material={materials.Stitches} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.stiches} />
       ) : (
         <mesh geometry={nodes.stitches1.geometry} material-color={colors.stiches} material={materials.Stitches} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-      )}
+        )}
 
+      {/*Dual Welting*/}
       {/*Welt*/}
-      {textures.welt ? (
+      {base.dual_welting ? (
         <>
-          <MeshWithTexture geometry={nodes.polySurface302001.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.polySurface301001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.polySurface300001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.polySurface299001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.polySurface297001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.polySurface302.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.polySurface301.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.polySurface300.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.polySurface297.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.Welt3001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.Welt2001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.Welt1001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.Welt3.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.Welt2.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.Welt1.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-          <MeshWithTexture geometry={nodes.Wire.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+          <mesh geometry={nodes.polySurface321.geometry} material-color={colors.palm} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          <mesh geometry={nodes.polySurface320.geometry} material-color={colors.palm} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          <mesh geometry={nodes.polySurface319.geometry} material-color={colors.palm} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          <mesh geometry={nodes.strips.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          <mesh geometry={nodes.dual_welt001.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          <mesh geometry={nodes.Wire.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          <mesh geometry={nodes.Welt3.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
         </>
       ) : (
         <>
-          <mesh geometry={nodes.polySurface302001.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface301001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface300001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface299001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface297001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface302.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface301.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface300.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface297.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.Welt3001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.Welt2001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.Welt1001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.Welt3.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.Welt2.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.Welt1.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.Wire.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-        </>   
+          {textures.welt ? (
+            <>
+              {/* <MeshWithTexture geometry={nodes.polySurface302001.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface301001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface300001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface299001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface297001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} /> */}
+              <MeshWithTexture geometry={nodes.polySurface302.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface301.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface300.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface297.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface312.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt3001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt2001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt1001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt3.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt2.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt1.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Wire.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+            </>
+          ) : (
+            <>
+              {/* <mesh geometry={nodes.polySurface302001.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface301001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface300001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface299001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface297001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
+              <mesh geometry={nodes.polySurface302.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface301.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface300.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              {/* <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
+              {/* <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
+              <mesh geometry={nodes.polySurface297.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface312.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+              <mesh geometry={nodes.Welt3001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Welt2001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Welt1001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Welt3.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Welt2.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Welt1.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Wire.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+            </>   
+          )}
+        </>
       )}
-
-      {/*Dual Welting*/}
-      {/* <mesh geometry={nodes.polySurface321.geometry} material-color={colors.palm} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-      <mesh geometry={nodes.polySurface320.geometry} material-color={colors.palm} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-      <mesh geometry={nodes.polySurface319.geometry} material-color={colors.palm} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-      <mesh geometry={nodes.strips.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-      <mesh geometry={nodes.dual_welt001.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
 
       {/*Side Logo*/}
       {textures.leather1 ? (
@@ -231,82 +302,143 @@ export function New({rot, colors, textures}) {
       <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
       
       {/*Side Logo with back*/}
-      {/* <mesh geometry={nodes.thuimb.geometry} material-color={colors.palm} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-      <mesh geometry={nodes.side_logo1.geometry} material-color={colors.palm} material={materials.Side_Logo} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-      <mesh geometry={nodes.logoback2.geometry} material-color={colors.palm} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
+      {/* {textures.leather1 ? (
+        <>
+        <MeshWithTexture geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+        <MeshWithTexture geometry={nodes.logoback2.geometry} material-color={colors.leather1} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+        </>
+      ) : (
+        <>
+        <mesh geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+        <mesh geometry={nodes.logoback2.geometry} material-color={colors.leather1} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+        </>
+      )}
+      <mesh geometry={nodes.side_logo1.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
       
       {/*Two Piece Web */}
-      {/* <mesh geometry={nodes.web1_laces.geometry} material-color={colors.palm} material={materials.Web_Stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web1_stitches.geometry} material-color={colors.palm} material={materials['Web_Stitches.001']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web1_body.geometry} material-color={colors.palm} material={materials.Web} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.web_style === '2 Piece Web' && (
+        <> 
+          <mesh geometry={nodes.web1_laces.geometry} material-color={colors.palm} material={materials.Web_Stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web1_stitches.geometry} material-color={colors.palm} material={materials['Web_Stitches.001']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web1_body.geometry} material-color={colors.palm} material={materials.Web} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
 
       {/*One Piece Web */}
-      {/* <mesh geometry={nodes.web2_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_6} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web2_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_3} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web2_body.geometry} material-color={colors.palm} material={materials.Web_Body} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.web_style === '1 Piece Web' && (
+        <> 
+          <mesh geometry={nodes.web2_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_6} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web2_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_3} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web2_body.geometry} material-color={colors.palm} material={materials.Web_Body} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
 
       {/*Net Style*/}
-      {/* <mesh geometry={nodes.web3.geometry} material-color={colors.palm} material={materials.Net_Style} rotation={[Math.PI / 2, 0, -2.451]} scale={0.01} />
-      <mesh geometry={nodes.web3_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_5} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web3_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_4} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.web_style === 'Net Style Web' && (
+        <> 
+          <mesh geometry={nodes.web3.geometry} material-color={colors.palm} material={materials.Net_Style} rotation={[Math.PI / 2, 0, -2.451]} scale={0.01} />
+          <mesh geometry={nodes.web3_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_5} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web3_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_4} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
 
       {/*LaceH*/}
-      {/* <mesh geometry={nodes.web4_laces_fr.geometry} material-color={colors.palm} material={materials.Web_Laces_4} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web4_stitches.geometry} material-color={colors.palm} material={materials['Web_Stitches 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web4.geometry} material-color={colors.palm} material={materials.Web_Body_2} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.web_style === 'Laced H-Web' && (
+        <> 
+          <mesh geometry={nodes.web4_laces_fr.geometry} material-color={colors.palm} material={materials.Web_Laces_4} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web4_stitches.geometry} material-color={colors.palm} material={materials['Web_Stitches 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web4.geometry} material-color={colors.palm} material={materials.Web_Body_2} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
 
       {/*ISpiral Web*/}
-      {/* <mesh geometry={nodes.web5.geometry} material-color={colors.palm} material={materials.Web_Body_3} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web_5_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_7} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web_5_stitches.geometry} material-color={colors.palm} material={materials.web5stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.web_style === 'I-Web (Spiral Lace)' && (
+        <>
+          <mesh geometry={nodes.web5.geometry} material-color={colors.palm} material={materials.Web_Body_3} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web_5_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_7} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web_5_stitches.geometry} material-color={colors.palm} material={materials.web5stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />   
+        </>
+      )}
 
       {/*WebH*/}
-      {/* <mesh geometry={nodes.web6.geometry} material-color={colors.palm} material={materials.Knots} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web6_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_3} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web6_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_7} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.web_style === 'H-Web' && (
+        <> 
+          <mesh geometry={nodes.web6.geometry} material-color={colors.palm} material={materials.Knots} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web6_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_3} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web6_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_7} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
       
       {/*WebT*/}
-      {/* <mesh geometry={nodes.web7.geometry} material-color={colors.palm} material={materials['Web 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web7_laces.geometry} material-color={colors.palm} material={materials.Knots} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web7_stitches.geometry} material-color={colors.palm} material={materials.Knots} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.web_style === 'T-Web' && (
+        <> 
+          <mesh geometry={nodes.web7.geometry} material-color={colors.palm} material={materials['Web 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web7_laces.geometry} material-color={colors.palm} material={materials.Knots} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web7_stitches.geometry} material-color={colors.palm} material={materials.Knots} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
 
       {/*EWeb*/}
-      {/* <mesh geometry={nodes.web8_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_6} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web8_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_2} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web8.geometry} material-color={colors.palm} material={materials.Web_Body_4} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.web_style === 'E-Web' && (
+        <> 
+          <mesh geometry={nodes.web8_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_6} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web8_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_2} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web8.geometry} material-color={colors.palm} material={materials.Web_Body_4} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
       
       {/*cross*/}
-      {/* <mesh geometry={nodes.web9.geometry} material-color={colors.palm} material={materials.Web_Body_5a} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web9_laces.geometry} material-color={colors.palm} material={materials.Knots} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web9_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_5} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.web_style === 'Cross Web' && (
+        <> 
+          <mesh geometry={nodes.web9.geometry} material-color={colors.palm} material={materials.Web_Body_5a} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web9_laces.geometry} material-color={colors.palm} material={materials.Knots} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web9_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_5} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
 
       {/*Basket_fr*/}
-      {/* <mesh geometry={nodes.web10.geometry} material-color={colors.palm} material={materials.Basket} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web10_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_9} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web10_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_9} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.web_style === 'Basket Web' && (
+        <> 
+          <mesh geometry={nodes.web10.geometry} material-color={colors.palm} material={materials.Basket} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web10_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_9} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web10_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_9} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
 
       {/*I Web Without Logo*/}
-      {/* <mesh geometry={nodes.polySurface337.geometry} material-color={colors.palm} material={materials.Web_Base} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.polySurface335.geometry} material-color={colors.palm} material={materials.Web_Base} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web11_laces001.geometry} material-color={colors.palm} material={materials.Web_Laces_8} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web11_stitches001.geometry} material-color={colors.palm} material={materials.Web_Stitches_8} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.pCube1.geometry} material-color={colors.palm} material={materials['Details 2']} position={[0.046, 0.114, 0.036]} rotation={[1.359, -0.283, -0.829]} scale={[0.021, 0.001, 0.019]} /> */}
-      
-      {/*IWeb with Logo} */}
-      {textures.webStyle ? (
-        <MeshWithTexture geometry={nodes.web11.geometry} material-color={colors.webStyle} material={materials.Web_Base} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.webStyle} />
-      ) : (
-        <mesh geometry={nodes.web11.geometry} material-color={colors.webStyle} material={materials.Web_Base} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+      {base.web_style === 'I-Web (No Logo)' && (
+        <>
+          <mesh geometry={nodes.polySurface337.geometry} material-color={colors.palm} material={materials.Web_Base} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.polySurface335.geometry} material-color={colors.palm} material={materials.Web_Base} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web11_laces001.geometry} material-color={colors.palm} material={materials.Web_Laces_8} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web11_stitches001.geometry} material-color={colors.palm} material={materials.Web_Stitches_8} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.pCube1.geometry} material-color={colors.palm} material={materials['Details 2']} position={[0.046, 0.114, 0.036]} rotation={[1.359, -0.283, -0.829]} scale={[0.021, 0.001, 0.019]} />
+        </>
       )}
-      <mesh geometry={nodes.web11_stitches.geometry} material-color={colors.webStyle} material={materials.Web_Stitches_8} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.weblogo.geometry} material-color={colors.logo} material={materials.Web_Logo} position={[-0.007, 0, -0.006]} rotation={[Math.PI / 2, 0, -2.451]} scale={0.01} />
-      <mesh geometry={nodes.logoback.geometry} material-color={colors.webStyle} material={materials['Logo Back 2']} position={[-0.007, 0, -0.006]} rotation={[Math.PI / 2, 0, -2.451]} scale={0.01} />
-      <mesh geometry={nodes.web11_laces.geometry} material-color={colors.laces} material={materials.Web_Laces_8} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      
+    
+      {/*IWeb with Logo} */}
+      {base.web_style === 'I-Web' && (
+        <>
+        {textures.webStyle ? (
+          <MeshWithTexture geometry={nodes.web11.geometry} material-color={colors.webStyle} material={materials.Web_Base} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.webStyle} />
+          ) : (
+            <mesh geometry={nodes.web11.geometry} material-color={colors.webStyle} material={materials.Web_Base} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        )}
+        <mesh geometry={nodes.web11_stitches.geometry} material-color={colors.webStyle} material={materials.Web_Stitches_8} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        <mesh geometry={nodes.weblogo.geometry} material-color={colors.logo} material={materials.Web_Logo} position={[-0.007, 0, -0.006]} rotation={[Math.PI / 2, 0, -2.451]} scale={0.01} />
+        <mesh geometry={nodes.logoback.geometry} material-color={colors.webStyle} material={materials['Logo Back 2']} position={[-0.007, 0, -0.006]} rotation={[Math.PI / 2, 0, -2.451]} scale={0.01} />
+        <mesh geometry={nodes.web11_laces.geometry} material-color={colors.laces} material={materials.Web_Laces_8} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
+ 
       {/*LaceY1*/}
-      {/* <mesh geometry={nodes.web12_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_10} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web12.geometry} material-color={colors.palm} material={materials.Web_Body_Y} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.web12_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_10} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.web_style === 'Y-Web' && (
+        <> 
+          <mesh geometry={nodes.web12_stitches.geometry} material-color={colors.palm} material={materials.Web_Stitches_10} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web12.geometry} material-color={colors.palm} material={materials.Web_Body_Y} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.web12_laces.geometry} material-color={colors.palm} material={materials.Web_Laces_10} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
       
       {/*Laces*/}
       {textures.laces ? (
@@ -323,21 +455,34 @@ export function New({rot, colors, textures}) {
       )}
 
       {/*Circle Logo*/}
-      <mesh geometry={nodes.legend_logo.geometry} material-color={colors.logo} material={materials.Circle_Logo_Lettersa} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.circle_logo001.geometry} material-color={colors.wristPlate} material={materials.Circle_Logo} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.logo_stitch_round.geometry} material-color={colors.stiches} material={materials['Logo Stitches']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+      {base.logo_style === "Embroidered" && (
+        <>
+          <mesh geometry={nodes.circle_logo001.geometry} material-color={colors.wristPlate} material={materials.Circle_Logo} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.logo_stitch_round.geometry} material-color={colors.stiches} material={materials['Logo Stitches']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          {/*Logo with outline*/}
+          {base.logo_outline ? (
+            <>
+              <mesh geometry={nodes.legend_logo.geometry} material-color={colors.logo} material={materials['Logo Without Outline 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+              <mesh geometry={nodes.logo_outline314.geometry} material-color={colors.logo} material={materials['Logo Outline']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            </>
+            // <mesh geometry={nodes.legend_logo.geometry} material-color={colors.logo} material={materials.Circle_Logo_Lettersa} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            ) : (
+            <mesh geometry={nodes.logo_without_outline001.geometry} material-color={colors.logo} material={materials['Logo Without Outline']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            // <mesh geometry={nodes.legend_logo.geometry} material-color={colors.logo} material={materials['Logo Without Outline 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          )}
+        </>
+      )}
 
-      {/*Logo with outline*/}
-      {/* <mesh geometry={nodes.legend_logo1.geometry} material-color={colors.palm} material={materials['Logo Without Outline 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.logo_outline314.geometry} material-color={colors.palm} material={materials['Logo Outline']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
-
-      {/* <mesh geometry={nodes.logo_without_outline001.geometry} material-color={colors.palm} material={materials['Logo Without Outline']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
 
       {/*Square Logo*/}
-      {/* <mesh geometry={nodes.square_logo_3.geometry} material-color={colors.palm} material={materials.Square_Logo_Letters} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.square_logo_patch.geometry} material-color={colors.palm} material={materials['Square Logo Patch']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.outside_line_square_logo.geometry} material-color={colors.palm} material={materials['Logo Outside Line']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.inside_line_square_logo.geometry} material-color={colors.palm} material={materials['Logo Inner Line']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      {base.logo_style === "Square Patch" && (
+        <>
+          <mesh geometry={nodes.square_logo_3.geometry} material-color={colors.palm} material={materials.Square_Logo_Letters} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.square_logo_patch.geometry} material-color={colors.palm} material={materials['Square Logo Patch']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.outside_line_square_logo.geometry} material-color={colors.palm} material={materials['Logo Outside Line']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.inside_line_square_logo.geometry} material-color={colors.palm} material={materials['Logo Inner Line']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+        </>
+      )}
   
     </group>
   )
