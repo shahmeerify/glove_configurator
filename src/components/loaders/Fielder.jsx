@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { New } from "../customizers/NewModel" ;
 import { OrbitControls } from "@react-three/drei";
-import { colorOptions, colorData, tabs, textureData, imagePaths, baseOptions, Options } from "../constants";
+import { colorOptions, colorData, tabs, textureData, imagePaths, baseOptions, Options, flags } from "../constants";
 
 export default function Fielder() {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
@@ -47,14 +47,16 @@ export default function Fielder() {
   };
 
   const handleBaseChange = (option, value) => {
-    if (baseConfig[option] === value) {
-      // If clicking on already selected option, set to null 
+    if (baseConfig[option]['value'] === value) {
       value = null; 
     }
-    setBaseConfig((prevOption) => ({
-      ...prevOption,
-      [option]: value,
-    }));
+    setBaseConfig(prevOptions => ({
+      ...prevOptions, 
+      [option]: {
+         ...prevOptions[option],
+         value
+      }
+    }))
   };
 
   const handleTabChange = (tab) => {
@@ -64,19 +66,33 @@ export default function Fielder() {
   const handlePreviousClick = (customOptions, current, setCurrentOption) => {
     const optionKeys = Object.keys(customOptions);
     const currentMeshIndex = optionKeys.indexOf(current);
-    const previousMeshIndex =
+    let previousMeshIndex =
       currentMeshIndex !== -1
         ? (currentMeshIndex - 1 + optionKeys.length) % optionKeys.length
         : 0;
-    setCurrentOption(optionKeys[previousMeshIndex]);
+    let val = optionKeys[previousMeshIndex]
+    if (baseConfig[val] instanceof Object && baseConfig[val]['show'] === false) {
+      previousMeshIndex =
+        currentMeshIndex !== -1
+          ? (currentMeshIndex - 2 + optionKeys.length) % optionKeys.length
+          : 0;
+      val = optionKeys[previousMeshIndex]
+    }
+    setCurrentOption(val);
   };
 
   const handleNextClick = (customOptions, current, setCurrentOption) => {
     const optionKeys = Object.keys(customOptions);
     const currentMeshIndex = optionKeys.indexOf(current);
-    const nextMeshIndex =
+    let nextMeshIndex =
       currentMeshIndex !== -1 ? (currentMeshIndex + 1) % optionKeys.length : 0;
-    setCurrentOption(optionKeys[nextMeshIndex]);
+    let val = optionKeys[nextMeshIndex]
+    if (baseConfig[val] instanceof Object && baseConfig[val]['show'] === false) {
+      nextMeshIndex =
+        currentMeshIndex !== -1 ? (currentMeshIndex + 2) % optionKeys.length : 0;
+      val = optionKeys[nextMeshIndex]
+    }
+    setCurrentOption(val);
   };
 
   return (
@@ -128,7 +144,7 @@ export default function Fielder() {
 
                         {/* <pointLight /> */}
                     
-                        <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} />
+                        <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} flags={flags} />
                         <OrbitControls
                           minPolarAngle={Math.PI / 2}
                           maxPolarAngle={Math.PI / 2}
@@ -210,16 +226,16 @@ export default function Fielder() {
                       Current: {currentBase}
                     </div>
                     <div>
-                      {Options[currentBase].map((option) => (
-                        <div key={option} className="radio-container">
+                      {Options[currentBase].map(option => (
+                        <div> 
                           <input
                             type="radio"
                             id={`radio-${option}`}
                             className="radio-input"
                             value={option}
-                            checked={baseConfig[currentBase] === option}
+                            checked={baseConfig[currentBase]['value'] === option}
                             onClick={()=>{handleBaseChange(currentBase, option)}}
-                          />
+                            />
                           <label htmlFor={`radio-${option}`} className="radio-label">
                             {option}
                           </label>

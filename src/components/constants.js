@@ -25,7 +25,11 @@ import snaketan from '../assets/textures/snake tan/snake skin tan.png'
 import snaketeal from '../assets/textures/snake teal/snake skin teal.png'
 import snakewhite from '../assets/textures/snake white/snake skin white.png'
 import stripepattern from '../assets/textures/stripe pattern/stipe.jpg'
+import USA from '../assets/logo_flag/USA.png'
 
+export const flags = {
+  "USA": USA,
+}
 
 export const imagePaths = {
   "Shiny Silver": silvershiny,
@@ -135,19 +139,19 @@ export const colorOptions = {
   };
 
   export const baseOptions = {
-    size: "11",
-    logo_style: "Embroidered",
-    // embroidered_flag: "USA",
-    logo_outline: null,
-    finger_option: "None",
-    finger_hood_or_pad_placement: "Middle",
-    inlay: null,
-    lace_length: "Normal",
-    wrist_linning: "Traditional Fur",
-    dual_welting: null,
-    web_style: "I-Web",
-    glove_stiffness: null,
-    throwing_hand: null,
+    size: { value: "11", show: true },
+    logo_style: { value: "Embroidered", show: true},
+    embroidered_flag: { value: "USA", show: false},
+    logo_outline: { value: null, show: true},
+    finger_option: { value: "None", show: true},
+    finger_hood_or_pad_placement: { value: "Middle", show: false},
+    inlay: { value: null, show: true},
+    lace_length: { value: "Normal", show: true},
+    wrist_linning: { value: "Traditional Fur", show: true},
+    dual_welting: { value: null, show: true},
+    web_style: { value: "I-Web", show: true},
+    glove_stiffness: { value: null, show: true},
+    throwing_hand: { value: null, show: true},
   }
 
   export const Options = {
