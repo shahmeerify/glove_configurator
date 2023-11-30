@@ -26,9 +26,29 @@ import snaketeal from '../assets/textures/snake teal/snake skin teal.png'
 import snakewhite from '../assets/textures/snake white/snake skin white.png'
 import stripepattern from '../assets/textures/stripe pattern/stipe.jpg'
 import USA from '../assets/logo_flag/USA.png'
+import Australia from '../assets/logo_flag/Australia.png'
+import Canada from '../assets/logo_flag/Canada.png'
+import Dominican_Republic from '../assets/logo_flag/Dominican_Republic.png'
+import Italy from '../assets/logo_flag/Italy.png'
+import Japan from '../assets/logo_flag/Japan.png'
+import Korea from '../assets/logo_flag/Korea.png'
+import Mexico from '../assets/logo_flag/Mexico.png'
+import Puerto_Rico from '../assets/logo_flag/Puerto_Rico.png'
+import Venezuela from '../assets/logo_flag/Venezuela.png'
+import Netherlands from '../assets/logo_flag/Netherlands.png'
 
 export const flags = {
   "USA": USA,
+  "Korea": Korea,
+  "Venezuela": Venezuela,
+  "Dominican Republic": Dominican_Republic,
+  "Japan": Japan,
+  "Australia": Australia,
+  "Mexico": Mexico,
+  "Canada": Canada,
+  "Italy": Italy,
+  "Puerto Rico": Puerto_Rico,
+  "Netherlands": Netherlands,
 }
 
 export const imagePaths = {
@@ -87,6 +107,10 @@ export const colorOptions = {
 
   export const colorData = {
     binding: "#E2E2E2",
+    finger_hood: "#E2E2E2",
+    finger_pad: "#E2E2E2",
+    inlay: "#E2E2E2",
+    "Finger Strip": "#E2E2E2",
     laces: "#E2E2E2",
     leather1: "#EBEBEB",
     leather2: "#EBEBEB",
@@ -97,13 +121,14 @@ export const colorOptions = {
     leather7: "#EBEBEB",
     leather8: "#EBEBEB",
     logo: "#E2E2E2", //Webbing Logo
-    wristPlate: "#E1E1E1",
+    logo_outline_color: "#000000",
     palm: "#EBEBEB",
-    stiches: "#D3D3D3",
+    Stiches: "#D3D3D3",
     webStyle: "#f0f0f0",
     welt: "#E2E2E2", //Edgings
     wingtipThumb: "#EBEBEB",
     wingtipPinky: "#EBEBEB",
+    wristPlate: "#E1E1E1",
     wrist: "#EBEBEB",
     // logo4_replace: "#808080", //Palm Logo
     // slice: "#f8f8f8", //Extension of Palm to Back
@@ -114,6 +139,10 @@ export const colorOptions = {
 
   export const textureData = {
     binding: null,
+    finger_hood: null,
+    finger_pad: null,
+    inlay: null,
+    "Finger Strip": null,
     logo4_replace: null, 
     logo_03: null, 
     palm: null,
@@ -131,27 +160,77 @@ export const colorOptions = {
     wingtipThumb: null,
     wingtipPinky: null,
     laces: null,
-    logo_01: null, 
+    logo: null, 
+    logo_outline_color: null,
     stiches: null,
     webStyle: null,
     logo_02: null, 
     wrist: null,
+    wristPlate: null,
   };
 
+  export const colorStepsConfig= {
+    binding: true,
+    finger_hood: false,
+    finger_pad: false,
+    inlay: false,
+    "Finger Strip": false,
+    logo4_replace: true, 
+    logo_03: true, 
+    palm: true,
+    slice: true, 
+    welt: true, 
+    blackPiece: true, 
+    leather1: true,
+    leather2: true,
+    leather3: true,
+    leather4: true,
+    leather5: true,
+    leather6: true,
+    leather7: true,
+    leather8: true,
+    wingtipThumb: true,
+    wingtipPinky: true,
+    laces: true,
+    logo: true,
+    logo_outline_color: false, 
+    stiches: true,
+    webStyle: true,
+    logo_02: true, 
+    wrist: true,
+    wristPlate: true,
+  }
+
+  export const baseStepsConfig= {
+    size: true,
+    logo_style: true,
+    embroidered_flag: false,
+    logo_outline: true,
+    finger_option: true,
+    finger_hood_or_pad_placement: false,
+    inlay: true,
+    lace_length: true,
+    wrist_linning: true,
+    dual_welting: true,
+    web_style: true,
+    glove_stiffness: true,
+    throwing_hand: true,
+  }
+
   export const baseOptions = {
-    size: { value: "11", show: true },
-    logo_style: { value: "Embroidered", show: true},
-    embroidered_flag: { value: "USA", show: false},
-    logo_outline: { value: null, show: true},
-    finger_option: { value: "None", show: true},
-    finger_hood_or_pad_placement: { value: "Middle", show: false},
-    inlay: { value: null, show: true},
-    lace_length: { value: "Normal", show: true},
-    wrist_linning: { value: "Traditional Fur", show: true},
-    dual_welting: { value: null, show: true},
-    web_style: { value: "I-Web", show: true},
-    glove_stiffness: { value: null, show: true},
-    throwing_hand: { value: null, show: true},
+    size: "11",
+    logo_style: "Embroidered",
+    embroidered_flag: "USA",
+    logo_outline: null,
+    finger_option: "None",
+    finger_hood_or_pad_placement: "Middle",
+    inlay: null,
+    lace_length: "Normal",
+    wrist_linning: "Traditional Fur",
+    dual_welting: null,
+    web_style: "I-Web",
+    glove_stiffness: null,
+    throwing_hand: null,
   }
 
   export const Options = {

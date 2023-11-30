@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.231141d1.css",
-    "main.js": "/static/js/main.67f4fc76.js",
+    "main.css": "/static/css/main.2b20b676.css",
+    "main.js": "/static/js/main.14f5ea8f.js",
     "static/media/a_skin.png": "/static/media/a_skin.af62c3a717fc93adf4d3.png",
     "static/media/inlay_initialShadingGroup_Diffuse.png": "/static/media/inlay_initialShadingGroup_Diffuse.a0f266f6c82f689be04d.png",
     "static/media/snake skin brown.png": "/static/media/snake skin brown.408b2e4cb640cb253b16.png",
@@ -20,17 +20,25 @@
     "static/media/snake skin black.png": "/static/media/snake skin black.6b64ab504f377019dceb.png",
     "static/media/elephant skin.png": "/static/media/elephant skin.66eead650505f0872cc1.png",
     "static/media/invert-elephant-skin.jpg": "/static/media/invert-elephant-skin.4dc51b1117302fd39a22.jpg",
+    "static/media/Mexico.png": "/static/media/Mexico.0a322672b63a0e5072bf.png",
     "static/media/red camo.webp": "/static/media/red camo.5fa782b4f0df4894e9a3.webp",
     "static/media/reptile.jpg": "/static/media/reptile.d8471de65804e0476577.jpg",
     "static/media/cross.png": "/static/media/cross.4ea8f00e40ea2454f9a9.png",
     "static/media/grey camoflauge.jpg": "/static/media/grey camoflauge.24a4975e31319ee8a425.jpg",
+    "static/media/Dominican_Republic.png": "/static/media/Dominican_Republic.da0d7094bce9e364f343.png",
+    "static/media/Australia.png": "/static/media/Australia.600fcf7dc3f7ce58c18a.png",
+    "static/media/Korea.png": "/static/media/Korea.469e27ad3661c0beb3f7.png",
+    "static/media/Puerto_Rico.png": "/static/media/Puerto_Rico.fd0d42a0f071a7915471.png",
+    "static/media/USA.png": "/static/media/USA.651c69d73c73d08f0723.png",
+    "static/media/Venezuela.png": "/static/media/Venezuela.89c54c8816ba4575cb36.png",
     "static/media/base_base_BaseColor.png": "/static/media/base_base_BaseColor.0893348a2120c8fc7d5f.png",
+    "static/media/Canada.png": "/static/media/Canada.cae185e9b07062bec504.png",
     "index.html": "/index.html",
-    "main.231141d1.css.map": "/static/css/main.231141d1.css.map",
-    "main.67f4fc76.js.map": "/static/js/main.67f4fc76.js.map"
+    "main.2b20b676.css.map": "/static/css/main.2b20b676.css.map",
+    "main.14f5ea8f.js.map": "/static/js/main.14f5ea8f.js.map"
   },
   "entrypoints": [
-    "static/css/main.231141d1.css",
-    "static/js/main.67f4fc76.js"
+    "static/css/main.2b20b676.css",
+    "static/js/main.14f5ea8f.js"
   ]
 }

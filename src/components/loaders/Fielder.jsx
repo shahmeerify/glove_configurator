@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { New } from "../customizers/NewModel" ;
 import { OrbitControls } from "@react-three/drei";
-import { colorOptions, colorData, tabs, textureData, imagePaths, baseOptions, Options, flags } from "../constants";
+import { colorOptions, colorData, tabs, textureData, imagePaths, colorStepsConfig, baseOptions, Options, baseStepsConfig, flags } from "../constants";
 
 export default function Fielder() {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
@@ -10,8 +10,10 @@ export default function Fielder() {
   const [currentMesh, setCurrentMesh] = useState("binding");
   const [colors, setColors] = useState(colorData);
   const [textures, setTextures] = useState(textureData);
+  const [colorSteps, setColorSteps] = useState(colorStepsConfig);
   const [currentBase, setCurrentBase] = useState("size");
   const [baseConfig, setBaseConfig] = useState(baseOptions);
+  const [baseSteps, setBaseSteps] = useState(baseStepsConfig);
   
   const rotateLeft = () => {
     setRotationValue(
@@ -47,53 +49,211 @@ export default function Fielder() {
   };
 
   const handleBaseChange = (option, value) => {
-    if (baseConfig[option]['value'] === value) {
+    if (baseConfig[option] === value) {
+      // If clicking on already selected option, set to null 
       value = null; 
     }
-    setBaseConfig(prevOptions => ({
-      ...prevOptions, 
-      [option]: {
-         ...prevOptions[option],
-         value
-      }
-    }))
+    setBaseConfig((prevOption) => ({
+      ...prevOption,
+      [option]: value,
+    }));
+
+    // Update baseSteps when logo_style changes
+    if(option === 'logo_style' && value === 'Embroidered Flag') {
+      setBaseSteps(prevSteps => ({
+        ...prevSteps,
+        embroidered_flag: true
+      }));
+    } else if(option === 'logo_style' && value !== 'Embroidered Flag') {
+      setBaseSteps(prevSteps => ({
+        ...prevSteps,  
+        embroidered_flag: false
+      }));
+    }
+    if(option === 'logo_style' && value === 'Embroidered') {
+      setBaseSteps(prevSteps => ({
+        ...prevSteps,
+        logo_outline: true
+      }));
+    } else if(option === 'logo_style' && value !== 'Embroidered') {
+      setBaseSteps(prevSteps => ({
+        ...prevSteps,  
+        logo_outline: false
+      }));
+    }
+
+    if(option === 'finger_option' && value !== 'None') {
+      setBaseSteps(prevSteps => ({
+        ...prevSteps,
+        finger_hood_or_pad_placement: true
+      }));
+    } else if(option === 'finger_option' && value === 'None') {
+      setBaseSteps(prevSteps => ({
+        ...prevSteps,  
+        finger_hood_or_pad_placement: false
+      }));
+    }
+
+    if(option === 'logo_outline' && value === 'Enable Logo Outline') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        logo_outline_color: true
+      }));
+    } else if(option === 'logo_outline' && value === null) {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,  
+        logo_outline_color: false
+      }));
+    }
+
+    if(option === 'finger_option' && value === 'Hood') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        finger_hood: true
+      }));
+    } else if(option === 'finger_option' && value !== 'Hood') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        finger_hood: false
+      }));
+    }
+
+    if(option === 'finger_option' && value === 'Pad') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        finger_pad: true
+      }));
+    } else if(option === 'finger_option' && value !== 'Pad') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        finger_pad: false
+      }));
+    }
+
+    if(option === 'inlay' && value === 'Inlay') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        inlay: true
+      }));
+    } else if(option === 'inlay' && value !== 'Inlay') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        inlay: false
+      }));
+    }
+
+    if(option === "dual_welting" && value === "Dual Welting") {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        "Finger Strip": true
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather2: false
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather3: false
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather4: false
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather5: false
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather6: false
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather7: false
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather8: false
+      }));
+    } else if(option === "dual_welting" && value !== "Dual Welting") {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        "Finger Strip": false
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather2: true
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather3: true
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather4: true
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather5: true
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather6: true
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather7: true
+      }));
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        leather8: true
+      }));
+    }
+
   };
 
   const handleTabChange = (tab) => {
     setCurrentTab(tab);
   };
 
-  const handlePreviousClick = (customOptions, current, setCurrentOption) => {
-    const optionKeys = Object.keys(customOptions);
-    const currentMeshIndex = optionKeys.indexOf(current);
-    let previousMeshIndex =
-      currentMeshIndex !== -1
-        ? (currentMeshIndex - 1 + optionKeys.length) % optionKeys.length
-        : 0;
-    let val = optionKeys[previousMeshIndex]
-    if (baseConfig[val] instanceof Object && baseConfig[val]['show'] === false) {
-      previousMeshIndex =
-        currentMeshIndex !== -1
-          ? (currentMeshIndex - 2 + optionKeys.length) % optionKeys.length
-          : 0;
-      val = optionKeys[previousMeshIndex]
+  const handlePreviousClick = (options, current, setCurrent, steps) => {
+    const keys = Object.keys(options);
+    
+    let index = keys.indexOf(current);
+    if(index === -1) return;
+  
+    let prevEnabled;
+    
+    do {
+      index--;
+      if(index < 0) index = keys.length - 1;
+      
+      prevEnabled = steps[keys[index]];
     }
-    setCurrentOption(val);
-  };
+    while(!prevEnabled && index !== keys.indexOf(current))
+    
+    setCurrent(keys[index]);
+  }
 
-  const handleNextClick = (customOptions, current, setCurrentOption) => {
-    const optionKeys = Object.keys(customOptions);
-    const currentMeshIndex = optionKeys.indexOf(current);
-    let nextMeshIndex =
-      currentMeshIndex !== -1 ? (currentMeshIndex + 1) % optionKeys.length : 0;
-    let val = optionKeys[nextMeshIndex]
-    if (baseConfig[val] instanceof Object && baseConfig[val]['show'] === false) {
-      nextMeshIndex =
-        currentMeshIndex !== -1 ? (currentMeshIndex + 2) % optionKeys.length : 0;
-      val = optionKeys[nextMeshIndex]
+  const handleNextClick = (options, current, setCurrent, steps) => {
+
+    const keys = Object.keys(options);
+    
+    let index = keys.indexOf(current);
+    if(index === -1) return;
+  
+    let nextEnabled;
+    
+    do {
+      index++;
+      if(index >= keys.length) index = 0;
+  
+      nextEnabled = steps[keys[index]];
     }
-    setCurrentOption(val);
-  };
+    while(!nextEnabled && index !== keys.indexOf(current));
+  
+    setCurrent(keys[index]);
+  }
 
   return (
     <div className="glove py-12">
@@ -205,14 +365,14 @@ export default function Fielder() {
                   <h3 className="tab-heading">Base Personalization</h3>
                   <div className="mesh-navigation">
                     <button
-                      onClick={() => {handlePreviousClick(baseOptions, currentBase, setCurrentBase)}}
+                      onClick={() => {handlePreviousClick(baseOptions, currentBase, setCurrentBase, baseSteps)}}
                       className="nav-button"
                       disabled={Object.keys(baseOptions).indexOf(currentBase) === 0}
                     >
                       {"<"}
                     </button>
                     <button
-                      onClick={() => {handleNextClick(baseOptions, currentBase, setCurrentBase)}}
+                      onClick={() => {handleNextClick(baseOptions, currentBase, setCurrentBase, baseSteps)}}
                       className="nav-button"
                       disabled={
                         Object.keys(baseOptions).indexOf(currentBase) ===  Object.keys(baseOptions).length - 1
@@ -233,7 +393,7 @@ export default function Fielder() {
                             id={`radio-${option}`}
                             className="radio-input"
                             value={option}
-                            checked={baseConfig[currentBase]['value'] === option}
+                            checked={baseConfig[currentBase] === option}
                             onClick={()=>{handleBaseChange(currentBase, option)}}
                             />
                           <label htmlFor={`radio-${option}`} className="radio-label">
@@ -250,14 +410,14 @@ export default function Fielder() {
                   <h3 className="tab-heading">Color Customization</h3>
                   <div className="mesh-navigation">
                     <button
-                      onClick={() => {handlePreviousClick(colorData, currentMesh, setCurrentMesh)}}
+                      onClick={() => {handlePreviousClick(colorData, currentMesh, setCurrentMesh, colorSteps)}}
                       className="nav-button"
                       disabled={Object.keys(colorData).indexOf(currentMesh) === 0}
                     >
                       {"<"}
                     </button>
                     <button
-                      onClick={() => {handleNextClick(colorData, currentMesh, setCurrentMesh)}}
+                      onClick={() => {handleNextClick(colorData, currentMesh, setCurrentMesh, colorSteps)}}
                       className="nav-button"
                       disabled={
                         Object.keys(colorData).indexOf(currentMesh) ===  Object.keys(colorData).length - 1
