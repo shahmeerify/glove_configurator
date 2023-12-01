@@ -162,7 +162,7 @@ export const colorOptions = {
     laces: null,
     logo: null, 
     logo_outline_color: null,
-    stiches: null,
+    Stiches: null,
     webStyle: null,
     logo_02: null, 
     wrist: null,
@@ -194,11 +194,11 @@ export const colorOptions = {
     laces: true,
     logo: true,
     logo_outline_color: false, 
-    stiches: true,
+    Stiches: true,
     webStyle: true,
     logo_02: true, 
     wrist: true,
-    wristPlate: true,
+    wristPlate: false,
   }
 
   export const baseStepsConfig= {
@@ -223,7 +223,7 @@ export const colorOptions = {
     embroidered_flag: "USA",
     logo_outline: null,
     finger_option: "None",
-    finger_hood_or_pad_placement: "Middle",
+    finger_hood_or_pad_placement: "Index",
     inlay: null,
     lace_length: "Normal",
     wrist_linning: "Traditional Fur",
@@ -235,7 +235,7 @@ export const colorOptions = {
 
   export const Options = {
     size: ["11", "11.25", "11.5", "12", "12.25"],
-    logo_style: ["Embroidered", "Embroidered Flag", "Square Patch"],
+    logo_style: ["Embroidered", "Circle Patch", "Embroidered Flag", "Square Patch"],
     embroidered_flag: ["USA", "Korea", "Venezuela", "Dominican Republic", "Japan", "Australia", "Mexico", "Canada", "Italy", "Puerto Rico", "Netherlands"],
     logo_outline: ["Enable Logo Outline"],
     finger_option: ["None", "Hood", "Pad"],

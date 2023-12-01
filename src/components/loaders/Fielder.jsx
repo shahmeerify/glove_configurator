@@ -81,6 +81,18 @@ export default function Fielder() {
         logo_outline: false
       }));
     }
+    if(option === 'logo_style' && value === "Circle Patch") {
+      console.log("here")
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        wristPlate: true
+      }));
+    } else if(option === 'logo_style' && value !== "Circle Patch") {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,  
+        wristPlate: false
+      }));
+    }
 
     if(option === 'finger_option' && value !== 'None') {
       setBaseSteps(prevSteps => ({
