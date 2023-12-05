@@ -109,9 +109,9 @@ export function New({rot, base, colors, textures }) {
           {base.finger_hood_or_pad_placement === "Index Finger" ? (
             <>
               {textures.finger_hood ? (
-                <MeshWithTexture geometry={nodes.index_finger_hood.geometry} material-color={colors.finger_hood} material={materials.hood} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_hood} tsize={2} />
+                <MeshWithTexture geometry={nodes.index_finger_hood.geometry} material-color={colors.finger_hood} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_hood} tsize={2} />
               ) :(
-                <mesh geometry={nodes.index_finger_hood.geometry} material-color={colors.finger_hood} material={materials.hood} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                <mesh geometry={nodes.index_finger_hood.geometry} material-color={colors.finger_hood} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
               )}
               <mesh geometry={nodes.MASH1_ReproMesh.geometry} material-color={colors.Stiches} material={materials.Stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
               {!base.dual_welting && (
@@ -128,9 +128,9 @@ export function New({rot, base, colors, textures }) {
           {base.finger_hood_or_pad_placement === "Middle Finger" ? (
             <>
               {textures.finger_hood ? (
-                <MeshWithTexture geometry={nodes.middle_finger_pad.geometry} material-color={colors.finger_hood} material={materials.hood} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_hood} tsize={2} />
+                <MeshWithTexture geometry={nodes.middle_finger_pad.geometry} material-color={colors.finger_hood} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_hood} tsize={2} />
               ) :(
-                <mesh geometry={nodes.middle_finger_pad.geometry} material-color={colors.finger_hood} material={materials.hood} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                <mesh geometry={nodes.middle_finger_pad.geometry} material-color={colors.finger_hood} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
               )}
               <mesh geometry={nodes.MASH2_ReproMesh.geometry} material-color={colors.Stiches} material={materials.Stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
               {!base.dual_welting && (
@@ -153,9 +153,9 @@ export function New({rot, base, colors, textures }) {
               {base.finger_hood_or_pad_placement === "Index Finger" ? (
                 <>
                   {textures.finger_pad ? (
-                    <MeshWithTexture geometry={nodes.index_finger_pad.geometry} material-color={colors.finger_pad} material={materials.hood} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_pad} tsize={1.5} />
+                    <MeshWithTexture geometry={nodes.index_finger_pad.geometry} material-color={colors.finger_pad} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_pad} tsize={1.5} />
                   ) :(
-                    <mesh geometry={nodes.index_finger_pad.geometry} material-color={colors.finger_pad} material={materials.hood} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                    <mesh geometry={nodes.index_finger_pad.geometry} material-color={colors.finger_pad} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
                   )}
                   <mesh geometry={nodes.MASH1_ReproMesh.geometry} material-color={colors.Stiches} material={materials.Stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
                   {!base.dual_welting && (
@@ -172,9 +172,9 @@ export function New({rot, base, colors, textures }) {
               {base.finger_hood_or_pad_placement === "Middle Finger" ? (
                 <>
                   {textures.finger_pad ? (
-                    <MeshWithTexture geometry={nodes.middle_finger_pad1.geometry} material-color={colors.finger_pad} material={materials.hood} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_pad} tsize={1.5} />
+                    <MeshWithTexture geometry={nodes.middle_finger_pad1.geometry} material-color={colors.finger_pad} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_pad} tsize={1.5} />
                   ) :(
-                    <mesh geometry={nodes.middle_finger_pad1.geometry} material-color={colors.finger_pad} material={materials.hood} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                    <mesh geometry={nodes.middle_finger_pad1.geometry} material-color={colors.finger_pad} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
                   )}
                   <mesh geometry={nodes.MASH2_ReproMesh.geometry} material-color={colors.Stiches} material={materials.Stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
                   {!base.dual_welting && (
@@ -291,9 +291,35 @@ export function New({rot, base, colors, textures }) {
           )}
           {/* <mesh geometry={nodes.dual_welt002.geometry} material-color={colors.welt} material={materials['lambert1.001']} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
           {textures.welt ? (
-            <MeshWithTexture geometry={nodes.dual_welt001.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1}/>
+            <>
+              {(base.finger_option === "Pad" || base.finger_option === "Hood") && (base.finger_hood_or_pad_placement === "Index Finger") ? (
+                <MeshWithTexture geometry={nodes.dualwelt_index.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.0135, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
+                ):(
+                <MeshWithTexture geometry={nodes.dual_welt1.geometry} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
+                )}
+              {(base.finger_option === "Pad" || base.finger_option === "Hood") && (base.finger_hood_or_pad_placement === "Middle Finger") ? (
+                <MeshWithTexture geometry={nodes.dualwelt_middle.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.0135, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008}texture={textures.welt} tsize={1} />
+              ):(
+                <MeshWithTexture geometry={nodes.dual_welt2.geometry} material={materials.welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
+              )}
+              <MeshWithTexture geometry={nodes.dual_welt3.geometry} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
+              <MeshWithTexture geometry={nodes.dual_welt4.geometry} material={materials.welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
+            </>
           ) : (
-            <mesh geometry={nodes.dual_welt001.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+            <>
+              {(base.finger_option === "Pad" || base.finger_option === "Hood") && (base.finger_hood_or_pad_placement === "Index Finger") ? (
+                <mesh geometry={nodes.dualwelt_index.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.0135, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              ):(
+                <mesh geometry={nodes.dual_welt1.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.0135, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              )}
+              {(base.finger_option === "Pad" || base.finger_option === "Hood") && (base.finger_hood_or_pad_placement === "Middle Finger") ? (
+                <mesh geometry={nodes.dualwelt_middle.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.0135, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              ):(
+                <mesh geometry={nodes.dual_welt2.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.0135, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              )}
+              <mesh geometry={nodes.dual_welt3.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.0135, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.dual_welt4.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.0135, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+            </>
           )}
           <mesh geometry={nodes.Wire001.geometry} material-color={colors.welt} material={materials.welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
           <mesh geometry={nodes.Welt3.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
