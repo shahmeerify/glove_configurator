@@ -202,13 +202,39 @@ export function New({rot, base, colors, textures }) {
         </>
       )}
       
-      
       {/*Middle Hood or Pad*/}
       {/* <mesh geometry={nodes.polySurface311.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
       <mesh geometry={nodes.polySurface313.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />  */}
 
+      {/*Side Logo*/}
+      {base.inlay !== "Inlay" && (
+        <>
+          {textures.leather1 ? (
+            <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+          ) : (
+            <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          )}
+          <mesh geometry={nodes.polySurface333.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
+          <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />  
+        </>
+      )}
+      {/*Side Logo with back*/}
+      {/* {textures.leather1 ? (
+        <>
+        <MeshWithTexture geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+        <MeshWithTexture geometry={nodes.logoback2.geometry} material-color={colors.leather1} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+        </>
+      ) : (
+        <>
+        <mesh geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+        <mesh geometry={nodes.logoback2.geometry} material-color={colors.leather1} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+        </>
+      )}
+      <mesh geometry={nodes.side_logo1.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
+      
+
       {/*Leathers*/}
-      {!base.dual_welting && (
+      {!base.dual_welting && !base.inlay && (
         <>
           {textures.leather2 ? (
             <MeshWithTexture geometry={nodes.Index_Inner.geometry} material-color={colors.leather2} material={materials.Index_Inner1} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather2} />
@@ -245,28 +271,94 @@ export function New({rot, base, colors, textures }) {
           ) : (
             <mesh geometry={nodes.Pinky_Inner1.geometry} material-color={colors.leather8} material={materials.Pink_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
           )}
-          {textures.wingtipPinky ? (
-            <MeshWithTexture geometry={nodes.Pinky_Outer.geometry} material-color={colors.wingtipPinky} material={materials.Pink_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.wingtipPinky} />
-          ) : (
-            <mesh geometry={nodes.Pinky_Outer.geometry} material-color={colors.wingtipPinky} material={materials.Pink_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          )}
-          {textures.wingtipThumb ? (
-            <MeshWithTexture geometry={nodes.Thumb_Outer.geometry} material-color={colors.wingtipThumb} material={materials.Thumb_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.wingtipThumb} />
-          ) : (
-            <mesh geometry={nodes.Thumb_Outer.geometry} material-color={colors.wingtipThumb} material={materials.Thumb_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          )}
         </>
       )}
+      {textures.wingtipPinky ? (
+        <MeshWithTexture geometry={nodes.Pinky_Outer.geometry} material-color={colors.wingtipPinky} material={materials.Pink_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.wingtipPinky} />
+      ) : (
+        <mesh geometry={nodes.Pinky_Outer.geometry} material-color={colors.wingtipPinky} material={materials.Pink_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+      )}
+      {textures.wingtipThumb ? (
+        <MeshWithTexture geometry={nodes.Thumb_Outer.geometry} material-color={colors.wingtipThumb} material={materials.Thumb_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.wingtipThumb} />
+      ) : (
+        <mesh geometry={nodes.Thumb_Outer.geometry} material-color={colors.wingtipThumb} material={materials.Thumb_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+      )} 
+
 
       {/*Inlay*/}
-      {base.inlay ?(
+      {base.inlay && (
         <>
-          <mesh geometry={nodes.inlay.geometry} material-color={colors.inlay} material={materials['Details 2']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-          <mesh geometry={nodes.polySurface328.geometry} material-color={colors.inlay} material={materials['Details 2']} position={[-0.071, 0.03, 0.01]} rotation={[-2.025, 0.713, 1.43]} scale={-0.01} />
+          {textures.inlay ? (
+            <>
+              <MeshWithTexture geometry={nodes.Index_Inner.geometry} material-color={colors.inlay} material={materials.Index_Inner1} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
+              <MeshWithTexture geometry={nodes.Index_Outer.geometry} material-color={colors.inlay} material={materials.Index_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
+              <MeshWithTexture geometry={nodes.Middle_Inner.geometry} material-color={colors.inlay} material={materials.Middle_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
+              <MeshWithTexture geometry={nodes.Middle_Outer.geometry} material-color={colors.inlay} material={materials['Middle Outer']} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
+              <MeshWithTexture geometry={nodes.Ring_Inner.geometry} material-color={colors.inlay} material={materials.Ring_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
+              <MeshWithTexture geometry={nodes.Ring_Outer.geometry} material-color={colors.inlay} material={materials.Ring_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
+              <MeshWithTexture geometry={nodes.Pinky_Inner1.geometry} material-color={colors.inlay} material={materials.Pink_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
+              <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.inlay} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
+              <mesh geometry={nodes.polySurface333.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
+              <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
+            </>
+          ):(
+            <>
+              <mesh geometry={nodes.Index_Inner.geometry} material-color={colors.inlay} material={materials.Index_Inner1} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Index_Outer.geometry} material-color={colors.inlay} material={materials.Index_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Middle_Inner.geometry} material-color={colors.inlay} material={materials.Middle_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Middle_Outer.geometry} material-color={colors.inlay} material={materials['Middle Outer']} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Ring_Inner.geometry} material-color={colors.inlay} material={materials.Ring_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Ring_Outer.geometry} material-color={colors.inlay} material={materials.Ring_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Pinky_Inner1.geometry} material-color={colors.inlay} material={materials.Pink_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface332.geometry} material-color={colors.inlay} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface333.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
+              <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
+            </>
+          )}
+           <>
+            {textures.leather1 ? (
+              <MeshWithTexture geometry={nodes.polySurface328.geometry} material-color={colors.leather1} material={materials.inlay_l1} position={[-0.071, 0.03, 0.01]} rotation={[-2.025, 0.713, 1.43]} scale={-0.01} texture={textures.leather1}/>
+            ):(
+              <mesh geometry={nodes.polySurface328.geometry} material-color={colors.leather1} material={materials.inlay_l1} position={[-0.071, 0.03, 0.01]} rotation={[-2.025, 0.713, 1.43]} scale={-0.01} />
+            )}
+            {textures.leather2 ? (
+              <MeshWithTexture geometry={nodes.inlay_l2.geometry} material-color={colors.leather2} material={materials.inlay_l2} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather2} />
+            ):(
+              <mesh geometry={nodes.inlay_l2.geometry} material-color={colors.leather2} material={materials.inlay_l2} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            )}
+            {textures.leather3 ? (
+              <MeshWithTexture geometry={nodes.inlay_l3.geometry} material-color={colors.leather3} material={materials.inlay_l3} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather3} />
+            ):(
+              <mesh geometry={nodes.inlay_l3.geometry} material-color={colors.leather3} material={materials.inlay_l3} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            )}
+            {textures.leather4 ? (
+              <MeshWithTexture geometry={nodes.inlay_l4.geometry} material-color={colors.leather4} material={materials.inlay_l4} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather4} />
+            ):(
+              <mesh geometry={nodes.inlay_l4.geometry} material-color={colors.leather4} material={materials.inlay_l4} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            )}
+            {textures.leather5 ? (
+              <MeshWithTexture geometry={nodes.inlay_l5.geometry} material-color={colors.leather5} material={materials.inlay_l5} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather5} />
+            ):(
+              <mesh geometry={nodes.inlay_l5.geometry} material-color={colors.leather5} material={materials.inlay_l5} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            )}
+            {textures.leather6 ? (
+              <MeshWithTexture geometry={nodes.inlay_l6.geometry} material-color={colors.leather6} material={materials.inlay_l6} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather6} />
+            ):(
+              <mesh geometry={nodes.inlay_l6.geometry} material-color={colors.leather6} material={materials.inlay_l6} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            )}
+            {textures.leather7 ? (
+            <MeshWithTexture geometry={nodes.inlay_l7.geometry} material-color={colors.leather7} material={materials.inlay_l7} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather7} />
+            ):(
+            <mesh geometry={nodes.inlay_l7.geometry} material-color={colors.leather7} material={materials.inlay_l7} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            )}
+            {textures.leather8 ? (
+              <MeshWithTexture geometry={nodes.inlay_l8.geometry} material-color={colors.leather8} material={materials.inlay_l8} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather8} />
+            ):(
+              <mesh geometry={nodes.inlay_l8.geometry} material-color={colors.leather8} material={materials.inlay_l8} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+            )}
+          </>
         </>
-      ):(
-        <></>
-        )}
+      )}
 
       {/*Stiches*/}
       {textures.Stiches ? (
@@ -359,16 +451,6 @@ export function New({rot, base, colors, textures }) {
             ) : (
               <mesh geometry={nodes.Pinky_Inner1.geometry} material-color={colors.leather1} material={materials.Pink_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
             )}
-            {textures.wingtipPinky ? (
-              <MeshWithTexture geometry={nodes.Pinky_Outer.geometry} material-color={colors.wingtipPinky} material={materials.Pink_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.wingtipPinky} />
-            ) : (
-              <mesh geometry={nodes.Pinky_Outer.geometry} material-color={colors.wingtipPinky} material={materials.Pink_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-            )}
-            {textures.wingtipThumb ? (
-              <MeshWithTexture geometry={nodes.Thumb_Outer.geometry} material-color={colors.wingtipThumb} material={materials.Thumb_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.wingtipThumb} />
-            ) : (
-              <mesh geometry={nodes.Thumb_Outer.geometry} material-color={colors.wingtipThumb} material={materials.Thumb_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-            )}
           </>
         </>
       ) : (
@@ -421,28 +503,6 @@ export function New({rot, base, colors, textures }) {
         </>
       )}
 
-      {/*Side Logo*/}
-      {textures.leather1 ? (
-        <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
-      ) : (
-        <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-      )}
-      <mesh geometry={nodes.polySurface333.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
-      <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
-      
-      {/*Side Logo with back*/}
-      {/* {textures.leather1 ? (
-        <>
-        <MeshWithTexture geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
-        <MeshWithTexture geometry={nodes.logoback2.geometry} material-color={colors.leather1} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
-        </>
-      ) : (
-        <>
-        <mesh geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-        <mesh geometry={nodes.logoback2.geometry} material-color={colors.leather1} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-        </>
-      )}
-      <mesh geometry={nodes.side_logo1.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
       
       {/*Two Piece Web */}
       {base.web_style === '2 Piece Web' && (
