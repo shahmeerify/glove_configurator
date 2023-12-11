@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useMemo } from 'react'
 import { useGLTF,  useTexture } from '@react-three/drei'
 import { useFrame, useLoader } from '@react-three/fiber';
 // import { PlaneGeometry, MeshBasicMaterial, TextureLoader } from 'three';
@@ -6,13 +6,18 @@ import * as THREE from 'three';
 import { flags } from "../constants";
 
 const MeshWithTexture = ({ geometry, material, color, position, rotation, scale, texture, tsize=9.25 }) => {
+  console.log(tsize)
   const textureMap = useTexture(texture);
-  textureMap.repeat.set(tsize, tsize)
-  textureMap.wrapS = THREE.RepeatWrapping 
-  textureMap.wrapT = THREE.RepeatWrapping
+  const map = useMemo(() => {
+    const map = textureMap.clone() 
+    map.repeat.set(tsize, tsize)
+    map.wrapS = THREE.RepeatWrapping 
+    map.wrapT = THREE.RepeatWrapping  
+    return map
+  }, [textureMap, tsize])
   return (
     <mesh geometry={geometry} material={material} material-color={color} position={position} rotation={rotation} scale={scale} >
-      <meshBasicMaterial map={textureMap} />
+      <meshBasicMaterial map={map} />
     </mesh> 
   );
 };
@@ -41,7 +46,7 @@ const EmbroideredLogo = ({ geometry, material, color, position, rotation, scale,
 //   link.click();
 // };
 
-export function New({rot, base, colors, textures }) {
+export function New({rot, base, colors, personalize, textures }) {
 
   // const fileName = 'materials.json';
 
@@ -52,6 +57,9 @@ export function New({rot, base, colors, textures }) {
     materials[materialName].metalness = 0;
     materials[materialName].roughness = 0.5; 
   }
+
+  const hoodMaterial = materials['hood.001'].clone();
+  const weltMaterial = materials.Welting.clone();
 
   // saveToFile(materials.Middle_Inner, 'materials_orignal.json');
 
@@ -87,7 +95,7 @@ export function New({rot, base, colors, textures }) {
 
       {/*CrownPatch*/}
       {/* <mesh geometry={nodes.crown_patch001.geometry} material-color={colors.palm} material={materials.Crown_Patch} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.crown_lace.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
+      <mesh geometry={nodes.crown_lace.geometry} material-color={colors.palm} material={weltMaterial} rotation={[Math.PI / 2, 0, 0]} scale={0.01} /> */}
 
       {/*Bindings*/}
       {textures.binding ? (
@@ -109,38 +117,38 @@ export function New({rot, base, colors, textures }) {
           {base.finger_hood_or_pad_placement === "Index Finger" ? (
             <>
               {textures.finger_hood ? (
-                <MeshWithTexture geometry={nodes.index_finger_hood.geometry} material-color={colors.finger_hood} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_hood} tsize={2} />
+                <MeshWithTexture geometry={nodes.index_finger_hood.geometry} material-color={colors.finger_hood} material={hoodMaterial} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_hood} tsize={2}/>
               ) :(
-                <mesh geometry={nodes.index_finger_hood.geometry} material-color={colors.finger_hood} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                <mesh geometry={nodes.index_finger_hood.geometry} material-color={colors.finger_hood} material={hoodMaterial} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
               )}
               <mesh geometry={nodes.MASH1_ReproMesh.geometry} material-color={colors.Stiches} material={materials.Stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
               {!base.dual_welting && (
-                <mesh geometry={nodes.polySurface311.geometry} material-color={colors.welt} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                <mesh geometry={nodes.polySurface311.geometry} material-color={colors.welt} material={weltMaterial} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
               )}
               </>
           ) :(
             <>
              {!base.dual_welting && (
-              <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
              )}
             </>
           )}
           {base.finger_hood_or_pad_placement === "Middle Finger" ? (
             <>
               {textures.finger_hood ? (
-                <MeshWithTexture geometry={nodes.middle_finger_pad.geometry} material-color={colors.finger_hood} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_hood} tsize={2} />
+                <MeshWithTexture geometry={nodes.middle_finger_pad.geometry} material-color={colors.finger_hood} material={hoodMaterial} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_hood} tsize={2} />
               ) :(
-                <mesh geometry={nodes.middle_finger_pad.geometry} material-color={colors.finger_hood} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                <mesh geometry={nodes.middle_finger_pad.geometry} material-color={colors.finger_hood} material={hoodMaterial} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
               )}
               <mesh geometry={nodes.MASH2_ReproMesh.geometry} material-color={colors.Stiches} material={materials.Stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
               {!base.dual_welting && (
-              <mesh geometry={nodes.polySurface313.geometry} material-color={colors.welt} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+              <mesh geometry={nodes.polySurface313.geometry} material-color={colors.welt} material={weltMaterial} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
               )}
               </>
           ) :(
             <>
              {!base.dual_welting && (
-               <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+               <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
              )}
             </>
           )}
@@ -153,38 +161,38 @@ export function New({rot, base, colors, textures }) {
               {base.finger_hood_or_pad_placement === "Index Finger" ? (
                 <>
                   {textures.finger_pad ? (
-                    <MeshWithTexture geometry={nodes.index_finger_pad.geometry} material-color={colors.finger_pad} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_pad} tsize={1.5} />
+                    <MeshWithTexture geometry={nodes.index_finger_pad.geometry} material-color={colors.finger_pad} material={hoodMaterial} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_pad} tsize={1.25} />
                   ) :(
-                    <mesh geometry={nodes.index_finger_pad.geometry} material-color={colors.finger_pad} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                    <mesh geometry={nodes.index_finger_pad.geometry} material-color={colors.finger_pad} material={hoodMaterial} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
                   )}
                   <mesh geometry={nodes.MASH1_ReproMesh.geometry} material-color={colors.Stiches} material={materials.Stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
                   {!base.dual_welting && (
-                    <mesh geometry={nodes.polySurface311.geometry} material-color={colors.welt} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                    <mesh geometry={nodes.polySurface311.geometry} material-color={colors.welt} material={weltMaterial} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
                   )}
                 </>
               ) :(
                 <>
                   {!base.dual_welting && (
-                  <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+                  <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
                   )}                
                 </>
               )}
               {base.finger_hood_or_pad_placement === "Middle Finger" ? (
                 <>
                   {textures.finger_pad ? (
-                    <MeshWithTexture geometry={nodes.middle_finger_pad1.geometry} material-color={colors.finger_pad} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_pad} tsize={1.5} />
+                    <MeshWithTexture geometry={nodes.middle_finger_pad1.geometry} material-color={colors.finger_pad} material={hoodMaterial} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.finger_pad} tsize={1.25} />
                   ) :(
-                    <mesh geometry={nodes.middle_finger_pad1.geometry} material-color={colors.finger_pad} material={materials['hood.001']} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                    <mesh geometry={nodes.middle_finger_pad1.geometry} material-color={colors.finger_pad} material={hoodMaterial} position={[0, 0, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
                   )}
                   <mesh geometry={nodes.MASH2_ReproMesh.geometry} material-color={colors.Stiches} material={materials.Stitches} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
                   {!base.dual_welting && (
-                  <mesh geometry={nodes.polySurface313.geometry} material-color={colors.welt} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+                  <mesh geometry={nodes.polySurface313.geometry} material-color={colors.welt} material={weltMaterial} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
                   )}    
                 </>
               ) :(
                 <>
                   {!base.dual_welting && (
-                  <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+                  <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
                   )}    
                 </>
               )}
@@ -193,8 +201,8 @@ export function New({rot, base, colors, textures }) {
             <>
               {!base.dual_welting && (
                 <>
-                  <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-                  <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+                  <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+                  <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
                 </>
               )}
             </>
@@ -203,34 +211,40 @@ export function New({rot, base, colors, textures }) {
       )}
       
       {/*Middle Hood or Pad*/}
-      {/* <mesh geometry={nodes.polySurface311.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-      <mesh geometry={nodes.polySurface313.geometry} material-color={colors.palm} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />  */}
+      {/* <mesh geometry={nodes.polySurface311.geometry} material-color={colors.palm} material={weltMaterial} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+      <mesh geometry={nodes.polySurface313.geometry} material-color={colors.palm} material={weltMaterial} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />  */}
 
       {/*Side Logo*/}
       {base.inlay !== "Inlay" && (
         <>
-          {textures.leather1 ? (
-            <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
-          ) : (
-            <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          {personalize["Thumb Logo/Graphic"] === "Home Plate Logo" ? (
+            <>
+              {textures.leather1 ? (
+                // <MeshWithTexture geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures["Home Plate"]}/>
+                <MeshWithTexture geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+                ):(
+                <mesh geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              )}
+              {textures["Home Plate"] ? (
+                <MeshWithTexture geometry={nodes.logoback2.geometry} material-color={colors["Home Plate"]} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures["Home Plate"]}/>
+              ):(
+                <mesh geometry={nodes.logoback2.geometry} material-color={colors["Home Plate"]} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              )}
+              <mesh geometry={nodes.side_logo1.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+            </>
+          ):(
+            <>
+              {textures.leather1 ? (
+                <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+              ) : (
+                <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              )}
+              <mesh geometry={nodes.polySurface333.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
+              <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />  
+            </>
           )}
-          <mesh geometry={nodes.polySurface333.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
-          <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />  
         </>
       )}
-      {/*Side Logo with back*/}
-      {/* {textures.leather1 ? (
-        <>
-        <MeshWithTexture geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
-        <MeshWithTexture geometry={nodes.logoback2.geometry} material-color={colors.leather1} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
-        </>
-      ) : (
-        <>
-        <mesh geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-        <mesh geometry={nodes.logoback2.geometry} material-color={colors.leather1} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-        </>
-      )}
-      <mesh geometry={nodes.side_logo1.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
       
 
       {/*Leathers*/}
@@ -297,9 +311,23 @@ export function New({rot, base, colors, textures }) {
               <MeshWithTexture geometry={nodes.Ring_Inner.geometry} material-color={colors.inlay} material={materials.Ring_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
               <MeshWithTexture geometry={nodes.Ring_Outer.geometry} material-color={colors.inlay} material={materials.Ring_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
               <MeshWithTexture geometry={nodes.Pinky_Inner1.geometry} material-color={colors.inlay} material={materials.Pink_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
-              <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.inlay} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
-              <mesh geometry={nodes.polySurface333.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
-              <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
+              {personalize["Thumb Logo/Graphic"] === "Home Plate Logo" ? (
+                <>
+                  <MeshWithTexture geometry={nodes.thuimb.geometry} material-color={colors.inlay} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
+                  {textures["Home Plate"] ? (
+                  <MeshWithTexture geometry={nodes.logoback2.geometry} material-color={colors["Home Plate"]} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures["Home Plate"]}/>
+                  ):(
+                    <mesh geometry={nodes.logoback2.geometry} material-color={colors["Home Plate"]} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+                  )}
+                  <mesh geometry={nodes.side_logo1.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+                </>
+              ):(
+                <>
+                  <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.inlay} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.inlay} />
+                  <mesh geometry={nodes.polySurface333.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
+                  <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
+                </>
+              )}
             </>
           ):(
             <>
@@ -310,49 +338,64 @@ export function New({rot, base, colors, textures }) {
               <mesh geometry={nodes.Ring_Inner.geometry} material-color={colors.inlay} material={materials.Ring_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
               <mesh geometry={nodes.Ring_Outer.geometry} material-color={colors.inlay} material={materials.Ring_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
               <mesh geometry={nodes.Pinky_Inner1.geometry} material-color={colors.inlay} material={materials.Pink_Inner} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.polySurface332.geometry} material-color={colors.inlay} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.polySurface333.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
-              <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
+             
+              {personalize["Thumb Logo/Graphic"] === "Home Plate Logo" ? (
+                <>
+                  <mesh geometry={nodes.thuimb.geometry} material-color={colors.inlay} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008}  />
+                  {textures["Home Plate"] ? (
+                    <MeshWithTexture geometry={nodes.logoback2.geometry} material-color={colors["Home Plate"]} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures["Home Plate"]}/>
+                  ):(
+                      <mesh geometry={nodes.logoback2.geometry} material-color={colors["Home Plate"]} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+                  )}
+                  <mesh geometry={nodes.side_logo1.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+                </>
+              ):(
+                <>
+                  <mesh geometry={nodes.polySurface332.geometry} material-color={colors.inlay} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+                  <mesh geometry={nodes.polySurface333.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
+                  <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />  
+                </>   
+              )}
             </>
           )}
            <>
             {textures.leather1 ? (
-              <MeshWithTexture geometry={nodes.polySurface328.geometry} material-color={colors.leather1} material={materials.inlay_l1} position={[-0.071, 0.03, 0.01]} rotation={[-2.025, 0.713, 1.43]} scale={-0.01} texture={textures.leather1}/>
+              <MeshWithTexture geometry={nodes.polySurface328.geometry} material-color={colors.leather1} material={materials.inlay_l1} position={[-0.071, 0.03, 0.01]} rotation={[-2.025, 0.713, 1.43]} scale={-0.01} texture={textures.leather1} tsize={2.25}/>
             ):(
               <mesh geometry={nodes.polySurface328.geometry} material-color={colors.leather1} material={materials.inlay_l1} position={[-0.071, 0.03, 0.01]} rotation={[-2.025, 0.713, 1.43]} scale={-0.01} />
             )}
             {textures.leather2 ? (
-              <MeshWithTexture geometry={nodes.inlay_l2.geometry} material-color={colors.leather2} material={materials.inlay_l2} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather2} />
+              <MeshWithTexture geometry={nodes.inlay_l2.geometry} material-color={colors.leather2} material={materials.inlay_l2} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather2} tsize={2.25} />
             ):(
               <mesh geometry={nodes.inlay_l2.geometry} material-color={colors.leather2} material={materials.inlay_l2} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
             )}
             {textures.leather3 ? (
-              <MeshWithTexture geometry={nodes.inlay_l3.geometry} material-color={colors.leather3} material={materials.inlay_l3} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather3} />
+              <MeshWithTexture geometry={nodes.inlay_l3.geometry} material-color={colors.leather3} material={materials.inlay_l3} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather3} tsize={2.25} />
             ):(
               <mesh geometry={nodes.inlay_l3.geometry} material-color={colors.leather3} material={materials.inlay_l3} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
             )}
             {textures.leather4 ? (
-              <MeshWithTexture geometry={nodes.inlay_l4.geometry} material-color={colors.leather4} material={materials.inlay_l4} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather4} />
+              <MeshWithTexture geometry={nodes.inlay_l4.geometry} material-color={colors.leather4} material={materials.inlay_l4} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather4} tsize={2.25} />
             ):(
               <mesh geometry={nodes.inlay_l4.geometry} material-color={colors.leather4} material={materials.inlay_l4} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
             )}
             {textures.leather5 ? (
-              <MeshWithTexture geometry={nodes.inlay_l5.geometry} material-color={colors.leather5} material={materials.inlay_l5} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather5} />
+              <MeshWithTexture geometry={nodes.inlay_l5.geometry} material-color={colors.leather5} material={materials.inlay_l5} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather5} tsize={2.25} />
             ):(
               <mesh geometry={nodes.inlay_l5.geometry} material-color={colors.leather5} material={materials.inlay_l5} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
             )}
             {textures.leather6 ? (
-              <MeshWithTexture geometry={nodes.inlay_l6.geometry} material-color={colors.leather6} material={materials.inlay_l6} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather6} />
+              <MeshWithTexture geometry={nodes.inlay_l6.geometry} material-color={colors.leather6} material={materials.inlay_l6} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather6} tsize={2.25} />
             ):(
               <mesh geometry={nodes.inlay_l6.geometry} material-color={colors.leather6} material={materials.inlay_l6} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
             )}
             {textures.leather7 ? (
-            <MeshWithTexture geometry={nodes.inlay_l7.geometry} material-color={colors.leather7} material={materials.inlay_l7} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather7} />
+            <MeshWithTexture geometry={nodes.inlay_l7.geometry} material-color={colors.leather7} material={materials.inlay_l7} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather7} tsize={2.25} />
             ):(
             <mesh geometry={nodes.inlay_l7.geometry} material-color={colors.leather7} material={materials.inlay_l7} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
             )}
             {textures.leather8 ? (
-              <MeshWithTexture geometry={nodes.inlay_l8.geometry} material-color={colors.leather8} material={materials.inlay_l8} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather8} />
+              <MeshWithTexture geometry={nodes.inlay_l8.geometry} material-color={colors.leather8} material={materials.inlay_l8} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.leather8} tsize={2.25} />
             ):(
               <mesh geometry={nodes.inlay_l8.geometry} material-color={colors.leather8} material={materials.inlay_l8} position={[0, 0.001, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
             )}
@@ -362,7 +405,7 @@ export function New({rot, base, colors, textures }) {
 
       {/*Stiches*/}
       {textures.Stiches ? (
-        <MeshWithTexture geometry={nodes.stitches1.geometry} material-color={colors.Stiches} material={materials.Stitches} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.Stiches} />
+        <MeshWithTexture geometry={nodes.stitches1.geometry} material-color={colors.Stiches} material={materials.Stitches} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.Stiches} tsize={1} />
       ) : (
         <mesh geometry={nodes.stitches1.geometry} material-color={colors.Stiches} material={materials.Stitches} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
       )}
@@ -371,10 +414,10 @@ export function New({rot, base, colors, textures }) {
       {/*Welt*/}
       {base.dual_welting ? (
         <>
-          <mesh geometry={nodes.polySurface297001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
-          <mesh geometry={nodes.polySurface301.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface319.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.polySurface320.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          <mesh geometry={nodes.polySurface297001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
+          <mesh geometry={nodes.polySurface301.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          <mesh geometry={nodes.polySurface319.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          <mesh geometry={nodes.polySurface320.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
           <mesh geometry={nodes.polySurface321.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
           {textures["Finger Strip"] ? (
             <MeshWithTexture geometry={nodes.strips.geometry} material-color={colors["Finger Strip"]} material={materials.dwstrips} position={[-0.0074, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures["Finger Strip"]} />
@@ -387,15 +430,15 @@ export function New({rot, base, colors, textures }) {
               {(base.finger_option === "Pad" || base.finger_option === "Hood") && (base.finger_hood_or_pad_placement === "Index Finger") ? (
                 <MeshWithTexture geometry={nodes.dualwelt_index.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.0135, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
                 ):(
-                <MeshWithTexture geometry={nodes.dual_welt1.geometry} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
+                <MeshWithTexture geometry={nodes.dual_welt1.geometry} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
                 )}
               {(base.finger_option === "Pad" || base.finger_option === "Hood") && (base.finger_hood_or_pad_placement === "Middle Finger") ? (
                 <MeshWithTexture geometry={nodes.dualwelt_middle.geometry} material-color={colors.welt} material={materials['Details 2.001']} position={[-0.0079, 0.0135, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008}texture={textures.welt} tsize={1} />
               ):(
-                <MeshWithTexture geometry={nodes.dual_welt2.geometry} material={materials.welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
+                <MeshWithTexture geometry={nodes.dual_welt2.geometry} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
               )}
-              <MeshWithTexture geometry={nodes.dual_welt3.geometry} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
-              <MeshWithTexture geometry={nodes.dual_welt4.geometry} material={materials.welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
+              <MeshWithTexture geometry={nodes.dual_welt3.geometry} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
+              <MeshWithTexture geometry={nodes.dual_welt4.geometry} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} tsize={1} />
             </>
           ) : (
             <>
@@ -414,7 +457,7 @@ export function New({rot, base, colors, textures }) {
             </>
           )}
           <mesh geometry={nodes.Wire001.geometry} material-color={colors.welt} material={materials.welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-          <mesh geometry={nodes.Welt3.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+          <mesh geometry={nodes.Welt3.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
           <>
             {textures.leather1 ? (
               <MeshWithTexture geometry={nodes.Index_Inner.geometry} material-color={colors.leather1} material={materials.Index_Inner1} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
@@ -458,45 +501,45 @@ export function New({rot, base, colors, textures }) {
           {textures.welt ? (
             <>
               {/* <MeshWithTexture geometry={nodes.polySurface302001.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.polySurface301001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.polySurface300001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.polySurface299001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.polySurface297001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} /> */}
-              <MeshWithTexture geometry={nodes.polySurface302.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.polySurface301.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.polySurface300.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.polySurface297.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.polySurface312.geometry} material-color={colors.welt} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.Welt3001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.Welt2001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.Welt1001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.Welt3.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.Welt2.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.Welt1.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
-              <MeshWithTexture geometry={nodes.Wire001.geometry} material-color={colors.welt} material={materials.welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface301001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface300001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface299001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface297001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} /> */}
+              <MeshWithTexture geometry={nodes.polySurface302.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface301.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface300.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface297.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.polySurface312.geometry} material-color={colors.welt} material={weltMaterial} rotation={[Math.PI / 2, 0, 0]} scale={0.01} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt3001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt2001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt1001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt3.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt2.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Welt1.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
+              <MeshWithTexture geometry={nodes.Wire001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.welt} />
             </>
           ) : (
             <>
               {/* <mesh geometry={nodes.polySurface302001.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.polySurface301001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.polySurface300001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.polySurface299001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.polySurface297001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
+              <mesh geometry={nodes.polySurface301001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface300001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface299001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface297001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
               <mesh geometry={nodes.polySurface302.geometry} material-color={colors.welt} material={materials.Knots} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.polySurface301.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.polySurface300.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              {/* <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
-              {/* <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
-              <mesh geometry={nodes.polySurface297.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.polySurface312.geometry} material-color={colors.welt} material={materials.Welting} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-              <mesh geometry={nodes.Welt3001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.Welt2001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.Welt1001.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.Welt3.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.Welt2.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
-              <mesh geometry={nodes.Welt1.geometry} material-color={colors.welt} material={materials.Welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface301.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface300.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              {/* <mesh geometry={nodes.polySurface299.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
+              {/* <mesh geometry={nodes.polySurface298.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
+              <mesh geometry={nodes.polySurface297.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.polySurface312.geometry} material-color={colors.welt} material={weltMaterial} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+              <mesh geometry={nodes.Welt3001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Welt2001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Welt1001.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Welt3.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Welt2.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              <mesh geometry={nodes.Welt1.geometry} material-color={colors.welt} material={weltMaterial} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
               <mesh geometry={nodes.Wire001.geometry} material-color={colors.welt} material={materials.welting} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
             </>   
           )}

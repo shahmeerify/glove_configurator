@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { New } from "../customizers/NewModel" ;
 import { OrbitControls } from "@react-three/drei";
-import { colorOptions, colorData, tabs, textureData, imagePaths, colorStepsConfig, baseOptions, Options, baseStepsConfig, flags } from "../constants";
+import { meshOptions, colorData, tabs, textureData, colorStepsConfig, baseOptions, personlizationOptions, personlizationConfig, Options, baseStepsConfig, flags } from "../constants";
 
 export default function Fielder() {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
@@ -14,6 +14,9 @@ export default function Fielder() {
   const [currentBase, setCurrentBase] = useState("size");
   const [baseConfig, setBaseConfig] = useState(baseOptions);
   const [baseSteps, setBaseSteps] = useState(baseStepsConfig);
+  const [personilzeSteps, setPersonalizeSteps] = useState(personlizationConfig);
+  const [personlizeConfig, setPersonlizeConfig] = useState(personlizationOptions);
+  const [currentPersonlize, setCurrentPersonlize] = useState("Thumb Logo/Graphic");
   
   const rotateLeft = () => {
     setRotationValue(
@@ -47,6 +50,96 @@ export default function Fielder() {
     }));
 
   };
+
+  const handlePeronalizeChange = (option, value) => {
+    if (personlizeConfig[option] === value) {
+      // If clicking on already selected option, set to null 
+      value = null; 
+    }
+    setPersonlizeConfig((prevOption) => ({
+      ...prevOption,
+      [option]: value,
+    }));
+
+    if(option === 'Thumb Logo/Graphic' && value === 'Graphic (+$7)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Thumb Graphic": true
+      }));
+    } else if(option === 'Thumb Logo/Graphic' && value !== 'Graphic (+$7)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Thumb Graphic": false
+      }));
+    }
+    if(option === 'Thumb Logo/Graphic' && value === 'Premium Graphic (+$15)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Premium Graphic": true
+      }));
+    } else if(option === 'Thumb Logo/Graphic' && value !== 'Premium Graphic (+$15)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Premium Graphic": false
+      }));
+    }
+    if(option === 'Thumb Logo/Graphic' && value === 'Jumbo Number (+$7)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Jumbo Number": true
+      }));
+    } else if(option === 'Thumb Logo/Graphic' && value !== 'Jumbo Number (+$7)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Jumbo Number": false
+      }));
+    }
+    if(option === 'Thumb Logo/Graphic' && value === 'Stamped Flag (+$7)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Stamped Flag": true
+      }));
+    } else if(option === 'Thumb Logo/Graphic' && value !== 'Stamped Flag (+$7)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Stamped Flag": false
+      }));
+    }
+    if(option === 'Thumb Logo/Graphic' && value === 'Custom Plate Number (+$7)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Custom Plate Number": true
+      }));
+    } else if(option === 'Thumb Logo/Graphic' && value !== 'Custom Plate Number (+$7)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Custom Plate Number": false
+      }));
+    }
+    if(option === 'Palm Stamp' && value === 'Custom Number') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Palm Custom Number": true
+      }));
+    } else if(option === 'Palm Stamp' && value !== 'Custom Number') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Palm Custom Number": false
+      }));
+    }
+    if(option === 'Palm Stamp' && value === 'Graphic') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Palm Graphic": true
+      }));
+    } else if(option === 'Palm Stamp' && value !== 'Graphic') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Palm Graphic": false
+      }));
+    }
+
+  }
 
   const handleBaseChange = (option, value) => {
     if (baseConfig[option] === value) {
@@ -103,6 +196,18 @@ export default function Fielder() {
       setBaseSteps(prevSteps => ({
         ...prevSteps,  
         finger_hood_or_pad_placement: false
+      }));
+    }
+
+    if(option === 'Home Plate' && value === 'Home Plate') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        "Home Plate": true
+      }));
+    } else if(option === 'Home Plate' && value !== 'Home Plate') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        "Home Plate": false
       }));
     }
 
@@ -316,7 +421,7 @@ export default function Fielder() {
 
                         {/* <pointLight /> */}
                     
-                        <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} flags={flags} />
+                        <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} flags={flags} />
                         <OrbitControls
                           minPolarAngle={Math.PI / 2}
                           maxPolarAngle={Math.PI / 2}
@@ -442,7 +547,7 @@ export default function Fielder() {
                     Current Mesh: {currentMesh}
                   </div>
                   <div className="color-options">
-                    {Object.entries(colorOptions).map(([label, color]) => (
+                    {Object.entries(meshOptions[currentMesh].colors).map(([label, color]) => (
                       <div class="color-option-wrapper">
                         <div
                           key={color}
@@ -458,7 +563,7 @@ export default function Fielder() {
                       </div>
                     ))}
                     <br/>
-                    {Object.entries(imagePaths).slice(0,-3).map(([label, img]) => (
+                    {Object.entries(meshOptions[currentMesh].textures).map(([label, img]) => (
                       <div class="texture-option-wrapper">
                         <img
                           className={`texture-option ${
@@ -475,34 +580,75 @@ export default function Fielder() {
                       </div>
                     ))}
                     
-                    <div className="exclusive-textures"> 
-                    <div className="exclusive-label">Exclusive Textures</div>
+                    {meshOptions[currentMesh].exclusive_textures && (
+                      <div className="exclusive-textures"> 
+                      <div className="exclusive-label">Exclusive Textures</div>
 
-                      {Object.entries(imagePaths).slice(-3).map(([label, img]) => (
-                        <div class="texture-option-wrapper">
-                          <img
-                            className={`texture-option ${
-                              textures[currentMesh] === img ? "selected" : ""  
-                            }`}
-                            key={img}
-                            src={img}
-                            alt='texture'
-                            onClick={() => handleTextureChange(currentMesh, img)}
-                          />
-                          <div className="texture-label">
-                            {label}
+                        {Object.entries(meshOptions[currentMesh].exclusive_textures).map(([label, img]) => (
+                          <div class="texture-option-wrapper">
+                            <img
+                              className={`texture-option ${
+                                textures[currentMesh] === img ? "selected" : ""  
+                              }`}
+                              key={img}
+                              src={img}
+                              alt='texture'
+                              onClick={() => handleTextureChange(currentMesh, img)}
+                            />
+                            <div className="texture-label">
+                              {label}
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))} 
+                      </div> 
+                    )}
 
                   </div>
                 </div>
               )}
-               {currentTab === tabs[2] && (
+              {currentTab === tabs[2] && (
                 <div className="Personalize">
                   <h3 className="tab-heading">Personalization</h3>
-                  {/* Add your custom Base Personalization UI here */}
+                  <div className="mesh-navigation">
+                    <button
+                      onClick={() => {handlePreviousClick(personlizeConfig, currentPersonlize, setCurrentPersonlize, personilzeSteps)}}
+                      className="nav-button"
+                      disabled={Object.keys(personlizeConfig).indexOf(currentPersonlize) === 0}
+                    >
+                      {"<"}
+                    </button>
+                    <button
+                      onClick={() => {handleNextClick(personlizeConfig, currentPersonlize, setCurrentPersonlize, personilzeSteps)}}
+                      className="nav-button"
+                      disabled={
+                        Object.keys(personlizeConfig).indexOf(currentPersonlize) ===  Object.keys(personlizeConfig).length - 1
+                      }
+                    >
+                      {">"}
+                    </button>
+                  </div>
+                  <div className="personlize-options">
+                    <div className="mesh-label">
+                      Current: {currentPersonlize}
+                    </div>
+                    <div>
+                      {Options[currentPersonlize].map(option => (
+                        <div> 
+                          <input
+                            type="radio"
+                            id={`radio-${option}`}
+                            className="radio-input"
+                            value={option}
+                            checked={personlizeConfig[currentPersonlize] === option}
+                            onClick={()=>{handlePeronalizeChange(currentPersonlize, option)}}
+                            />
+                          <label htmlFor={`radio-${option}`} className="radio-label">
+                            {option}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

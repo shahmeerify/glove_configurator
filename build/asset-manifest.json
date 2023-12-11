@@ -1,10 +1,11 @@
 {
   "files": {
     "main.css": "/static/css/main.2b20b676.css",
-    "main.js": "/static/js/main.b2ba9830.js",
+    "main.js": "/static/js/main.6e2161e4.js",
     "static/media/a_skin.png": "/static/media/a_skin.af62c3a717fc93adf4d3.png",
     "static/media/inlay_initialShadingGroup_Diffuse.png": "/static/media/inlay_initialShadingGroup_Diffuse.a0f266f6c82f689be04d.png",
     "static/media/snake skin brown.png": "/static/media/snake skin brown.408b2e4cb640cb253b16.png",
+    "static/media/rainbow.jpg": "/static/media/rainbow.c90b9345b3e5589d93e1.jpg",
     "static/media/snake skin red.png": "/static/media/snake skin red.269324448a63456b3b38.png",
     "static/media/snake skin light blue.png": "/static/media/snake skin light blue.c84ef730aa0a9834b423.png",
     "static/media/snake skin purple.png": "/static/media/snake skin purple.759efc081c2dc636d956.png",
@@ -33,12 +34,15 @@
     "static/media/Venezuela.png": "/static/media/Venezuela.89c54c8816ba4575cb36.png",
     "static/media/base_base_BaseColor.png": "/static/media/base_base_BaseColor.0893348a2120c8fc7d5f.png",
     "static/media/Canada.png": "/static/media/Canada.cae185e9b07062bec504.png",
+    "static/media/shaka.png": "/static/media/shaka.29dd34ecacf38b087577.png",
+    "static/media/star_david.png": "/static/media/star_david.987f6f1f6b70e2c8a327.png",
+    "static/media/clover.png": "/static/media/clover.d6892cdc3c978f54b7f4.png",
     "index.html": "/index.html",
     "main.2b20b676.css.map": "/static/css/main.2b20b676.css.map",
-    "main.b2ba9830.js.map": "/static/js/main.b2ba9830.js.map"
+    "main.6e2161e4.js.map": "/static/js/main.6e2161e4.js.map"
   },
   "entrypoints": [
     "static/css/main.2b20b676.css",
-    "static/js/main.b2ba9830.js"
+    "static/js/main.6e2161e4.js"
   ]
 }
