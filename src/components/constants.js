@@ -49,6 +49,15 @@ import star from '../assets/Graphics/star.png'
 import light_bolt from '../assets/Graphics/lightning.png'
 import peace from '../assets/Graphics/peace.png'
 import shaka from '../assets/Graphics/shaka.png'
+import cannon from '../assets/Graphics/cannon.png'
+import champion from '../assets/Graphics/champion.png'
+import greenclover from '../assets/Graphics/green_clover.png'
+import hat from '../assets/Graphics/hat.png'
+import hotdog from '../assets/Graphics/hotdog.png'
+import ilovetacos from '../assets/Graphics/ilovetacos.png'
+import toofast from '../assets/Graphics/Speed Gun 99mph.png'
+
+export const img = peace
 
 export const flags = {
   "USA": USA,
@@ -77,6 +86,17 @@ export const thumb_graphics = {
   "Lightning Bolt" : light_bolt,
   "Peace" : peace,
   "Shaka" : shaka,
+}
+
+export const thumb_premium_graphics = {
+  "Hot Dog" : hotdog,
+  "I Love Tacos" : ilovetacos,
+  "Cannon" : cannon,
+  "Champion" : champion,
+  "Goodluck Charm" : greenclover,
+  "Golden Sombrero" : hat,
+  "Cross" : cross,
+  "Too Fast" : toofast,
 }
 
 export const imagePaths = {
@@ -429,8 +449,8 @@ export const meshOptions = {
 
   export const personlizationOptions = {
     "Thumb Logo/Graphic" : "Home Plate Logo",
-    "Thumb Graphic": "4 Leaf Clover",
-    "Premium Graphic": "Sakura", 
+    "Thumb Graphic": "Cross",
+    "Premium Graphic": "Hot Dog", 
     "Jumbo Number": "Black",
     "Stamped Flag": "USA",
     "Custom Plate Number" : "Black",
@@ -459,9 +479,9 @@ export const meshOptions = {
     web_style: ["I-Web", "I-Web (No Logo)",  "I-Web (Spiral Lace)", "Y-Web", "E-Web", "H-Web", "Laced H-Web", "T-Web", "Basket Web", "Cross Web", "Net Style Web" ,"1 Piece Web", "2 Piece Web"],
     glove_stiffness: ["Pro Stiff", "Standard"],
     throwing_hand: ["Left", "Right"],
-    "Thumb Logo/Graphic": ["None", "Home Plate Logo", "Graphic (+$7)", "Premium Graphic (+$15)", "Jumbo Number (+$7)", "Stamped Flag (+$7)", "Custom Plate Number (+$7)"],
-    "Thumb Graphic": ["Cross", "Star of Davi", "Reverse K", "Ribbon", "Heart", "Paw Print", "Maple Leaf", "Star", "Lightning Bolt", "Smiley Face", "Pitcher Silhouette", "Peace", "Shaka", ],
-    "Premium Graphic": ["Sakura", "Gods Plan", "Miami Nights", "Kanagawa", "Summer Vibes", "Cheeked Up", "Ace of the Staff", "Semper Fi", "Fat Stacks", "Extra Cheese", "Mint Chip", "Excalibur", "Chicky Nuggs", "Strawberry Glaze", "12 Point", "Momma's Boy", "44 Pro Shops", "Flamingo", "4th of July", "Beach Please", "Paint the Corners", "Glizzy", "Fuego", "Paradise", "The Bachelor", "Drop Bombz", "Land of the Free", "Cup of Coffee"], 
+    "Thumb Logo/Graphic": ["Logo", "Home Plate Logo", "Graphic (+$7)", "Premium Graphic (+$15)", "Jumbo Number (+$7)", "Stamped Flag (+$7)", "Custom Plate Number (+$7)"],
+    "Thumb Graphic": ["Cross", "Star of David", "Reverse K", "Ribbon", "Heart", "Paw Print", "Maple Leaf", "Star", "Lightning Bolt", "Peace", "Shaka", ],
+    "Premium Graphic": ["Hot Dog", "I Love Tacos", "Cannon", "Champion", "Goodluck Charm", "Golden Sombrero", "Cross", "Too Fast",], 
     "Jumbo Number": ["Black"],
     "Stamped Flag": ["Arizona", "Australia", "California", "Canada", "Chicago", "Colorado", "Cuba", "Dominican Republic", "Japan", "Korea", "Maryland", "Mexico", "Puerto Rico", "Texas", "USA", "Venezuela"],
     "Custom Plate Number" : ["Black"],

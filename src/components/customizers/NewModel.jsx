@@ -4,6 +4,7 @@ import { useFrame, useLoader } from '@react-three/fiber';
 // import { PlaneGeometry, MeshBasicMaterial, TextureLoader } from 'three';
 import * as THREE from 'three';
 import { flags } from "../constants";
+import {thumb_graphics, thumb_premium_graphics} from "../constants"
 
 const MeshWithTexture = ({ geometry, material, color, position, rotation, scale, texture, tsize=9.25 }) => {
   console.log(tsize)
@@ -21,6 +22,24 @@ const MeshWithTexture = ({ geometry, material, color, position, rotation, scale,
     </mesh> 
   );
 };
+
+const ThumbGraphic = ({ nodes, materials, position, rotation, scale, personalize}) => {
+  const graphicTexture = useTexture(thumb_graphics[personalize['Thumb Graphic']]);
+  materials.shaka.map = graphicTexture
+
+  return (
+     <mesh geometry={nodes.shaka.geometry} material={materials.shaka} material-color={"#333333"} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> 
+  );
+};
+const ThumbPremiumGraphic = ({ nodes, materials, position, rotation, scale, personalize}) => {
+  const graphicTexture = useTexture(thumb_premium_graphics[personalize['Premium Graphic']]);
+  materials.shaka.map = graphicTexture
+
+  return (
+     <mesh geometry={nodes.shaka.geometry} material={materials.shaka} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.014} /> 
+  );
+};
+
 const EmbroideredLogo = ({ geometry, material, color, position, rotation, scale, texture }) => {
   const textureMap = useTexture(flags[texture]);
   return (
@@ -46,10 +65,7 @@ const EmbroideredLogo = ({ geometry, material, color, position, rotation, scale,
 //   link.click();
 // };
 
-export function New({rot, base, colors, personalize, textures }) {
-
-  // const fileName = 'materials.json';
-
+export function New({rot, base, colors, personalize, personalizeConfig, textures }) {
   const ref = useRef();
   const { nodes, materials } = useGLTF('./Model/NewTest.glb')
 
@@ -60,8 +76,6 @@ export function New({rot, base, colors, personalize, textures }) {
 
   const hoodMaterial = materials['hood.001'].clone();
   const weltMaterial = materials.Welting.clone();
-
-  // saveToFile(materials.Middle_Inner, 'materials_orignal.json');
 
   useFrame(() => {
     ref.current.rotation.y = rot
@@ -217,7 +231,7 @@ export function New({rot, base, colors, personalize, textures }) {
       {/*Side Logo*/}
       {base.inlay !== "Inlay" && (
         <>
-          {personalize["Thumb Logo/Graphic"] === "Home Plate Logo" ? (
+          {personalize["Thumb Logo/Graphic"] === "Home Plate Logo" && (
             <>
               {textures.leather1 ? (
                 // <MeshWithTexture geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures["Home Plate"]}/>
@@ -232,7 +246,8 @@ export function New({rot, base, colors, personalize, textures }) {
               )}
               <mesh geometry={nodes.side_logo1.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
             </>
-          ):(
+          )}
+          {personalize["Thumb Logo/Graphic"] === "Logo" && (
             <>
               {textures.leather1 ? (
                 <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
@@ -241,6 +256,28 @@ export function New({rot, base, colors, personalize, textures }) {
               )}
               <mesh geometry={nodes.polySurface333.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />
               <mesh geometry={nodes.polySurface334.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.039, -0.004, 0.008]} rotation={[1.659, -0.185, -2.459]} scale={0.012} />  
+            </>
+          )}
+          {personalize["Thumb Logo/Graphic"] === "Graphic (+$7)" && (
+            <>
+              {textures.leather1 ? (
+                <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+              ) : (
+                <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              )}
+              <ThumbGraphic nodes={nodes} materials={materials} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} personalize={personalize}/>
+              {/* <mesh geometry={nodes.shaka.geometry} material={materials.shaka} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> */}
+            </>
+          )}
+          {personalize["Thumb Logo/Graphic"] === "Premium Graphic (+$15)" && (
+            <>
+              {textures.leather1 ? (
+                <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+              ) : (
+                <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              )}
+              <ThumbPremiumGraphic nodes={nodes} materials={materials} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} personalize={personalize}/>
+              {/* <mesh geometry={nodes.shaka.geometry} material={materials.shaka} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> */}
             </>
           )}
         </>

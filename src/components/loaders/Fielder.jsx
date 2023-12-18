@@ -421,7 +421,7 @@ export default function Fielder() {
 
                         {/* <pointLight /> */}
                     
-                        <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} flags={flags} />
+                        <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} personalizeConfig={personlizationConfig} flags={flags} />
                         <OrbitControls
                           minPolarAngle={Math.PI / 2}
                           maxPolarAngle={Math.PI / 2}
