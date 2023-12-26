@@ -28,15 +28,16 @@ const ThumbGraphic = ({ nodes, materials, position, rotation, scale, personalize
   materials.shaka.map = graphicTexture
 
   return (
-     <mesh geometry={nodes.shaka.geometry} material={materials.shaka} material-color={"#333333"} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> 
+     <mesh geometry={nodes.shaka.geometry} material={materials.shaka} material-color={"#333333"} position={[0.035282, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> 
   );
 };
 const ThumbPremiumGraphic = ({ nodes, materials, position, rotation, scale, personalize}) => {
   const graphicTexture = useTexture(thumb_premium_graphics[personalize['Premium Graphic']]);
-  materials.shaka.map = graphicTexture
+  graphicTexture.encoding = THREE.sRGBEncoding;
+  materials.ilovetacos.map = graphicTexture
 
   return (
-     <mesh geometry={nodes.shaka.geometry} material={materials.shaka} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.014} /> 
+    <mesh geometry={nodes.shaka_premium.geometry} material={materials.ilovetacos} position={[0.035282, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} />
   );
 };
 
