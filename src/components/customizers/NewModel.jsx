@@ -1,10 +1,18 @@
 import React, { useRef, useMemo } from 'react'
-import { useGLTF,  useTexture } from '@react-three/drei'
+import { useGLTF,  useTexture, Text } from '@react-three/drei'
 import { useFrame, useLoader } from '@react-three/fiber';
-// import { PlaneGeometry, MeshBasicMaterial, TextureLoader } from 'three';
 import * as THREE from 'three';
 import { flags } from "../constants";
-import {thumb_graphics, thumb_premium_graphics} from "../constants"
+import {thumb_graphics, thumb_premium_graphics, stamp_flags} from "../constants"
+
+// const saveToFile = (data, fileName) => {
+//   const jsonContent = JSON.stringify(data, null, 2);
+//   const blob = new Blob([jsonContent], { type: 'application/json' });
+//   const link = document.createElement('a');
+//   link.href = URL.createObjectURL(blob);
+//   link.download = fileName;
+//   link.click();
+// };
 
 const MeshWithTexture = ({ geometry, material, color, position, rotation, scale, texture, tsize=9.25 }) => {
   console.log(tsize)
@@ -37,7 +45,16 @@ const ThumbPremiumGraphic = ({ nodes, materials, position, rotation, scale, pers
   materials.ilovetacos.map = graphicTexture
 
   return (
-    <mesh geometry={nodes.shaka_premium.geometry} material={materials.ilovetacos} position={[0.035282, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} />
+    <mesh geometry={nodes.shaka_premium.geometry} material={materials.ilovetacos} position={[0.035282, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.018} />
+  );
+};
+const StampedFlag = ({ nodes, materials, position, rotation, scale, personalize}) => {
+  const graphicTexture = useTexture(stamp_flags[personalize['Stamped Flag']]);
+  graphicTexture.encoding = THREE.sRGBEncoding;
+  materials.ilovetacos.map = graphicTexture
+
+  return (
+    <mesh geometry={nodes.shaka_premium.geometry} material={materials.ilovetacos} position={[0.035282, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={scale} />
   );
 };
 
@@ -57,16 +74,8 @@ const EmbroideredLogo = ({ geometry, material, color, position, rotation, scale,
 //   );
 // };
 
-// const saveToFile = (data, fileName) => {
-//   const jsonContent = JSON.stringify(data, null, 2);
-//   const blob = new Blob([jsonContent], { type: 'application/json' });
-//   const link = document.createElement('a');
-//   link.href = URL.createObjectURL(blob);
-//   link.download = fileName;
-//   link.click();
-// };
 
-export function New({rot, base, colors, personalize, personalizeConfig, textures }) {
+export function New({rot, base, colors, personalize, personalizeConfig, xPosition, yPosition, zPosition, xRotation, yRotation, zRotation, textures }) {
   const ref = useRef();
   const { nodes, materials } = useGLTF('./Model/NewTest.glb')
 
@@ -279,6 +288,58 @@ export function New({rot, base, colors, personalize, personalizeConfig, textures
               )}
               <ThumbPremiumGraphic nodes={nodes} materials={materials} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} personalize={personalize}/>
               {/* <mesh geometry={nodes.shaka.geometry} material={materials.shaka} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> */}
+            </>
+          )}
+          {personalize["Thumb Logo/Graphic"] === "Stamped Flag (+$7)" && (
+            <>
+              {textures.leather1 ? (
+                <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+              ) : (
+                <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              )}
+              <StampedFlag nodes={nodes} materials={materials} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={[0.02, 0.02, 0.02]} personalize={personalize}/>
+              {/* <mesh geometry={nodes.shaka.geometry} material={materials.shaka} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> */}
+            </>
+          )}
+          {personalize["Thumb Logo/Graphic"] === "Jumbo Number (+$7)" && (
+            <>
+              {textures.leather1 ? (
+                <MeshWithTexture geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+              ) : (
+                <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              )}
+              <Text
+                position={[0.040, 0.044, 0.017]}
+                rotation={[0.21875*Math.PI, 0.3125*Math.PI, 0.1875*Math.PI]}
+                color={personalize["Jumbo Number Color"]}
+                scale={0.02}
+              >
+                {personalize["Jumbo Number"]}
+              </Text>
+            </>
+          )}
+          {personalize["Thumb Logo/Graphic"] === "Custom Plate Number (+$7)" && (
+            <>
+              {textures.leather1 ? (
+                // <MeshWithTexture geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures["Home Plate"]}/>
+                <MeshWithTexture geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures.leather1} />
+                ):(
+                <mesh geometry={nodes.thuimb.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              )}
+              {textures["Home Plate"] ? (
+                <MeshWithTexture geometry={nodes.logoback2.geometry} material-color={colors["Home Plate"]} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} texture={textures["Home Plate"]}/>
+              ):(
+                <mesh geometry={nodes.logoback2.geometry} material-color={colors["Home Plate"]} material={materials.Logo_Back} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+              )}
+              {/* <mesh geometry={nodes.side_logo1.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
+              <Text
+                position={[0.0405, 0.0465, 0.017]}
+                rotation={[0.21875*Math.PI, 0.3125*Math.PI, 0.25*Math.PI]}
+                color={personalize["Custom Plate Number Color"]}
+                scale={0.012}
+              >
+                {personalize["Custom Plate Number"]}
+              </Text>
             </>
           )}
         </>

@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { New } from "../customizers/NewModel" ;
 import { OrbitControls } from "@react-three/drei";
 import { meshOptions, colorData, tabs, textureData, colorStepsConfig, baseOptions, personlizationOptions, personlizationConfig, Options, baseStepsConfig, flags } from "../constants";
+// import Controls from "../customizers/controls";
 
 export default function Fielder() {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
@@ -17,6 +18,14 @@ export default function Fielder() {
   const [personilzeSteps, setPersonalizeSteps] = useState(personlizationConfig);
   const [personlizeConfig, setPersonlizeConfig] = useState(personlizationOptions);
   const [currentPersonlize, setCurrentPersonlize] = useState("Thumb Logo/Graphic");
+
+  // const [xPosition, setXPosition] = useState(0.040);
+  // const [yPosition, setYPosition] = useState(0.044);
+  // const [zPosition, setZPosition] = useState(0.017);
+
+  // const [xRotation, setXRotation] = useState(0.21875);
+  // const [yRotation, setYRotation] = useState(0.3125);
+  // const [zRotation, setZRotation] = useState(0.25);
   
   const rotateLeft = () => {
     setRotationValue(
@@ -50,6 +59,28 @@ export default function Fielder() {
     }));
 
   };
+
+  const handlePeronalizeChangeText = (e) => {
+    let value = e.target.value;
+
+    // Limit to two digits
+    if(value.length > 2) {
+      value = value.slice(0, 2);
+    }
+
+    setPersonlizeConfig((prevOption) => ({
+      ...prevOption,
+      [currentPersonlize]: value,
+    }));
+  }
+
+  const handlePeronalizeChangeColor = (option, value) => {
+    const opt = option + " Color"
+    setPersonlizeConfig((prevOption) => ({
+      ...prevOption,
+      [opt]: value,
+    }));
+  }
 
   const handlePeronalizeChange = (option, value) => {
     if (personlizeConfig[option] === value) {
@@ -421,6 +452,7 @@ export default function Fielder() {
 
                         {/* <pointLight /> */}
                     
+                        {/* <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} personalizeConfig={personlizationConfig} xPosition={xPosition} yPosition={yPosition} zPosition={zPosition} xRotation={xRotation} yRotation={yRotation} zRotation={zRotation} flags={flags} /> */}
                         <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} personalizeConfig={personlizationConfig} flags={flags} />
                         <OrbitControls
                           minPolarAngle={Math.PI / 2}
@@ -503,7 +535,7 @@ export default function Fielder() {
                       Current: {currentBase}
                     </div>
                     <div>
-                      {Options[currentBase].map(option => (
+                      {(Options[currentBase].options).map(option => (
                         <div> 
                           <input
                             type="radio"
@@ -632,7 +664,20 @@ export default function Fielder() {
                       Current: {currentPersonlize}
                     </div>
                     <div>
-                      {Options[currentPersonlize].map(option => (
+                      {Options[currentPersonlize].textbox && (
+                        <>
+                          <input className = "rounded-full px-6 w-full focus:ring-0 border-gray-300 focus:border-gray-300" 
+                            type="number" 
+                            placeholder={currentPersonlize}
+                            max="99"
+                            min="0"
+                            value= {personlizeConfig[currentPersonlize]}
+                            onChange={handlePeronalizeChangeText}
+                          />
+                        </>
+                      )}
+                      <br/>
+                      {(Options[currentPersonlize].options).map(option => (
                         <div> 
                           <input
                             type="radio"
@@ -647,10 +692,47 @@ export default function Fielder() {
                           </label>
                         </div>
                       ))}
+                    <br/>
+                    {Options[currentPersonlize].colors && (
+                      <div className="color-options">
+                        {Object.entries(Options[currentPersonlize].colors).map(([label, color]) => (
+                          <div class="color-option-wrapper">
+                            <div
+                              key={color}
+                              className={`color-option ${
+                                personlizeConfig[currentPersonlize + " Color"] === color ? "selected" : ""
+                              }`}
+                              style={{ backgroundColor: color }}
+                              onClick={()=>{handlePeronalizeChangeColor(currentPersonlize, color)}}
+                            /> 
+                            <div className="color-label">
+                              {label} 
+                            </div>
+                          </div>
+                        ))}
+                        <br/>
+                      </div>
+                    )}
                     </div>
                   </div>
                 </div>
               )}
+              {/* <Controls
+                controls={{
+                  xPosition,
+                  yPosition,
+                  zPosition,
+                  xRotation,
+                  yRotation,
+                  zRotation,
+                  setXPosition,
+                  setYPosition,
+                  setZPosition,
+                  setXRotation,
+                  setYRotation,
+                  setZRotation,
+                }}
+              /> */}
             </div>
           </div>
         </div>

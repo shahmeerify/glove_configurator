@@ -56,6 +56,22 @@ import hat from '../assets/Graphics/hat.png'
 import hotdog from '../assets/Graphics/hotdog.png'
 import ilovetacos from '../assets/Graphics/ilovetacos.png'
 import toofast from '../assets/Graphics/Speed Gun 99mph.png'
+import usa_stamp from '../assets/stamp_flag/usa.png'
+import arizona_stamp from '../assets/stamp_flag/arizona.png'
+import australia_stamp from '../assets/stamp_flag/australia.png'
+import california_stamp from '../assets/stamp_flag/california.png'
+import canada_stamp from '../assets/stamp_flag/canada.png'
+import chicago_stamp from '../assets/stamp_flag/chicago.png'
+import calorado_stamp from '../assets/stamp_flag/colorado.png'
+import cuba_stamp from '../assets/stamp_flag/cuba.png'
+import dominican_republic_stamp from '../assets/stamp_flag/dominican_republic.png'
+import japan_stamp from '../assets/stamp_flag/japan.png'
+import maryland_stamp from '../assets/stamp_flag/maryland.png'
+import mexico_stamp from '../assets/stamp_flag/mexico.png'
+import puerto_rico_stamp from '../assets/stamp_flag/puerto-rico.png'
+import south_korea_stamp from '../assets/stamp_flag/south-korea.png'
+import texas_stamp from '../assets/stamp_flag/texas.png'
+import venezuela_stamp from '../assets/stamp_flag/venezuela.png'
 
 export const img = peace
 
@@ -97,6 +113,25 @@ export const thumb_premium_graphics = {
   "Golden Sombrero" : hat,
   "Cross" : cross,
   "Too Fast" : toofast,
+}
+
+export const stamp_flags = {
+  "USA": usa_stamp , 
+  "Arizona": arizona_stamp ,
+  "Australia": australia_stamp , 
+  "California": california_stamp , 
+  "Canada": canada_stamp , 
+  "Chicago": chicago_stamp , 
+  "Colorado": calorado_stamp , 
+  "Cuba": cuba_stamp ,
+  "Dominican Republic": dominican_republic_stamp , 
+  "Japan": japan_stamp , 
+  "Maryland": maryland_stamp ,
+  "Mexico": mexico_stamp , 
+  "Puerto Rico": puerto_rico_stamp ,
+  "Korea": south_korea_stamp ,
+  "Texas": texas_stamp ,
+  "Venezuela": venezuela_stamp ,
 }
 
 export const imagePaths = {
@@ -451,9 +486,11 @@ export const meshOptions = {
     "Thumb Logo/Graphic" : "Home Plate Logo",
     "Thumb Graphic": "Cross",
     "Premium Graphic": "Hot Dog", 
-    "Jumbo Number": "Black",
+    "Jumbo Number": "",
+    "Jumbo Number Color": "#1a1a1a",
     "Stamped Flag": "USA",
-    "Custom Plate Number" : "Black",
+    "Custom Plate Number" : "",
+    "Custom Plate Number Color" : "#1a1a1a",
     "Palm Stamp": "Legend Logo",
     "Palm Custom Number": null,
     "Palm Graphic" : "Homeplate",
@@ -466,34 +503,146 @@ export const meshOptions = {
   }
 
   export const Options = {
-    size: ["11", "11.25", "11.5", "12", "12.25"],
-    logo_style: ["Embroidered", "Circle Patch", "Embroidered Flag", "Square Patch"],
-    embroidered_flag: ["USA", "Korea", "Venezuela", "Dominican Republic", "Japan", "Australia", "Mexico", "Canada", "Italy", "Puerto Rico", "Netherlands"],
-    logo_outline: ["Enable Logo Outline"],
-    finger_option: ["None", "Hood", "Pad"],
-    finger_hood_or_pad_placement: ["Index Finger", "Middle Finger"],
-    inlay: ["Inlay"],
-    lace_length: ["Normal", "Long"],
-    wrist_linning: ["Traditional Fur", "Moisture Wickening Performance Wrist Pad"],
-    dual_welting: ["Dual Welting"],
-    web_style: ["I-Web", "I-Web (No Logo)",  "I-Web (Spiral Lace)", "Y-Web", "E-Web", "H-Web", "Laced H-Web", "T-Web", "Basket Web", "Cross Web", "Net Style Web" ,"1 Piece Web", "2 Piece Web"],
-    glove_stiffness: ["Pro Stiff", "Standard"],
-    throwing_hand: ["Left", "Right"],
-    "Thumb Logo/Graphic": ["Logo", "Home Plate Logo", "Graphic (+$7)", "Premium Graphic (+$15)", "Jumbo Number (+$7)", "Stamped Flag (+$7)", "Custom Plate Number (+$7)"],
-    "Thumb Graphic": ["Cross", "Star of David", "Reverse K", "Ribbon", "Heart", "Paw Print", "Maple Leaf", "Star", "Lightning Bolt", "Peace", "Shaka", ],
-    "Premium Graphic": ["Hot Dog", "I Love Tacos", "Cannon", "Champion", "Goodluck Charm", "Golden Sombrero", "Cross", "Too Fast",], 
-    "Jumbo Number": ["Black"],
-    "Stamped Flag": ["Arizona", "Australia", "California", "Canada", "Chicago", "Colorado", "Cuba", "Dominican Republic", "Japan", "Korea", "Maryland", "Mexico", "Puerto Rico", "Texas", "USA", "Venezuela"],
-    "Custom Plate Number" : ["Black"],
-    "Palm Stamp": ["None", "Legend Logo", "Custom Number", "Graphic"],
-    "Palm Custom Number": ["Box"], 
-    "Palm Graphic": ["44 Home Plate", "Baseball", "Lightning Bolt", "Clover", "Field", "Heart", "Maple Leaf", "Paw", "Peace", "Pitcher", "Reverse K", "Shaka", "Smiley Face", "Star", "Target", "California", "Florida", "Hawaii", "Texas", "USA", "Cross", "Designer", "Franky Fortyfour", "Lucky", "Money", "One Hundred", "Pennant", "Phil 4:13", "The HQ"],
-    "Thumb Text" : ["Black"],
-    "Pinky Text" : ["Pinky Text"],
-    "Palm Text" : ["Palm Text"],
-    "Text Font" : ["Script", "Bold"],
-    "Flag" : ["None", "Other", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", ],
-    "Special Instruction" : ["Box"],
+    size: {
+      textbox: false,
+      options: ["11", "11.25", "11.5", "12", "12.25"],
+      colors: null,
+    },
+    logo_style: {
+      textbox: false,
+      options: ["Embroidered", "Circle Patch", "Embroidered Flag", "Square Patch"],
+      colors: null,
+    },
+    embroidered_flag: {
+      textbox: false,
+      options: ["USA", "Korea", "Venezuela", "Dominican Republic", "Japan", "Australia", "Mexico", "Canada", "Italy", "Puerto Rico", "Netherlands"],
+      colors: null,
+    },
+    logo_outline: {
+      textbox: false,
+      options: ["Enable Logo Outline"],
+      colors: null,
+    },
+    finger_option: {
+      textbox: false,
+      options: ["None", "Hood", "Pad"],
+      colors: null,
+    },
+    finger_hood_or_pad_placement: {
+      textbox: false,
+      options: ["Index Finger", "Middle Finger"],
+      colors: null,
+    },
+    inlay: {
+      textbox: false,
+      options: ["Inlay"],
+      colors: null,
+    },
+    lace_length: {
+      textbox: false,
+      options: ["Normal", "Long"],
+      colors: null,
+    },
+    wrist_linning: {
+      textbox: false,
+      options: ["Traditional Fur", "Moisture Wickening Performance Wrist Pad"],
+      colors: null,
+    },
+    dual_welting: {
+      textbox: false,
+      options: ["Dual Welting"],
+      colors: null,
+    },
+    web_style: {
+      textbox: false,
+      options: ["I-Web", "I-Web (No Logo)",  "I-Web (Spiral Lace)", "Y-Web", "E-Web", "H-Web", "Laced H-Web", "T-Web", "Basket Web", "Cross Web", "Net Style Web" ,"1 Piece Web", "2 Piece Web"],
+      colors: null,
+    },
+    glove_stiffness: {
+      textbox: false,
+      options: ["Pro Stiff", "Standard"],
+      colors: null,
+    },
+    throwing_hand: {
+      textbox: false,
+      options: ["Left", "Right"],
+      colors: null,
+    },
+    "Thumb Logo/Graphic": {
+      textbox: false,
+      options: ["Logo", "Home Plate Logo", "Graphic (+$7)", "Premium Graphic (+$15)", "Jumbo Number (+$7)", "Stamped Flag (+$7)", "Custom Plate Number (+$7)"],
+      colors: null,
+    },
+    "Thumb Graphic": {
+      textbox: false,
+      options: ["Cross", "Star of David", "Reverse K", "Ribbon", "Heart", "Paw Print", "Maple Leaf", "Star", "Lightning Bolt", "Peace", "Shaka", ],
+      colors: null,
+    },
+    "Premium Graphic": {
+      textbox: false,
+      options: ["Hot Dog", "I Love Tacos", "Cannon", "Champion", "Goodluck Charm", "Golden Sombrero", "Cross", "Too Fast",],
+      colors: null,
+    } ,
+    "Jumbo Number": {
+      textbox: true,
+      options: [],
+      colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Orange Tan": "#D3480F", "Oiled Chestnut": "#9B4E2B", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Sky Blue": "#0BB4C7", "Forest Green": "#334F30", "Mint": "#65DDA3", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
+    },
+    "Stamped Flag": {
+      textbox: false,
+      options: ["Arizona", "Australia", "California", "Canada", "Chicago", "Colorado", "Cuba", "Dominican Republic", "Japan", "Korea", "Maryland", "Mexico", "Puerto Rico", "Texas", "USA", "Venezuela"],
+      colors: null,
+    },
+    "Custom Plate Number" : {
+      textbox: true,
+      options: [],
+      colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Orange Tan": "#D3480F", "Oiled Chestnut": "#9B4E2B", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Sky Blue": "#0BB4C7", "Forest Green": "#334F30", "Mint": "#65DDA3", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
+    },
+    "Palm Stamp": {
+      textbox: false,
+      options: ["None", "Legend Logo", "Custom Number", "Graphic"],
+      colors: null,
+    },
+    "Palm Custom Number": {
+      textbox: false,
+      options: ["Box"],
+      colors: null,
+    } ,
+    "Palm Graphic": {
+      textbox: false,
+      options: ["44 Home Plate", "Baseball", "Lightning Bolt", "Clover", "Field", "Heart", "Maple Leaf", "Paw", "Peace", "Pitcher", "Reverse K", "Shaka", "Smiley Face", "Star", "Target", "California", "Florida", "Hawaii", "Texas", "USA", "Cross", "Designer", "Franky Fortyfour", "Lucky", "Money", "One Hundred", "Pennant", "Phil 4:13", "The HQ"],
+      colors: null,
+    },
+    "Thumb Text" : {
+      textbox: false,
+      options: ["Black"],
+      colors: null,
+    },
+    "Pinky Text" : {
+      textbox: false,
+      options: ["Pinky Text"],
+      colors: null,
+    },
+    "Palm Text" : {
+      textbox: false,
+      options: ["Palm Text"],
+      colors: null,
+    },
+    "Text Font" : {
+      textbox: false,
+      options: ["Script", "Bold"],
+      colors: null,
+    },
+    "Flag" : {
+      textbox: false,
+      options: ["None", "Other", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", ],
+      colors: null,
+    },
+    "Special Instruction" : {
+      textbox: false,
+      options: ["Box"],
+      colors: null,
+    },
   }
   
   export const tabs = ["Base", "Color", "Personalize"];
