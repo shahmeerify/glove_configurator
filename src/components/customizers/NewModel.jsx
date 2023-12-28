@@ -3,7 +3,9 @@ import { useGLTF,  useTexture, Text } from '@react-three/drei'
 import { useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 import { flags } from "../constants";
-import {thumb_graphics, thumb_premium_graphics, stamp_flags} from "../constants"
+import { thumb_graphics, thumb_premium_graphics, stamp_flags, stamp_palm } from "../constants"
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import Outlinefont from "../../assets/fonts/Milestone Outline.otf"
 
 // const saveToFile = (data, fileName) => {
 //   const jsonContent = JSON.stringify(data, null, 2);
@@ -36,25 +38,41 @@ const ThumbGraphic = ({ nodes, materials, position, rotation, scale, personalize
   materials.shaka.map = graphicTexture
 
   return (
-     <mesh geometry={nodes.shaka.geometry} material={materials.shaka} material-color={"#333333"} position={[0.035282, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> 
+     <mesh geometry={nodes.shaka.geometry} material={materials.shaka} material-color={"#D1D3D0"} position={position} rotation={rotation} scale={scale} /> 
   );
 };
 const ThumbPremiumGraphic = ({ nodes, materials, position, rotation, scale, personalize}) => {
+  if(personalize['Premium Graphic'] === "Cannon"){
+    scale = 0.024
+  }
+  if(personalize['Premium Graphic'] === "Hot Dog"){
+    scale = 0.024
+  }
   const graphicTexture = useTexture(thumb_premium_graphics[personalize['Premium Graphic']]);
   graphicTexture.encoding = THREE.sRGBEncoding;
   materials.ilovetacos.map = graphicTexture
 
   return (
-    <mesh geometry={nodes.shaka_premium.geometry} material={materials.ilovetacos} position={[0.035282, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.018} />
+    <mesh geometry={nodes.shaka_premium.geometry} material={materials.ilovetacos} position={position} rotation={rotation} scale={scale} />
   );
 };
-const StampedFlag = ({ nodes, materials, position, rotation, scale, personalize}) => {
+const StampedFlag = ({ nodes, materials, position, rotation, scale, personalize }) => {
   const graphicTexture = useTexture(stamp_flags[personalize['Stamped Flag']]);
   graphicTexture.encoding = THREE.sRGBEncoding;
   materials.ilovetacos.map = graphicTexture
 
   return (
-    <mesh geometry={nodes.shaka_premium.geometry} material={materials.ilovetacos} position={[0.035282, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={scale} />
+    <mesh geometry={nodes.shaka_premium.geometry} material={materials.ilovetacos} position={position} rotation={rotation} scale={scale} />
+  );
+};
+
+const PalmGraphic = ({ nodes, materials, position, rotation, scale, personalize }) => {
+  const graphicTexture = useTexture(stamp_palm[personalize['Palm Graphic']]);
+  graphicTexture.encoding = THREE.sRGBEncoding;
+  materials.ilovetacos.map = graphicTexture
+
+  return (
+    <mesh geometry={nodes.shaka_premium.geometry} material={materials.ilovetacos} position={position} rotation={rotation} scale={scale} />
   );
 };
 
@@ -78,6 +96,8 @@ const EmbroideredLogo = ({ geometry, material, color, position, rotation, scale,
 export function New({rot, base, colors, personalize, personalizeConfig, xPosition, yPosition, zPosition, xRotation, yRotation, zRotation, textures }) {
   const ref = useRef();
   const { nodes, materials } = useGLTF('./Model/NewTest.glb')
+  
+  // const myFont = new FontLoader().parse(fontArrayBuffer);
 
   for (const materialName in materials) {
     materials[materialName].metalness = 0;
@@ -102,6 +122,25 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
       <mesh geometry={nodes.inside_palm_mesh.geometry} material-color={colors.palm} material={materials['Details 2']} position={[0.005, -0.025, -0.008]} rotation={[Math.PI / 2, 0, 0]} scale={[0.013, 0.013, 0.014]} />
       <mesh geometry={nodes.index_top_mesh.geometry} material-color={colors.palm} material={materials.Index_Inner1} position={[0.021, -0.003, 0.012]} rotation={[1.518, -0.013, 0.399]} scale={0.01} />
       <mesh geometry={nodes.pinky_mesh.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.005, 0.003, -0.028]} rotation={[1.532, -0.067, -0.765]} scale={0.01} /> */}
+      <Text
+        // font={Outlinefont}
+        position={[0.0674, 0.102, -0.003]}
+        rotation={[0.28125*Math.PI, 0.40625*Math.PI, 0.0625*Math.PI]}
+        color={"#000000"}
+        scale={0.008}
+      >
+        {personalize["Thumb Text"]}
+      </Text>
+      {/* <Text
+        // font={Outlinefont}
+        position={[xPosition, yPosition, zPosition]}
+        rotation={[xRotation*Math.PI, yRotation*Math.PI, zRotation*Math.PI]}
+        color={"#000000"}
+        scale={0.008}
+      >
+        {personalize["Thumb Text"]}
+      </Text> */}
+
 
       {/*Body Palm*/}
       {textures.palm ? (
@@ -116,6 +155,37 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
         </>   
       )}
       <mesh geometry={nodes.Lining.geometry} material-color={'#000000'} material={materials.Inside} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
+      {personalize["Palm Stamp"] === "Legend Logo" && (
+        <>
+          <Text
+            font={Outlinefont}
+            position={[-0.017, 0.067, 0.021]}
+            rotation={[0.0625*Math.PI, -1.125*Math.PI, -0.03125*Math.PI]}
+            color={"#707070"}
+            scale={0.01}
+          >
+            {"Legend"}
+          </Text>
+        </>
+      )}
+      {personalize["Palm Stamp"] === "Custom Number" && (
+        <>
+          <Text
+            font={Outlinefont}
+            position={[-0.017, 0.067, 0.021]}
+            rotation={[0.0625*Math.PI, -1.125*Math.PI, -0.03125*Math.PI]}
+            color={"#707070"}
+            scale={0.024}
+          >
+            {personalize["Palm Custom Number"]}
+          </Text>
+        </>
+      )}
+      {personalize["Palm Stamp"] === "Graphic" && (
+        <>
+          <PalmGraphic nodes={nodes} materials={materials} position={[-0.016, 0.067, 0.019]} rotation={[-0.3125*Math.PI, -0.09375*Math.PI, -1.125*Math.PI]} personalize={personalize} scale={0.020} />
+        </>
+      )}
 
       {/*CrownPatch*/}
       {/* <mesh geometry={nodes.crown_patch001.geometry} material-color={colors.palm} material={materials.Crown_Patch} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
@@ -275,7 +345,7 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
               ) : (
                 <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
               )}
-              <ThumbGraphic nodes={nodes} materials={materials} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} personalize={personalize}/>
+              <ThumbGraphic nodes={nodes} materials={materials} position={[0.035, 0.039, 0.023]} rotation={[Math.PI*2.915, Math.PI*1.132, Math.PI*-0.6625]} scale={0.012} personalize={personalize}/>
               {/* <mesh geometry={nodes.shaka.geometry} material={materials.shaka} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> */}
             </>
           )}
@@ -286,7 +356,7 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
               ) : (
                 <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
               )}
-              <ThumbPremiumGraphic nodes={nodes} materials={materials} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} personalize={personalize}/>
+              <ThumbPremiumGraphic nodes={nodes} materials={materials} position={[0.035, 0.039, 0.023]} rotation={[Math.PI*2.915, Math.PI*1.132, Math.PI*-0.6625]} scale={0.018} personalize={personalize} />
               {/* <mesh geometry={nodes.shaka.geometry} material={materials.shaka} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> */}
             </>
           )}
@@ -297,7 +367,7 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
               ) : (
                 <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
               )}
-              <StampedFlag nodes={nodes} materials={materials} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={[0.02, 0.02, 0.02]} personalize={personalize}/>
+                <StampedFlag nodes={nodes} materials={materials} position={[0.03727, 0.041, 0.02]} rotation={[Math.PI*2.915, Math.PI*1.10, Math.PI*-0.648]} scale={[0.02, 0.02, 0.02]} personalize={personalize} />
               {/* <mesh geometry={nodes.shaka.geometry} material={materials.shaka} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> */}
             </>
           )}
@@ -309,6 +379,7 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
                 <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
               )}
               <Text
+                // font={Outlinefont}
                 position={[0.040, 0.044, 0.017]}
                 rotation={[0.21875*Math.PI, 0.3125*Math.PI, 0.1875*Math.PI]}
                 color={personalize["Jumbo Number Color"]}

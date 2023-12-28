@@ -39,6 +39,7 @@ import Venezuela from '../assets/logo_flag/Venezuela.png'
 import Netherlands from '../assets/logo_flag/Netherlands.png'
 import clover from '../assets/Graphics/clover.png'
 import cross from '../assets/Graphics/cross.png'
+import cross1 from '../assets/Graphics/cross1.png'
 import star_david from '../assets/Graphics/star_david.png'
 import reverse_k from '../assets/Graphics/reverse-k.png'
 import ribbon from '../assets/Graphics/ribbon.png'
@@ -72,6 +73,20 @@ import puerto_rico_stamp from '../assets/stamp_flag/puerto-rico.png'
 import south_korea_stamp from '../assets/stamp_flag/south-korea.png'
 import texas_stamp from '../assets/stamp_flag/texas.png'
 import venezuela_stamp from '../assets/stamp_flag/venezuela.png'
+import stamp_ball from "../assets/palm_stamp/ball.png"
+import stamp_bolt from "../assets/palm_stamp/bolt.png"
+import stamp_clover from "../assets/palm_stamp/clover.png"
+import stamp_field from "../assets/palm_stamp/field.png"
+import stamp_heart from "../assets/palm_stamp/heart.png"
+import stamp_mapple from "../assets/palm_stamp/maple-leaf.png"
+import stamp_paw from "../assets/palm_stamp/paw.png"
+import stamp_peace from "../assets/palm_stamp/peace.png"
+import stamp_pitcher from "../assets/palm_stamp/pitcher.png"
+import stamp_reverse from "../assets/palm_stamp/reverse-k.png"
+import stamp_shaka from "../assets/palm_stamp/shakka.png"
+import stamp_smile from "../assets/palm_stamp/smile.png"
+import stamp_star from "../assets/palm_stamp/star.png"
+import stamp_target from "../assets/palm_stamp/target.png"
 
 export const img = peace
 
@@ -111,7 +126,7 @@ export const thumb_premium_graphics = {
   "Champion" : champion,
   "Goodluck Charm" : greenclover,
   "Golden Sombrero" : hat,
-  "Cross" : cross,
+  "Cross" : cross1,
   "Too Fast" : toofast,
 }
 
@@ -132,6 +147,23 @@ export const stamp_flags = {
   "Korea": south_korea_stamp ,
   "Texas": texas_stamp ,
   "Venezuela": venezuela_stamp ,
+}
+
+export const stamp_palm = {
+ "Baseball" : stamp_ball, 
+ "Lightning Bolt" : stamp_bolt, 
+ "Clover" : stamp_clover, 
+ "Field" : stamp_field, 
+ "Heart" : stamp_heart, 
+ "Maple Leaf" : stamp_mapple,
+ "Paw" : stamp_paw, 
+ "Peace" : stamp_peace, 
+ "Pitcher" : stamp_pitcher, 
+ "Reverse K" : stamp_reverse, 
+ "Shaka" : stamp_shaka, 
+ "Smiley Face" : stamp_smile, 
+ "Star" : stamp_star, 
+ "Target" : stamp_target,
 }
 
 export const imagePaths = {
@@ -491,14 +523,15 @@ export const meshOptions = {
     "Stamped Flag": "USA",
     "Custom Plate Number" : "",
     "Custom Plate Number Color" : "#1a1a1a",
-    "Palm Stamp": "Legend Logo",
-    "Palm Custom Number": null,
-    "Palm Graphic" : "Homeplate",
-    "Thumb Text" : "Black",
-    "Pinky Text" : "Pinky Text",
-    "Palm Text" : "Palm Text",
-    "Text Font" : "Script",
-    "Flag" : "None",
+    "Palm Stamp": "None",
+    "Palm Custom Number": "",
+    "Palm Graphic" : "Baseball",
+    "Thumb Text" : "",
+    "Thumb Text Color" : "#1a1a1a",
+    "Pinky Text" : "",
+    "Palm Text" : "",
+    "Text Font" : "Block",
+    "Flag" : null,
     "Special Instruction" : null,
   }
 
@@ -506,81 +539,97 @@ export const meshOptions = {
     size: {
       textbox: false,
       options: ["11", "11.25", "11.5", "12", "12.25"],
+      icons: null,
       colors: null,
     },
     logo_style: {
       textbox: false,
       options: ["Embroidered", "Circle Patch", "Embroidered Flag", "Square Patch"],
+      icons: null,
       colors: null,
     },
     embroidered_flag: {
       textbox: false,
       options: ["USA", "Korea", "Venezuela", "Dominican Republic", "Japan", "Australia", "Mexico", "Canada", "Italy", "Puerto Rico", "Netherlands"],
+      icons: null,
       colors: null,
     },
     logo_outline: {
       textbox: false,
       options: ["Enable Logo Outline"],
+      icons: null,
       colors: null,
     },
     finger_option: {
       textbox: false,
       options: ["None", "Hood", "Pad"],
+      icons: null,
       colors: null,
     },
     finger_hood_or_pad_placement: {
       textbox: false,
       options: ["Index Finger", "Middle Finger"],
+      icons: null,
       colors: null,
     },
     inlay: {
       textbox: false,
       options: ["Inlay"],
+      icons: null,
       colors: null,
     },
     lace_length: {
       textbox: false,
       options: ["Normal", "Long"],
+      icons: null,
       colors: null,
     },
     wrist_linning: {
       textbox: false,
       options: ["Traditional Fur", "Moisture Wickening Performance Wrist Pad"],
+      icons: null,
       colors: null,
     },
     dual_welting: {
       textbox: false,
       options: ["Dual Welting"],
+      icons: null,
       colors: null,
     },
     web_style: {
       textbox: false,
       options: ["I-Web", "I-Web (No Logo)",  "I-Web (Spiral Lace)", "Y-Web", "E-Web", "H-Web", "Laced H-Web", "T-Web", "Basket Web", "Cross Web", "Net Style Web" ,"1 Piece Web", "2 Piece Web"],
+      icons: null,
       colors: null,
     },
     glove_stiffness: {
       textbox: false,
       options: ["Pro Stiff", "Standard"],
+      icons: null,
       colors: null,
     },
     throwing_hand: {
       textbox: false,
       options: ["Left", "Right"],
+      icons: null,
       colors: null,
     },
     "Thumb Logo/Graphic": {
       textbox: false,
       options: ["Logo", "Home Plate Logo", "Graphic (+$7)", "Premium Graphic (+$15)", "Jumbo Number (+$7)", "Stamped Flag (+$7)", "Custom Plate Number (+$7)"],
+      icons: null,
       colors: null,
     },
     "Thumb Graphic": {
       textbox: false,
-      options: ["Cross", "Star of David", "Reverse K", "Ribbon", "Heart", "Paw Print", "Maple Leaf", "Star", "Lightning Bolt", "Peace", "Shaka", ],
+      options: null,
+      icons: {"Cross" : cross, "Star of David" : star_david, "Reverse K" : reverse_k, "Ribbon" : ribbon, "Heart" : heart, "Paw Print" : paw, "Maple Leaf" : maple, "Star" : star, "Lightning Bolt" : light_bolt, "Peace" : peace, "Shaka" : shaka,},
       colors: null,
     },
     "Premium Graphic": {
       textbox: false,
-      options: ["Hot Dog", "I Love Tacos", "Cannon", "Champion", "Goodluck Charm", "Golden Sombrero", "Cross", "Too Fast",],
+      options: null,
+      icons: {"Hot Dog" : hotdog, "I Love Tacos" : ilovetacos, "Cannon" : cannon, "Champion" : champion, "Goodluck Charm" : greenclover, "Golden Sombrero" : hat, "Cross" : cross1, "Too Fast" : toofast},
       colors: null,
     } ,
     "Jumbo Number": {
@@ -591,6 +640,7 @@ export const meshOptions = {
     "Stamped Flag": {
       textbox: false,
       options: ["Arizona", "Australia", "California", "Canada", "Chicago", "Colorado", "Cuba", "Dominican Republic", "Japan", "Korea", "Maryland", "Mexico", "Puerto Rico", "Texas", "USA", "Venezuela"],
+      icons: null,
       colors: null,
     },
     "Custom Plate Number" : {
@@ -601,46 +651,55 @@ export const meshOptions = {
     "Palm Stamp": {
       textbox: false,
       options: ["None", "Legend Logo", "Custom Number", "Graphic"],
+      icons: null,
       colors: null,
     },
     "Palm Custom Number": {
-      textbox: false,
-      options: ["Box"],
+      textbox: true,
+      options: null,
+      icons: null,
       colors: null,
     } ,
     "Palm Graphic": {
       textbox: false,
-      options: ["44 Home Plate", "Baseball", "Lightning Bolt", "Clover", "Field", "Heart", "Maple Leaf", "Paw", "Peace", "Pitcher", "Reverse K", "Shaka", "Smiley Face", "Star", "Target", "California", "Florida", "Hawaii", "Texas", "USA", "Cross", "Designer", "Franky Fortyfour", "Lucky", "Money", "One Hundred", "Pennant", "Phil 4:13", "The HQ"],
+      options: null,
+      icons: {"Baseball" : stamp_ball, "Lightning Bolt" : stamp_bolt, "Clover" : stamp_clover, "Field" : stamp_field, "Heart" : stamp_heart, "Maple Leaf" : stamp_mapple, "Paw" : stamp_paw, "Peace" : stamp_peace, "Pitcher" : stamp_pitcher, "Reverse K" : stamp_reverse, "Shaka" : stamp_shaka, "Smiley Face" : stamp_smile, "Star" : stamp_star, "Target" : stamp_target},
       colors: null,
     },
     "Thumb Text" : {
-      textbox: false,
-      options: ["Black"],
-      colors: null,
+      textbox: true,
+      options: [],
+      colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Orange Tan": "#D3480F", "Oiled Chestnut": "#9B4E2B", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Sky Blue": "#0BB4C7", "Forest Green": "#334F30", "Mint": "#65DDA3", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
+      icons: null,
     },
     "Pinky Text" : {
       textbox: false,
       options: ["Pinky Text"],
+      icons: null,
       colors: null,
     },
     "Palm Text" : {
       textbox: false,
       options: ["Palm Text"],
+      icons: null,
       colors: null,
     },
     "Text Font" : {
       textbox: false,
       options: ["Script", "Bold"],
+      icons: null,
       colors: null,
     },
     "Flag" : {
       textbox: false,
       options: ["None", "Other", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", ],
+      icons: null,
       colors: null,
     },
     "Special Instruction" : {
       textbox: false,
       options: ["Box"],
+      icons: null,
       colors: null,
     },
   }

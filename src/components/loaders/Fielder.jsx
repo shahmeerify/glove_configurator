@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { New } from "../customizers/NewModel" ;
 import { OrbitControls } from "@react-three/drei";
 import { meshOptions, colorData, tabs, textureData, colorStepsConfig, baseOptions, personlizationOptions, personlizationConfig, Options, baseStepsConfig, flags } from "../constants";
-// import Controls from "../customizers/controls";
+import Controls from "../customizers/controls";
 
 export default function Fielder() {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
@@ -19,13 +19,13 @@ export default function Fielder() {
   const [personlizeConfig, setPersonlizeConfig] = useState(personlizationOptions);
   const [currentPersonlize, setCurrentPersonlize] = useState("Thumb Logo/Graphic");
 
-  // const [xPosition, setXPosition] = useState(0.040);
-  // const [yPosition, setYPosition] = useState(0.044);
-  // const [zPosition, setZPosition] = useState(0.017);
+  const [xPosition, setXPosition] = useState(0.035);
+  const [yPosition, setYPosition] = useState( 0.039);
+  const [zPosition, setZPosition] = useState(0.023);
 
-  // const [xRotation, setXRotation] = useState(0.21875);
-  // const [yRotation, setYRotation] = useState(0.3125);
-  // const [zRotation, setZRotation] = useState(0.25);
+  const [xRotation, setXRotation] = useState(2.915);
+  const [yRotation, setYRotation] = useState(1.132);
+  const [zRotation, setZRotation] = useState(-0.6625);
   
   const rotateLeft = () => {
     setRotationValue(
@@ -87,6 +87,11 @@ export default function Fielder() {
       // If clicking on already selected option, set to null 
       value = null; 
     }
+
+    if (option === 'Thumb Logo/Graphic' && value === null){
+      value = 'Home Plate Logo'; 
+    }
+
     setPersonlizeConfig((prevOption) => ({
       ...prevOption,
       [option]: value,
@@ -452,8 +457,8 @@ export default function Fielder() {
 
                         {/* <pointLight /> */}
                     
-                        {/* <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} personalizeConfig={personlizationConfig} xPosition={xPosition} yPosition={yPosition} zPosition={zPosition} xRotation={xRotation} yRotation={yRotation} zRotation={zRotation} flags={flags} /> */}
-                        <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} personalizeConfig={personlizationConfig} flags={flags} />
+                        <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} personalizeConfig={personlizationConfig} xPosition={xPosition} yPosition={yPosition} zPosition={zPosition} xRotation={xRotation} yRotation={yRotation} zRotation={zRotation} flags={flags} />
+                        {/* <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} personalizeConfig={personlizationConfig} flags={flags} /> */}
                         <OrbitControls
                           minPolarAngle={Math.PI / 2}
                           maxPolarAngle={Math.PI / 2}
@@ -677,21 +682,26 @@ export default function Fielder() {
                         </>
                       )}
                       <br/>
-                      {(Options[currentPersonlize].options).map(option => (
-                        <div> 
-                          <input
-                            type="radio"
-                            id={`radio-${option}`}
-                            className="radio-input"
-                            value={option}
-                            checked={personlizeConfig[currentPersonlize] === option}
-                            onClick={()=>{handlePeronalizeChange(currentPersonlize, option)}}
-                            />
-                          <label htmlFor={`radio-${option}`} className="radio-label">
-                            {option}
-                          </label>
-                        </div>
-                      ))}
+                      
+                    {Options[currentPersonlize].options && (
+                      <>
+                        {(Options[currentPersonlize].options).map(option => (
+                          <div> 
+                            <input
+                              type="radio"
+                              id={`radio-${option}`}
+                              className="radio-input"
+                              value={option}
+                              checked={personlizeConfig[currentPersonlize] === option}
+                              onClick={()=>{handlePeronalizeChange(currentPersonlize, option)}}
+                              />
+                            <label htmlFor={`radio-${option}`} className="radio-label">
+                              {option}
+                            </label>
+                          </div>
+                        ))}
+                      </>
+                    )}
                     <br/>
                     {Options[currentPersonlize].colors && (
                       <div className="color-options">
@@ -713,11 +723,33 @@ export default function Fielder() {
                         <br/>
                       </div>
                     )}
+                    {Options[currentPersonlize].icons && (
+                      <div className="color-options">
+                        {Object.entries(Options[currentPersonlize].icons).map(([label, color]) => (
+                          <div class="color-option-wrapper">
+                            <img
+                              key={color}
+                              className={`color-option ${
+                                personlizeConfig[currentPersonlize] === label ? "selected" : ""
+                              }`}
+                              // style={{ backgroundColor: color }}
+                              src = {color}
+                              alt = {label}
+                              onClick={()=>{handlePeronalizeChange(currentPersonlize, label)}}
+                            /> 
+                            <div className="color-label">
+                              {label} 
+                            </div>
+                          </div>
+                        ))}
+                        <br/>
+                      </div>
+                    )}
                     </div>
                   </div>
                 </div>
               )}
-              {/* <Controls
+              <Controls
                 controls={{
                   xPosition,
                   yPosition,
@@ -732,7 +764,7 @@ export default function Fielder() {
                   setYRotation,
                   setZRotation,
                 }}
-              /> */}
+              />
             </div>
           </div>
         </div>
