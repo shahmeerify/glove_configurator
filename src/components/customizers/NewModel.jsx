@@ -126,7 +126,7 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
         // font={Outlinefont}
         position={[0.0674, 0.102, -0.003]}
         rotation={[0.28125*Math.PI, 0.40625*Math.PI, 0.0625*Math.PI]}
-        color={"#000000"}
+        color={personalize["Thumb Text Color"]}
         scale={0.008}
       >
         {personalize["Thumb Text"]}
