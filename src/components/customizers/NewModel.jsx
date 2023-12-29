@@ -124,23 +124,32 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
       <mesh geometry={nodes.pinky_mesh.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.005, 0.003, -0.028]} rotation={[1.532, -0.067, -0.765]} scale={0.01} /> */}
       <Text
         // font={Outlinefont}
-        position={[0.0674, 0.102, -0.003]}
-        rotation={[0.28125*Math.PI, 0.40625*Math.PI, 0.0625*Math.PI]}
+        position={[0.06317, 0.094, 0.003]}
+        rotation={[0.25*Math.PI, 0.375*Math.PI, 0.07*Math.PI]}
         color={personalize["Thumb Text Color"]}
-        scale={0.008}
+        scale={0.006}
       >
         {personalize["Thumb Text"]}
+        {/* {"hello world hello"} */}
       </Text>
-      {/* <Text
+      <Text
         // font={Outlinefont}
-        position={[xPosition, yPosition, zPosition]}
-        rotation={[xRotation*Math.PI, yRotation*Math.PI, zRotation*Math.PI]}
-        color={"#000000"}
-        scale={0.008}
+        position={[-0.0666, 0.127, -0.007]}
+        rotation={[-0.12765*Math.PI, -0.34375*Math.PI, -0.56375*Math.PI]}
+        color={personalize["Pinky Text Color"]}
+        scale={0.005}
       >
-        {personalize["Thumb Text"]}
-      </Text> */}
-
+        {personalize["Pinky Text"]}
+      </Text>
+      <Text
+        // font={Outlinefont}
+        position={[-0.018, 0.043, 0.015]}
+        rotation={[0.15625*Math.PI, -0.0625*Math.PI, 0.03125*Math.PI]}
+        color={personalize["Palm Text Color"]}
+        scale={0.0055}
+      >
+        {personalize["Palm Text"]}
+      </Text>
 
       {/*Body Palm*/}
       {textures.palm ? (

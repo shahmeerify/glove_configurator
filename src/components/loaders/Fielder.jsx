@@ -63,10 +63,17 @@ export default function Fielder() {
   const handlePeronalizeChangeText = (e) => {
     let value = e.target.value;
 
-    // Limit to two digits
-    if(value.length > 2) {
-      value = value.slice(0, 2);
+    if (Options[currentPersonlize].texttype === "number"){
+      if(value.length > 2) {
+        value = value.slice(0, 2);
+      }
     }
+    else{
+      if(value.length > 17) {
+        value = value.slice(0, 17);
+      }
+    }
+
 
     setPersonlizeConfig((prevOption) => ({
       ...prevOption,
@@ -671,17 +678,29 @@ export default function Fielder() {
                     <div>
                       {Options[currentPersonlize].textbox && (
                         <>
-                          <input className = "rounded-full px-6 w-full focus:ring-0 border-gray-300 focus:border-gray-300" 
-                            type="number" 
-                            placeholder={currentPersonlize}
-                            max="99"
-                            min="0"
-                            value= {personlizeConfig[currentPersonlize]}
-                            onChange={handlePeronalizeChangeText}
-                          />
+                          {Options[currentPersonlize].texttype === "number" && (
+                            <input className = "rounded-full px-6 w-full focus:ring-0 border-gray-300 focus:border-gray-300" 
+                              type="number" 
+                              placeholder={currentPersonlize}
+                              max="99"
+                              min="0"
+                              value= {personlizeConfig[currentPersonlize]}
+                              onChange={handlePeronalizeChangeText}
+                            />
+                          )}
+                          {Options[currentPersonlize].texttype === "text" && (
+                            <input className = "rounded-full px-6 w-full focus:ring-0 border-gray-300 focus:border-gray-300" 
+                              type="text" 
+                              placeholder={currentPersonlize}
+                              maxLength="17"
+                              minLength="0"
+                              value= {personlizeConfig[currentPersonlize]}
+                              onChange={handlePeronalizeChangeText}
+                            />
+                          )}
+                        <br/>
                         </>
                       )}
-                      <br/>
                       
                     {Options[currentPersonlize].options && (
                       <>
@@ -700,9 +719,9 @@ export default function Fielder() {
                             </label>
                           </div>
                         ))}
+                       <br/>
                       </>
                     )}
-                    <br/>
                     {Options[currentPersonlize].colors && (
                       <div className="color-options">
                         {Object.entries(Options[currentPersonlize].colors).map(([label, color]) => (
@@ -749,7 +768,7 @@ export default function Fielder() {
                   </div>
                 </div>
               )}
-              {/* <Controls
+              <Controls
                 controls={{
                   xPosition,
                   yPosition,
@@ -764,7 +783,7 @@ export default function Fielder() {
                   setYRotation,
                   setZRotation,
                 }}
-              /> */}
+              />
             </div>
           </div>
         </div>
