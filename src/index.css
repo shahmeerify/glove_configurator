@@ -156,6 +156,12 @@ body,
   overflow-y: auto;
   padding-right: 10px; /* Add padding for scrollbar */
 }
+.personlize-options1{
+  flex-direction: column;
+  max-height: 300px; /* 4 rows at 60px height */
+  overflow-y: auto;
+  padding-right: 10px; /* Add padding for scrollbar */
+}
 
 .color-option {
   width: 72.9px; 

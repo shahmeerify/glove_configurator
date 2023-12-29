@@ -702,26 +702,28 @@ export default function Fielder() {
                         </>
                       )}
                       
-                    {Options[currentPersonlize].options && (
-                      <>
-                        {(Options[currentPersonlize].options).map(option => (
-                          <div> 
-                            <input
-                              type="radio"
-                              id={`radio-${option}`}
-                              className="radio-input"
-                              value={option}
-                              checked={personlizeConfig[currentPersonlize] === option}
-                              onClick={()=>{handlePeronalizeChange(currentPersonlize, option)}}
-                              />
-                            <label htmlFor={`radio-${option}`} className="radio-label">
-                              {option}
-                            </label>
-                          </div>
-                        ))}
-                       <br/>
-                      </>
-                    )}
+                    <div className="personlize-options1">
+                      {Options[currentPersonlize].options && (
+                        <>
+                          {(Options[currentPersonlize].options).map(option => (
+                            <div> 
+                              <input
+                                type="radio"
+                                id={`radio-${option}`}
+                                className="radio-input"
+                                value={option}
+                                checked={personlizeConfig[currentPersonlize] === option}
+                                onClick={()=>{handlePeronalizeChange(currentPersonlize, option)}}
+                                />
+                              <label htmlFor={`radio-${option}`} className="radio-label">
+                                {option}
+                              </label>
+                            </div>
+                          ))}
+                        <br/>
+                        </>
+                      )}
+                    </div>
                     {Options[currentPersonlize].colors && (
                       <div className="color-options">
                         {Object.entries(Options[currentPersonlize].colors).map(([label, color]) => (

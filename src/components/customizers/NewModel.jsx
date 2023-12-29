@@ -1,10 +1,9 @@
 import React, { useRef, useMemo } from 'react'
 import { useGLTF,  useTexture, Text } from '@react-three/drei'
-import { useFrame, useLoader } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { flags } from "../constants";
-import { thumb_graphics, thumb_premium_graphics, stamp_flags, stamp_palm } from "../constants"
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { thumb_graphics, thumb_premium_graphics, stamp_flags, stamp_palm, fonts, back_flags } from "../constants"
 import Outlinefont from "../../assets/fonts/Milestone Outline.otf"
 
 // const saveToFile = (data, fileName) => {
@@ -69,10 +68,21 @@ const StampedFlag = ({ nodes, materials, position, rotation, scale, personalize 
 const PalmGraphic = ({ nodes, materials, position, rotation, scale, personalize }) => {
   const graphicTexture = useTexture(stamp_palm[personalize['Palm Graphic']]);
   graphicTexture.encoding = THREE.sRGBEncoding;
-  materials.ilovetacos.map = graphicTexture
+  const Copy =  materials.ilovetacos.clone();
+  Copy.map = graphicTexture
 
   return (
-    <mesh geometry={nodes.shaka_premium.geometry} material={materials.ilovetacos} position={position} rotation={rotation} scale={scale} />
+    <mesh geometry={nodes.shaka_premium.geometry} material={Copy} position={position} rotation={rotation} scale={scale} />
+  );
+};
+const BackFlag = ({ nodes, materials, position, rotation, scale, personalize }) => {
+  const graphicTexture = useTexture(back_flags[personalize['Flag']]);
+  graphicTexture.encoding = THREE.sRGBEncoding;
+  const Copy =  materials.ilovetacos.clone();
+  Copy.map = graphicTexture
+
+  return (
+    <mesh geometry={nodes.shaka_premium.geometry} material={Copy} position={position} rotation={rotation} scale={scale} />
   );
 };
 
@@ -123,7 +133,7 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
       <mesh geometry={nodes.index_top_mesh.geometry} material-color={colors.palm} material={materials.Index_Inner1} position={[0.021, -0.003, 0.012]} rotation={[1.518, -0.013, 0.399]} scale={0.01} />
       <mesh geometry={nodes.pinky_mesh.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.005, 0.003, -0.028]} rotation={[1.532, -0.067, -0.765]} scale={0.01} /> */}
       <Text
-        // font={Outlinefont}
+        font={fonts[personalize["Text Font"]]}
         position={[0.06317, 0.094, 0.003]}
         rotation={[0.25*Math.PI, 0.375*Math.PI, 0.07*Math.PI]}
         color={personalize["Thumb Text Color"]}
@@ -133,7 +143,7 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
         {/* {"hello world hello"} */}
       </Text>
       <Text
-        // font={Outlinefont}
+        font={fonts[personalize["Text Font"]]}
         position={[-0.0666, 0.127, -0.007]}
         rotation={[-0.12765*Math.PI, -0.34375*Math.PI, -0.56375*Math.PI]}
         color={personalize["Pinky Text Color"]}
@@ -142,7 +152,7 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
         {personalize["Pinky Text"]}
       </Text>
       <Text
-        // font={Outlinefont}
+        font={fonts[personalize["Text Font"]]}
         position={[-0.018, 0.043, 0.015]}
         rotation={[0.15625*Math.PI, -0.0625*Math.PI, 0.03125*Math.PI]}
         color={personalize["Palm Text Color"]}
@@ -150,6 +160,17 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
       >
         {personalize["Palm Text"]}
       </Text>
+      {(personalize["Flag"] !== null && personalize["Flag"] !== "Other" && personalize["Flag"] !== "None") && (
+        <>
+          {base.finger_hood_or_pad_placement === "Index Finger" ? (
+            <BackFlag nodes={nodes} materials={materials} position={[0.006, 0.133, 0.0666]} rotation={[Math.PI*0.256, Math.PI*0.4375, Math.PI*-0.84375]} scale={[0.03, 0.015, 0.02]} personalize={personalize} />
+            
+          ) : (
+            <BackFlag nodes={nodes} materials={materials} position={[0.006, 0.133, 0.0662]} rotation={[Math.PI*0.256, Math.PI*0.4375, Math.PI*-0.84375]} scale={[0.03, 0.015, 0.02]} personalize={personalize} />
+          )}
+        </>
+      )}
+
 
       {/*Body Palm*/}
       {textures.palm ? (
@@ -388,7 +409,7 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
                 <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
               )}
               <Text
-                // font={Outlinefont}
+                font={fonts[personalize["Text Font"]]}
                 position={[0.040, 0.044, 0.017]}
                 rotation={[0.21875*Math.PI, 0.3125*Math.PI, 0.1875*Math.PI]}
                 color={personalize["Jumbo Number Color"]}

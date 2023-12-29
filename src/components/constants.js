@@ -87,6 +87,93 @@ import stamp_shaka from "../assets/palm_stamp/shakka.png"
 import stamp_smile from "../assets/palm_stamp/smile.png"
 import stamp_star from "../assets/palm_stamp/star.png"
 import stamp_target from "../assets/palm_stamp/target.png"
+import flag_alabama from "../assets/flags/alabama.png"
+import flag_alaska from "../assets/flags/alaska.png"        
+import flag_arizona from "../assets/flags/arizona.png"      
+import flag_arkansas from "../assets/flags/arkansas.png"    
+import flag_australia from "../assets/flags/australia.png"  
+import flag_bahamas from "../assets/flags/bahamas.png"      
+import flag_barbados from "../assets/flags/barbados.png"    
+import flag_belgium from "../assets/flags/belgium.png"      
+import flag_california from "../assets/flags/california.png"
+import flag_canada from "../assets/flags/canada.png"        
+import flag_china from "../assets/flags/china.png"
+import flag_colorado from "../assets/flags/colorado.png"
+import flag_connecticut from "../assets/flags/connecticut.png"
+import flag_cuba from "../assets/flags/cuba.png"
+import flag_curacao from "../assets/flags/curacao.png"
+import flag_delaware from "../assets/flags/delaware.png"
+import flag_denmark from "../assets/flags/denmark.png"
+import flag_dominican_republic from "../assets/flags/dominican-republic.png"
+import flag_florida from "../assets/flags/florida.png"
+import flag_france from "../assets/flags/france.png"
+import flag_georgia from "../assets/flags/georgia.png"
+import flag_germany from "../assets/flags/germany.png"
+import flag_ghana from "../assets/flags/ghana.png"
+import flag_greece from "../assets/flags/greece.png"
+import flag_hawaii from "../assets/flags/hawaii.png"
+import flag_idaho from "../assets/flags/idaho.png"
+import flag_illinois from "../assets/flags/illinois.png"
+import flag_indiana from "../assets/flags/indiana.png"
+import flag_iowa from "../assets/flags/iowa.png"
+import flag_ireland from "../assets/flags/ireland.png"
+import flag_israel from "../assets/flags/israel.png"
+import flag_italy from "../assets/flags/italy.png"
+import flag_japan from "../assets/flags/japan.png"
+import flag_kansas from "../assets/flags/kansas.png"
+import flag_kentucky from "../assets/flags/kentucky.png"
+import flag_lebanon from "../assets/flags/lebanon.png"
+import flag_louisiana from "../assets/flags/louisiana.png"
+import flag_maine from "../assets/flags/maine.png"
+import flag_maryland from "../assets/flags/maryland.png"
+import flag_massachusetts from "../assets/flags/massachusetts.png"
+import flag_mexico from "../assets/flags/mexico.png"
+import flag_michigan from "../assets/flags/michigan.png"
+import flag_minnesota from "../assets/flags/minnesota.png"
+import flag_mississippi from "../assets/flags/mississippi.png"
+import flag_missouri from "../assets/flags/missouri.png"
+import flag_montana from "../assets/flags/montana.png"
+import flag_nebraska from "../assets/flags/nebraska.png"
+import flag_netherlands from "../assets/flags/netherlands.png"
+import flag_nevada from "../assets/flags/nevada.png"
+import flag_new_hampshire from "../assets/flags/new-hampshire.png"
+import flag_new_jersey from "../assets/flags/new-jersey.png"
+import flag_new_mexico from "../assets/flags/new-mexico.png"
+import flag_new_york from "../assets/flags/new-york.png"
+import flag_north_carolina from "../assets/flags/north-carolina.png"
+import flag_north_dakota from "../assets/flags/north-dakota.png"
+import flag_ohio from "../assets/flags/ohio.png"
+import flag_oklahoma from "../assets/flags/oklahoma.png"
+import flag_oregon from "../assets/flags/oregon.png"
+import flag_panama from "../assets/flags/panama.png"
+import flag_pennsylvania from "../assets/flags/pennsylvania.png"
+import flag_philippines from "../assets/flags/philippines.png"
+import flag_puerto_rico from "../assets/flags/puerto-rico.png"
+import flag_rhode_island from "../assets/flags/rhode-island.png"
+import flag_russia from "../assets/flags/russia.png"
+import flag_singapore from "../assets/flags/singapore.png"
+import flag_south_africa from "../assets/flags/south-africa.png"
+import flag_south_carolina from "../assets/flags/south-carolina.png"
+import flag_south_dakota from "../assets/flags/south-dakota.png"
+import flag_south_korea from "../assets/flags/south-korea.png"
+import flag_spain from "../assets/flags/spain.png"
+import flag_sweden from "../assets/flags/sweden.png"
+import flag_switzerland from "../assets/flags/switzerland.png"
+import flag_taiwan from "../assets/flags/taiwan.png"
+import flag_tennessee from "../assets/flags/tennessee.png"
+import flag_texas from "../assets/flags/texas.png"
+import flag_united_kingdom from "../assets/flags/united-kingdom.png"
+import flag_usa from "../assets/flags/usa.png"
+import flag_utah from "../assets/flags/utah.png"
+import flag_venezuela from "../assets/flags/venezuela.png"
+import flag_vermont from "../assets/flags/vermont.png"
+import flag_virginia from "../assets/flags/virginia.png"
+import flag_washington from "../assets/flags/washington.png"
+import flag_west_virginia from "../assets/flags/west-virginia.png"
+import flag_wisconsin from "../assets/flags/wisconsin.png"
+import flag_wyoming from "../assets/flags/wyoming.png"
+import Script from "../assets/fonts/DancingScript-Regular.ttf"
+import Outlinefont from "../assets/fonts/Milestone Outline.otf"
 
 export const img = peace
 
@@ -130,6 +217,12 @@ export const thumb_premium_graphics = {
   "Too Fast" : toofast,
 }
 
+export const fonts = {
+  "Script" : Script,
+  "Block" : "",
+  "Outline" : Outlinefont,
+}
+
 export const stamp_flags = {
   "USA": usa_stamp , 
   "Arizona": arizona_stamp ,
@@ -164,6 +257,94 @@ export const stamp_palm = {
  "Smiley Face" : stamp_smile, 
  "Star" : stamp_star, 
  "Target" : stamp_target,
+}
+
+export const back_flags = {
+  "Alabama" : flag_alabama,      
+  "Alaska" : flag_alaska,        
+  "Arizona" : flag_arizona,      
+  "Arkansas" : flag_arkansas,    
+  "Australia" : flag_australia,  
+  "Bahamas" : flag_bahamas,      
+  "Barbados" : flag_barbados,    
+  "Belgium" : flag_belgium,      
+  "California" : flag_california,
+  "Canada" : flag_canada,
+  "China" : flag_china,
+  "Colorado" : flag_colorado,
+  "Connecticut" : flag_connecticut,
+  "Cuba" : flag_cuba,
+  "Curacao" : flag_curacao,
+  "Delaware" : flag_delaware,
+  "Denmark" : flag_denmark,
+  "Dominican Republic" : flag_dominican_republic,
+  "Florida" : flag_florida,
+  "France" : flag_france,
+  "Georgia" : flag_georgia,
+  "Germany" : flag_germany,
+  "Ghana" : flag_ghana,
+  "Greece" : flag_greece,
+  "Hawaii" : flag_hawaii,
+  "Idaho" : flag_idaho,
+  "Illinois" : flag_illinois,
+  "Indiana" : flag_indiana,
+  "Iowa" : flag_iowa,
+  "Ireland" : flag_ireland,
+  "Israel" : flag_israel,
+  "Italy" : flag_italy,
+  "Japan" : flag_japan,
+  "Kansas" : flag_kansas,
+  "Kentucky" : flag_kentucky,
+  "Lebanon" : flag_lebanon,
+  "Louisiana" : flag_louisiana,
+  "Maine" : flag_maine,
+  "Maryland" : flag_maryland,
+  "Massachusetts" : flag_massachusetts,
+  "Mexico" : flag_mexico,
+  "Michigan" : flag_michigan,
+  "Minnesota" : flag_minnesota,
+  "Mississippi" : flag_mississippi,
+  "Missouri" : flag_missouri,
+  "Montana" : flag_montana,
+  "Nebraska" : flag_nebraska,
+  "Netherlands" : flag_netherlands,
+  "Nevada" : flag_nevada,
+  "New Hampshire" : flag_new_hampshire,
+  "New Jersey" : flag_new_jersey,
+  "New Mexico" : flag_new_mexico,
+  "New York" : flag_new_york,
+  "North Carolina" : flag_north_carolina,
+  "North Dakota" : flag_north_dakota,
+  "Ohio" : flag_ohio,
+  "Oklahoma" : flag_oklahoma,
+  "Oregon" : flag_oregon,
+  "Panama" : flag_panama,
+  "Pennsylvania" : flag_pennsylvania,
+  "Philippines" : flag_philippines,
+  "Puerto Rico" : flag_puerto_rico,
+  "Rhode Island" : flag_rhode_island,
+  "Russia" : flag_russia,
+  "Singapore" : flag_singapore,
+  "South Africa" : flag_south_africa,
+  "South Carolina" : flag_south_carolina,
+  "South Dakota" : flag_south_dakota,
+  "South Korea" : flag_south_korea,
+  "Spain" : flag_spain,
+  "Sweden" : flag_sweden,
+  "Switzerland" : flag_switzerland,
+  "Taiwan" : flag_taiwan,
+  "Tennessee" : flag_tennessee,
+  "Texas" : flag_texas,
+  "United Kingdom" : flag_united_kingdom,
+  "Usa" : flag_usa,
+  "Utah" : flag_utah,
+  "Venezuela" : flag_venezuela,
+  "Vermont" : flag_vermont,
+  "Virginia" : flag_virginia,
+  "Washington" : flag_washington,
+  "West Virginia" : flag_west_virginia,
+  "Wisconsin" : flag_wisconsin,
+  "Wyoming" : flag_wyoming,
 }
 
 export const imagePaths = {
@@ -705,9 +886,9 @@ export const meshOptions = {
       colors: null,
     },
     "Special Instruction" : {
-      textbox: false,
+      textbox: true,
       texttype: "text",
-      options: ["Box"],
+      options: [],
       icons: null,
       colors: null,
     },
