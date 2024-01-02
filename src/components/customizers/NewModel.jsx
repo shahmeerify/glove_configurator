@@ -143,17 +143,25 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
         position={[0.06317, 0.094, 0.003]}
         rotation={[0.25*Math.PI, 0.375*Math.PI, 0.07*Math.PI]}
         color={personalize["Thumb Text Color"]}
-        scale={0.0065}
+        scale={
+          personalize["Thumb Text"].length > 10  
+            ? 0.0085 - 0.0005 * (personalize["Thumb Text"].length - 10)  
+            : 0.0085
+        }
       >
         {personalize["Thumb Text"]}
         {/* {"hello world hello"} */}
       </Text>
       <Text
         font={fonts[personalize["Text Font"]]}
-        position={[-0.0666, 0.127, -0.007]}
+        position={[-0.0666, 0.127, -0.0063]}
         rotation={[-0.12765*Math.PI, -0.34375*Math.PI, -0.56375*Math.PI]}
         color={personalize["Pinky Text Color"]}
-        scale={0.005}
+        scale={
+          personalize["Pinky Text"].length > 10  
+          ? 0.0085 - 0.0005 * (personalize["Pinky Text"].length - 10)  
+          : 0.0085
+        }
       >
         {personalize["Pinky Text"]}
       </Text>
@@ -162,7 +170,11 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
         position={[-0.016, 0.044, 0.025]}
         rotation={[0.09375*Math.PI, -0.115*Math.PI, 0.03*Math.PI]}
         color={personalize["Palm Text Color"]}
-        scale={0.0062}
+        scale={
+          personalize["Palm Text"].length > 10  
+          ? 0.0085 - 0.00035 * (personalize["Palm Text"].length - 10)  
+          : 0.0085
+        }
       >
         {personalize["Palm Text"]}
       </Text>
