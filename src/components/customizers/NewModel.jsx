@@ -458,7 +458,8 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
               {/* <mesh geometry={nodes.side_logo1.geometry} material-color={colors.logo} material={materials.Side_Logo} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} /> */}
               <Text
                 position={[0.0405, 0.0465, 0.017]}
-                rotation={[0.21875*Math.PI, 0.3125*Math.PI, 0.25*Math.PI]}
+                rotation={[0.21975*Math.PI, 0.3125*Math.PI, 0.15*Math.PI]}
+                // rotation={[xRotation*Math.PI, yRotation*Math.PI, zRotation*Math.PI]}
                 color={personalize["Custom Plate Number Color"]}
                 scale={0.012}
               >
