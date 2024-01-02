@@ -403,6 +403,8 @@ export const colorOptions = {
     "Lime Green": "#29E600",
 };
 
+export const colorPalette = {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Orange Tan": "#D3480F", "Oiled Chestnut": "#9B4E2B", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Sky Blue": "#0BB4C7", "Forest Green": "#334F30", "Mint": "#65DDA3", "Light Gray": "#9D9D99", "Lime Green": "#29E600",}
+
 export const meshOptions = {
   binding: {
     colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Orange Tan": "#D3480F", "Oiled Chestnut": "#9B4E2B", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Sky Blue": "#0BB4C7", "Forest Green": "#334F30", "Mint": "#65DDA3", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
@@ -708,12 +710,15 @@ export const meshOptions = {
     "Palm Stamp": "None",
     "Palm Custom Number": "",
     "Palm Graphic" : "Baseball",
-    "Thumb Text" : "",
+    "Thumb Text" : null,
+    "Thumb Text Text" : "",
     "Thumb Text Color" : "#1a1a1a",
-    "Pinky Text" : "",
+    "Pinky Text" : null,
+    "Pinky Text Text" : "",
     "Pinky Text Color" : "#1a1a1a",
-    "Palm Text" : "",
-    "Palm Text Color" : "#1a1a1a",
+    "Palm Text" : null,
+    "Palm Text Text" : "",
+    "Palm Text Color" : "#ffffff",
     "Text Font" : "Block",
     "Flag" : null,
     "Special Instruction" : null,
@@ -854,25 +859,25 @@ export const meshOptions = {
       colors: null,
     },
     "Thumb Text" : {
-      textbox: true,
+      textbox: false,
       texttype: "text",
-      options: [],
+      options: ["Thumb Text"],
       icons: null,
-      colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Orange Tan": "#D3480F", "Oiled Chestnut": "#9B4E2B", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Sky Blue": "#0BB4C7", "Forest Green": "#334F30", "Mint": "#65DDA3", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
+      colors: null,
     },
     "Pinky Text" : {
-      textbox: true,
+      textbox: false,
       texttype: "text",
-      options: [],
+      options: ["Pinky Text"],
       icons: null,
-      colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Orange Tan": "#D3480F", "Oiled Chestnut": "#9B4E2B", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Sky Blue": "#0BB4C7", "Forest Green": "#334F30", "Mint": "#65DDA3", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
+      colors: null,
     },
     "Palm Text" : {
-      textbox: true,
+      textbox: false,
       texttype: "text",
-      options: [],
+      options: ["Palm Text"],
       icons: null,
-      colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Orange Tan": "#D3480F", "Oiled Chestnut": "#9B4E2B", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Sky Blue": "#0BB4C7", "Forest Green": "#334F30", "Mint": "#65DDA3", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
+      colors: null,
     },
     "Text Font" : {
       textbox: false,

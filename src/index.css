@@ -161,6 +161,11 @@ body,
   max-height: 300px; /* 4 rows at 60px height */
   overflow-y: auto;
   padding-right: 10px; /* Add padding for scrollbar */
+  padding-bottom: 10px; /* Add padding for scrollbar */
+}
+.textbox-container{
+  padding-bottom: 10px; /* Add padding for scrollbar */
+  padding-top: 10px; /* Add padding for scrollbar */
 }
 
 .color-option {

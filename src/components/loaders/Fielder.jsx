@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { New } from "../customizers/NewModel" ;
 import { OrbitControls } from "@react-three/drei";
-import { meshOptions, colorData, tabs, textureData, colorStepsConfig, baseOptions, personlizationOptions, personlizationConfig, Options, baseStepsConfig, flags } from "../constants";
+import { meshOptions, colorData, colorPalette, tabs, textureData, colorStepsConfig, baseOptions, personlizationOptions, personlizationConfig, Options, baseStepsConfig, flags } from "../constants";
 import Controls from "../customizers/controls";
 
 export default function Fielder() {
@@ -18,6 +18,7 @@ export default function Fielder() {
   const [personilzeSteps, setPersonalizeSteps] = useState(personlizationConfig);
   const [personlizeConfig, setPersonlizeConfig] = useState(personlizationOptions);
   const [currentPersonlize, setCurrentPersonlize] = useState("Thumb Logo/Graphic");
+  const [data, setData] = useState(Options)
 
   const [xPosition, setXPosition] = useState(0.035);
   const [yPosition, setYPosition] = useState( 0.039);
@@ -63,22 +64,25 @@ export default function Fielder() {
   const handlePeronalizeChangeText = (e) => {
     let value = e.target.value;
 
-    if (Options[currentPersonlize].texttype === "number"){
+    if (data[currentPersonlize].texttype === "number"){
       if(value.length > 2) {
         value = value.slice(0, 2);
       }
+      setPersonlizeConfig((prevOption) => ({
+        ...prevOption,
+        [currentPersonlize]: value,
+      }));
     }
     else{
       if(value.length > 17) {
         value = value.slice(0, 17);
       }
+      setPersonlizeConfig((prevOption) => ({
+        ...prevOption,
+        [currentPersonlize + " Text"]: value,
+      }));
     }
 
-
-    setPersonlizeConfig((prevOption) => ({
-      ...prevOption,
-      [currentPersonlize]: value,
-    }));
   }
 
   const handlePeronalizeChangeColor = (option, value) => {
@@ -94,6 +98,40 @@ export default function Fielder() {
       // If clicking on already selected option, set to null 
       value = null; 
     }
+    if (option === 'Thumb Text'){
+      const thumbText = data["Thumb Text"];
+      setData(prevState => ({
+        ...prevState,
+        "Thumb Text": {
+          ...thumbText, 
+          textbox: value === "Thumb Text",
+          colors: value === "Thumb Text" ? colorPalette : null
+        } 
+      }))  
+    }
+    if (option === 'Pinky Text'){
+      const pinkyText = data["Pinky Text"];
+      setData(prevState => ({
+        ...prevState,
+        "Pinky Text": {
+          ...pinkyText, 
+          textbox: value === "Pinky Text",
+          colors: value === "Pinky Text" ? colorPalette : null
+        } 
+      }))  
+    }
+    if (option === 'Palm Text'){
+      const palmText = data["Palm Text"];
+      setData(prevState => ({
+        ...prevState,
+        "Palm Text": {
+          ...palmText, 
+          textbox: value === "Palm Text",
+          colors: value === "Palm Text" ? colorPalette : null
+        } 
+      }))  
+    }
+    
 
     if (option === 'Thumb Logo/Graphic' && value === null){
       value = 'Home Plate Logo'; 
@@ -376,8 +414,8 @@ export default function Fielder() {
     setCurrentTab(tab);
   };
 
-  const handlePreviousClick = (options, current, setCurrent, steps) => {
-    const keys = Object.keys(options);
+  const handlePreviousClick = (data, current, setCurrent, steps) => {
+    const keys = Object.keys(data);
     
     let index = keys.indexOf(current);
     if(index === -1) return;
@@ -395,9 +433,9 @@ export default function Fielder() {
     setCurrent(keys[index]);
   }
 
-  const handleNextClick = (options, current, setCurrent, steps) => {
+  const handleNextClick = (data, current, setCurrent, steps) => {
 
-    const keys = Object.keys(options);
+    const keys = Object.keys(data);
     
     let index = keys.indexOf(current);
     if(index === -1) return;
@@ -547,7 +585,7 @@ export default function Fielder() {
                       Current: {currentBase}
                     </div>
                     <div>
-                      {(Options[currentBase].options).map(option => (
+                      {(data[currentBase].options).map(option => (
                         <div> 
                           <input
                             type="radio"
@@ -675,37 +713,10 @@ export default function Fielder() {
                     <div className="mesh-label">
                       Current: {currentPersonlize}
                     </div>
-                    <div>
-                      {Options[currentPersonlize].textbox && (
-                        <>
-                          {Options[currentPersonlize].texttype === "number" && (
-                            <input className = "rounded-full px-6 w-full focus:ring-0 border-gray-300 focus:border-gray-300" 
-                              type="number" 
-                              placeholder={currentPersonlize}
-                              max="99"
-                              min="0"
-                              value= {personlizeConfig[currentPersonlize]}
-                              onChange={handlePeronalizeChangeText}
-                            />
-                          )}
-                          {Options[currentPersonlize].texttype === "text" && (
-                            <input className = "rounded-full px-6 w-full focus:ring-0 border-gray-300 focus:border-gray-300" 
-                              type="text" 
-                              placeholder={currentPersonlize}
-                              maxLength="17"
-                              minLength="0"
-                              value= {personlizeConfig[currentPersonlize]}
-                              onChange={handlePeronalizeChangeText}
-                            />
-                          )}
-                        <br/>
-                        </>
-                      )}
-                      
                     <div className="personlize-options1">
-                      {Options[currentPersonlize].options && (
+                      {data[currentPersonlize].options && (
                         <>
-                          {(Options[currentPersonlize].options).map(option => (
+                          {(data[currentPersonlize].options).map(option => (
                             <div> 
                               <input
                                 type="radio"
@@ -720,13 +731,41 @@ export default function Fielder() {
                               </label>
                             </div>
                           ))}
-                        <br/>
                         </>
                       )}
                     </div>
-                    {Options[currentPersonlize].colors && (
+                    <div className = "textbox-container" >
+                      {data[currentPersonlize].textbox && (
+                        <>
+                          {data[currentPersonlize].texttype === "number" && (
+                            <input className = "rounded-full px-6 w-full focus:ring-0 border-gray-300 focus:border-gray-300" 
+                              type="number" 
+                              placeholder={currentPersonlize}
+                              max="99"
+                              min="0"
+                              value= {personlizeConfig[currentPersonlize]}
+                              onChange={handlePeronalizeChangeText}
+                            />
+                          )}
+                          {data[currentPersonlize].texttype === "text" && (
+                            <>
+                              <input className = "rounded-full px-6 w-full focus:ring-0 border-gray-300 focus:border-gray-300" 
+                                type="text" 
+                                placeholder={currentPersonlize}
+                                maxLength="17"
+                                minLength="0"
+                                value= {personlizeConfig[currentPersonlize + " Text"]}
+                                onChange={handlePeronalizeChangeText}
+                              />
+                            </>
+                          )}
+                        <br/>
+                        </>
+                      )}
+                    <br/>
+                    {data[currentPersonlize].colors && (
                       <div className="color-options">
-                        {Object.entries(Options[currentPersonlize].colors).map(([label, color]) => (
+                        {Object.entries(data[currentPersonlize].colors).map(([label, color]) => (
                           <div class="color-option-wrapper">
                             <div
                               key={color}
@@ -744,9 +783,9 @@ export default function Fielder() {
                         <br/>
                       </div>
                     )}
-                    {Options[currentPersonlize].icons && (
+                    {data[currentPersonlize].icons && (
                       <div className="color-options">
-                        {Object.entries(Options[currentPersonlize].icons).map(([label, color]) => (
+                        {Object.entries(data[currentPersonlize].icons).map(([label, color]) => (
                           <div class="color-option-wrapper">
                             <img
                               key={color}

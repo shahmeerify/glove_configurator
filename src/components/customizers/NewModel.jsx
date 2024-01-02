@@ -137,47 +137,52 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
       <mesh geometry={nodes.inside_palm_mesh.geometry} material-color={colors.palm} material={materials['Details 2']} position={[0.005, -0.025, -0.008]} rotation={[Math.PI / 2, 0, 0]} scale={[0.013, 0.013, 0.014]} />
       <mesh geometry={nodes.index_top_mesh.geometry} material-color={colors.palm} material={materials.Index_Inner1} position={[0.021, -0.003, 0.012]} rotation={[1.518, -0.013, 0.399]} scale={0.01} />
       <mesh geometry={nodes.pinky_mesh.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.005, 0.003, -0.028]} rotation={[1.532, -0.067, -0.765]} scale={0.01} /> */}
-      <Text
-        font={fonts[personalize["Text Font"]]}
-        fontWeight={'bold'}
-        position={[0.06317, 0.094, 0.003]}
-        rotation={[0.25*Math.PI, 0.375*Math.PI, 0.07*Math.PI]}
-        color={personalize["Thumb Text Color"]}
-        scale={
-          personalize["Thumb Text"].length > 10  
-            ? 0.0085 - 0.0005 * (personalize["Thumb Text"].length - 10)  
+      {personalize["Thumb Text"] && (
+        <Text
+          font={fonts[personalize["Text Font"]]}
+          position={[0.06317, 0.094, 0.003]}
+          rotation={[0.25*Math.PI, 0.375*Math.PI, 0.07*Math.PI]}
+          color={personalize["Thumb Text Color"]}
+          scale={
+            personalize["Thumb Text Text"]?.length > 10  
+              ? 0.0085 - 0.0005 * (personalize["Thumb Text Text"]?.length - 10)  
+              : 0.0085
+          }
+        >
+          {personalize["Thumb Text Text"]}
+          {/* {"hello world hello"} */}
+        </Text>
+      )}
+      {personalize["Pinky Text"] && (
+        <Text
+          font={fonts[personalize["Text Font"]]}
+          position={[-0.0666, 0.127, -0.0063]}
+          rotation={[-0.12765*Math.PI, -0.34375*Math.PI, -0.56375*Math.PI]}
+          color={personalize["Pinky Text Color"]}
+          scale={
+            personalize["Pinky Text Text"]?.length > 10  
+            ? 0.0085 - 0.0005 * (personalize["Pinky Text Text"]?.length - 10)  
             : 0.0085
-        }
-      >
-        {personalize["Thumb Text"]}
-        {/* {"hello world hello"} */}
-      </Text>
-      <Text
-        font={fonts[personalize["Text Font"]]}
-        position={[-0.0666, 0.127, -0.0063]}
-        rotation={[-0.12765*Math.PI, -0.34375*Math.PI, -0.56375*Math.PI]}
-        color={personalize["Pinky Text Color"]}
-        scale={
-          personalize["Pinky Text"].length > 10  
-          ? 0.0085 - 0.0005 * (personalize["Pinky Text"].length - 10)  
-          : 0.0085
-        }
-      >
-        {personalize["Pinky Text"]}
-      </Text>
-      <Text
-        font={fonts[personalize["Text Font"]]}
-        position={[-0.016, 0.044, 0.025]}
-        rotation={[0.09375*Math.PI, -0.115*Math.PI, 0.03*Math.PI]}
-        color={personalize["Palm Text Color"]}
-        scale={
-          personalize["Palm Text"].length > 10  
-          ? 0.0085 - 0.00035 * (personalize["Palm Text"].length - 10)  
-          : 0.0085
-        }
-      >
-        {personalize["Palm Text"]}
-      </Text>
+          }
+        >
+          {personalize["Pinky Text Text"]}
+        </Text>
+      )}
+      {personalize["Palm Text"] && (
+        <Text
+          font={fonts[personalize["Text Font"]]}
+          position={[-0.016, 0.044, 0.025]}
+          rotation={[0.09375*Math.PI, -0.115*Math.PI, 0.03*Math.PI]}
+          color={personalize["Palm Text Color"]}
+          scale={
+            personalize["Palm Text Text"]?.length > 10  
+            ? 0.0085 - 0.00035 * (personalize["Palm Text Text"]?.length - 10)  
+            : 0.0085
+          }
+        >
+          {personalize["Palm Text Text"]}
+        </Text>
+      )}
       {(personalize["Flag"] !== null && personalize["Flag"] !== "Other" && personalize["Flag"] !== "None") && (
         <>
           {base.finger_hood_or_pad_placement === "Index Finger" ? (
