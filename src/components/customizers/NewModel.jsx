@@ -61,7 +61,7 @@ const StampedFlag = ({ nodes, materials, position, rotation, scale, personalize 
   materials.ilovetacos.map = graphicTexture
 
   return (
-    <mesh geometry={nodes.shaka_premium.geometry} material={materials.ilovetacos} position={position} rotation={rotation} scale={scale} />
+    <mesh geometry={nodes.shaka_premium.geometry} material-color={"#18191A"} material={materials.ilovetacos} position={position} rotation={rotation} scale={scale} />
   );
 };
 
@@ -125,6 +125,11 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
   return (
     <group dispose={null} position={[0, -2.1, 0]} scale={[26, 26, 26]} ref={ref}>
 
+    <mesh position={[-0.015, 0.042, 0.023]} rotation={[0.09375*Math.PI, -0.125*Math.PI, 0.03125*Math.PI]} scale={0.008}>
+      <planeGeometry args={[9.5, 3]} />
+      <meshBasicMaterial color="Black" side={THREE.DoubleSide} />
+    </mesh>
+
       {/*Extras*/}
       {/* <mesh geometry={nodes.palm_mesh.geometry} material-color={colors.palm} material={materials['Details 2']} position={[0.017, 0.004, -0.009]} rotation={[1.688, 0.191, -0.136]} scale={0.01} />
       <mesh geometry={nodes.thumb_mesh_bot.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.002, -0.001, 0.001]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
@@ -134,10 +139,11 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
       <mesh geometry={nodes.pinky_mesh.geometry} material-color={colors.palm} material={materials['Details 2']} position={[-0.005, 0.003, -0.028]} rotation={[1.532, -0.067, -0.765]} scale={0.01} /> */}
       <Text
         font={fonts[personalize["Text Font"]]}
+        fontWeight={'bold'}
         position={[0.06317, 0.094, 0.003]}
         rotation={[0.25*Math.PI, 0.375*Math.PI, 0.07*Math.PI]}
         color={personalize["Thumb Text Color"]}
-        scale={0.006}
+        scale={0.0065}
       >
         {personalize["Thumb Text"]}
         {/* {"hello world hello"} */}
@@ -153,10 +159,10 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
       </Text>
       <Text
         font={fonts[personalize["Text Font"]]}
-        position={[-0.018, 0.043, 0.015]}
-        rotation={[0.15625*Math.PI, -0.0625*Math.PI, 0.03125*Math.PI]}
+        position={[-0.016, 0.044, 0.025]}
+        rotation={[0.09375*Math.PI, -0.115*Math.PI, 0.03*Math.PI]}
         color={personalize["Palm Text Color"]}
-        scale={0.0055}
+        scale={0.0062}
       >
         {personalize["Palm Text"]}
       </Text>
@@ -397,7 +403,7 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
               ) : (
                 <mesh geometry={nodes.polySurface332.geometry} material-color={colors.leather1} material={materials.Thumb_Outer} position={[-0.007, 0.013, 0.009]} rotation={[1.617, -0.085, -2.45]} scale={0.008} />
               )}
-                <StampedFlag nodes={nodes} materials={materials} position={[0.03727, 0.041, 0.02]} rotation={[Math.PI*2.915, Math.PI*1.10, Math.PI*-0.648]} scale={[0.02, 0.02, 0.02]} personalize={personalize} />
+                <StampedFlag nodes={nodes} materials={materials} position={[0.03727, 0.041, 0.02]} rotation={[Math.PI*2.8525, Math.PI*1.0695, Math.PI*-0.6625]} scale={[0.02, 0.02, 0.02]} personalize={personalize} />
               {/* <mesh geometry={nodes.shaka.geometry} material={materials.shaka} position={[0.036, 0.039, 0.023]} rotation={[2.744, 0.257, -1.083]} scale={0.012} /> */}
             </>
           )}

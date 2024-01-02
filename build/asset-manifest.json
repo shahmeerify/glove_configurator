@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.b0bd03b7.css",
-    "main.js": "/static/js/main.7d4cdf84.js",
+    "main.js": "/static/js/main.eeb7e823.js",
     "static/media/a_skin.png": "/static/media/a_skin.af62c3a717fc93adf4d3.png",
     "static/media/inlay_initialShadingGroup_Diffuse.png": "/static/media/inlay_initialShadingGroup_Diffuse.a0f266f6c82f689be04d.png",
     "static/media/snake skin brown.png": "/static/media/snake skin brown.408b2e4cb640cb253b16.png",
@@ -25,10 +25,11 @@
     "static/media/champion.png": "/static/media/champion.c89d66dd136a0067dd63.png",
     "static/media/green_clover.png": "/static/media/green_clover.b8187bb51cedd46fad1a.png",
     "static/media/Mexico.png": "/static/media/Mexico.0a322672b63a0e5072bf.png",
+    "static/media/HergonGrotesk-Medium.ttf": "/static/media/HergonGrotesk-Medium.994cb8dc0b0d05bc83ee.ttf",
     "static/media/red camo.webp": "/static/media/red camo.5fa782b4f0df4894e9a3.webp",
     "static/media/cannon.png": "/static/media/cannon.b9fcd5de0cad36573d87.png",
     "static/media/reptile.jpg": "/static/media/reptile.d8471de65804e0476577.jpg",
-    "static/media/DancingScript-Regular.ttf": "/static/media/DancingScript-Regular.5e15416c2d596d51a588.ttf",
+    "static/media/Brush Script Bold.ttf": "/static/media/Brush Script Bold.2791f737aa6f79dfc6f2.ttf",
     "static/media/cross.png": "/static/media/cross.4ea8f00e40ea2454f9a9.png",
     "static/media/grey camoflauge.jpg": "/static/media/grey camoflauge.24a4975e31319ee8a425.jpg",
     "static/media/Dominican_Republic.png": "/static/media/Dominican_Republic.da0d7094bce9e364f343.png",
@@ -70,10 +71,10 @@
     "static/media/reverse-k.png": "/static/media/reverse-k.d1d86c85362b06383d0a.png",
     "index.html": "/index.html",
     "main.b0bd03b7.css.map": "/static/css/main.b0bd03b7.css.map",
-    "main.7d4cdf84.js.map": "/static/js/main.7d4cdf84.js.map"
+    "main.eeb7e823.js.map": "/static/js/main.eeb7e823.js.map"
   },
   "entrypoints": [
     "static/css/main.b0bd03b7.css",
-    "static/js/main.7d4cdf84.js"
+    "static/js/main.eeb7e823.js"
   ]
 }

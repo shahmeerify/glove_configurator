@@ -172,8 +172,9 @@ import flag_washington from "../assets/flags/washington.png"
 import flag_west_virginia from "../assets/flags/west-virginia.png"
 import flag_wisconsin from "../assets/flags/wisconsin.png"
 import flag_wyoming from "../assets/flags/wyoming.png"
-import Script from "../assets/fonts/DancingScript-Regular.ttf"
+import Script from "../assets/fonts/Brush Script Bold.ttf"
 import Outlinefont from "../assets/fonts/Milestone Outline.otf"
+import Bold from "../assets/fonts/HergonGrotesk-Medium.ttf"
 
 export const img = peace
 
@@ -219,7 +220,7 @@ export const thumb_premium_graphics = {
 
 export const fonts = {
   "Script" : Script,
-  "Block" : "",
+  "Block" : Bold,
   "Outline" : Outlinefont,
 }
 
@@ -875,7 +876,7 @@ export const meshOptions = {
     },
     "Text Font" : {
       textbox: false,
-      options: ["Script", "Bold"],
+      options: ["Script", "Block"],
       icons: null,
       colors: null,
     },
