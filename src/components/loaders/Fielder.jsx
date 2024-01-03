@@ -843,7 +843,7 @@ export default function Fielder() {
                   </div>
                 </div>
               )}
-              <Controls
+              {/* <Controls
                 controls={{
                   xPosition,
                   yPosition,
@@ -858,7 +858,7 @@ export default function Fielder() {
                   setYRotation,
                   setZRotation,
                 }}
-              />
+              /> */}
             </div>
           </div>
         </div>
