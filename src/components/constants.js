@@ -546,6 +546,11 @@ export const meshOptions = {
     textures: {"Shiny Silver": silvershiny, "Shiny Gold": goldshiny , "Shiny Red": redshiny , "Shiny Blue": blueshiny, "Blue Pink Tie": bluepinktie , "Green Camo": greencamo , "Gray Camo": graycamo , "Red Camo": redcamo , "Reptile Skin": reptileskin , "Aligator Skin": alligatorskin, "Elephant Skin": elephantskin, "Black Snake": snakeblack , "Gray Snake": snakegray , "White Snake": snakewhite, "Red Snake": snakered, "Blue Snake": snakelblue , "Blonde Snake": snakeblonde , "Brown Snake": snakebrown , "Pink Snake": snakepink , "Purple Snake": snakepurple , "Tan Snake": snaketan , "Teal Snake": snaketeal , "Cross Pattern": crosspattern , "Stripe Pattern": stripepattern, },
     exclusive_textures: {"Furred Cow Skin": furredskincow, "Inverted Elephant Skin": invertedelephaantskin, "Red Elephant Skin": redelephantskin, },
   },
+  "Square Patch": {
+    colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Turquoise": "#06C7DE", "Forest Green": "#334F30", "Seatle Green": "#508E88" , "Electric Green": "#96EB6B", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
+    textures: {},
+    exclusive_textures: null,
+  }
   
 }
 
@@ -574,6 +579,7 @@ export const meshOptions = {
     wingtipThumb: "#EBEBEB",
     wingtipPinky: "#EBEBEB",
     wristPlate: "#E1E1E1",
+    "Square Patch": "#E1E1E1",
     wrist: "#EBEBEB",
     // logo4_replace: "#808080", //Palm Logo
     // slice: "#f8f8f8", //Extension of Palm to Back
@@ -617,7 +623,7 @@ export const meshOptions = {
 
   export const colorStepsConfig= {
     binding: true,
-    "Home Plate": false,
+    "Home Plate": true,
     finger_hood: false,
     finger_pad: false,
     inlay: false,
@@ -646,6 +652,7 @@ export const meshOptions = {
     logo_02: true, 
     wrist: true,
     wristPlate: false,
+    "Square Patch": true,
   }
 
   export const baseStepsConfig= {

@@ -20,7 +20,7 @@ export default function Fielder() {
   const [currentPersonlize, setCurrentPersonlize] = useState("Thumb Logo/Graphic");
   const [data, setData] = useState(Options)
 
-  const [xPosition, setXPosition] = useState(0.035);
+  const [xPosition, setXPosition] = useState(9.25);
   const [yPosition, setYPosition] = useState( 0.039);
   const [zPosition, setZPosition] = useState(0.023);
 
@@ -141,6 +141,29 @@ export default function Fielder() {
       ...prevOption,
       [option]: value,
     }));
+
+    if(option === 'Thumb Logo/Graphic' && value === 'Home Plate Logo') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        "Home Plate": true
+      }));
+    } else if(option === 'Thumb Logo/Graphic' && value !== 'Home Plate Logo') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        "Home Plate": false
+      }));
+    }
+    if(option === 'Thumb Logo/Graphic' && value === 'Custom Plate Number (+$7)') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        "Home Plate": true
+      }));
+    } else if(option === 'Thumb Logo/Graphic' && value !== 'Custom Plate Number (+$7)') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        "Home Plate": false
+      }));
+    }
 
     if(option === 'Thumb Logo/Graphic' && value === 'Graphic (+$7)') {
       setPersonalizeSteps(prevSteps => ({
@@ -265,6 +288,17 @@ export default function Fielder() {
       setColorSteps(prevSteps => ({
         ...prevSteps,  
         wristPlate: false
+      }));
+    }
+    if(option === 'logo_style' && value === "Square Patch") {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        "Square Patch": true
+      }));
+    } else if(option === 'logo_style' && value !== "Square Patch") {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,  
+        "Square Patch": false
       }));
     }
 
@@ -809,7 +843,7 @@ export default function Fielder() {
                   </div>
                 </div>
               )}
-              {/* <Controls
+              <Controls
                 controls={{
                   xPosition,
                   yPosition,
@@ -824,7 +858,7 @@ export default function Fielder() {
                   setYRotation,
                   setZRotation,
                 }}
-              /> */}
+              />
             </div>
           </div>
         </div>
