@@ -5,6 +5,10 @@ import * as THREE from 'three';
 import { flags } from "../constants";
 import { thumb_graphics, thumb_premium_graphics, stamp_flags, stamp_palm, fonts, back_flags } from "../constants"
 import Outlinefont from "../../assets/fonts/Milestone Outline.otf"
+import goldshiny from '../../assets/textures/gold shiny/MetalGoldPaint002_COL_1K_METALNESS.png'
+import silvershiny from '../../assets/textures/silver shiny/base_base_BaseColor.png'
+import redshiny from '../../assets/textures/red shiny/base_base_BaseColor.png'
+import blueshiny from '../../assets/textures/blue shiny/base_base_BaseColor.png'
 
 // const saveToFile = (data, fileName) => {
 //   const jsonContent = JSON.stringify(data, null, 2);
@@ -16,7 +20,13 @@ import Outlinefont from "../../assets/fonts/Milestone Outline.otf"
 // };
 
 const MeshWithTexture = ({ geometry, material, color, position, rotation, scale, texture, tsize=9.25 }) => {
-  console.log(tsize)
+  let shiny = false
+  if (texture === goldshiny || texture === silvershiny || texture === redshiny || texture === blueshiny){
+    shiny = true
+  }
+  else{
+    shiny = false
+  }
   const textureMap = useTexture(texture);
   const map = useMemo(() => {
     const map = textureMap.clone() 
@@ -26,9 +36,17 @@ const MeshWithTexture = ({ geometry, material, color, position, rotation, scale,
     return map
   }, [textureMap, tsize])
   return (
-    <mesh geometry={geometry} material={material} material-color={color} position={position} rotation={rotation} scale={scale} >
-      <meshBasicMaterial map={map} />
-    </mesh> 
+    <>
+    {shiny ? (
+      <mesh geometry={geometry} material={material} material-color={color} position={position} rotation={rotation} scale={scale} >
+        <meshPhysicalMaterial map={map} clearcoat={1} clearcoatRoughness={0} sheen={1} sheenRoughness={0.2} sheenColor="white" />
+      </mesh> 
+    ):(
+      <mesh geometry={geometry} material={material} material-color={color} position={position} rotation={rotation} scale={scale} >
+        <meshBasicMaterial map={map} />
+      </mesh> 
+    )}
+    </>
   );
 };
 
@@ -141,8 +159,8 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
       {personalize["Thumb Text"] && (
         <Text
           font={fonts[personalize["Text Font"]]}
-          position={[0.06317, 0.094, 0.003]}
-          rotation={[0.25*Math.PI, 0.375*Math.PI, 0.07*Math.PI]}
+          position={[0.06317, 0.094, 0.0034]}
+          rotation={[0.212*Math.PI, 0.378*Math.PI, 0.10125*Math.PI]}
           color={personalize["Thumb Text Color"]}
           scale={
             personalize["Thumb Text Text"]?.length > 10  
@@ -1105,10 +1123,10 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
           ) : (
             <mesh geometry={nodes.web11_stitches.geometry} material-color={colors.Stiches} material={materials.Web_Stitches_8} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
         )}
-        {textures.webStyle ? (
-          <MeshWithTexture geometry={nodes.logoback.geometry} material-color={colors.webStyle} material={materials['Logo Back 2']} position={[-0.007, 0, -0.006]} rotation={[Math.PI / 2, 0, -2.451]} scale={0.01} texture={textures.webStyle} tsize={0.5}/>
+        {textures["Web Plate"] ? (
+          <MeshWithTexture geometry={nodes.logoback.geometry} material-color={colors['Web Plate']} material={materials['Logo Back 2']} position={[-0.007, 0, -0.006]} rotation={[Math.PI / 2, 0, -2.451]} scale={0.01} texture={textures["Web Plate"]} tsize={0.5}/>
         ) : (
-          <mesh geometry={nodes.logoback.geometry} material-color={colors.webStyle} material={materials['Logo Back 2']} position={[-0.007, 0, -0.006]} rotation={[Math.PI / 2, 0, -2.451]} scale={0.01} />
+          <mesh geometry={nodes.logoback.geometry} material-color={colors['Web Plate']} material={materials['Logo Back 2']} position={[-0.007, 0, -0.006]} rotation={[Math.PI / 2, 0, -2.451]} scale={0.01} />
         )}
         <mesh geometry={nodes.weblogo.geometry} material-color={colors.logo} material={materials.Web_Logo} position={[-0.007, 0, -0.006]} rotation={[Math.PI / 2, 0, -2.451]} scale={0.01} />
         <mesh geometry={nodes.web11_laces.geometry} material-color={colors.laces} material={materials.Web_Laces_8} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
@@ -1191,8 +1209,8 @@ export function New({rot, base, colors, personalize, personalizeConfig, xPositio
       {base.logo_style === "Square Patch" && (
         <>
           <mesh geometry={nodes.square_logo_patch.geometry} material-color={colors["Square Patch"]} material={materials['Square Logo Patch']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-          <mesh geometry={nodes.outside_line_square_logo.geometry} material-color={colors["Square Patch"]} material={materials['Logo Outside Line']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
-          <mesh geometry={nodes.inside_line_square_logo.geometry} material-color={colors["Square Patch"]} material={materials['Logo Inner Line']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.outside_line_square_logo.geometry} material-color={colors["Square Patch Lines"]} material={materials['Logo Outside Line']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
+          <mesh geometry={nodes.inside_line_square_logo.geometry} material-color={colors["Square Patch Lines"]} material={materials['Logo Inner Line']} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
           <mesh geometry={nodes.square_logo_3.geometry} material-color={colors.logo} material={materials.Square_Logo_Letters} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />
           {/* {base.logo_outline && (
             <>

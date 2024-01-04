@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { New } from "../customizers/NewModel" ;
-import { OrbitControls } from "@react-three/drei";
+import { useFrame } from '@react-three/fiber';
+import { OrbitControls, OrthographicCamera } from "@react-three/drei";
 import { meshOptions, colorData, colorPalette, tabs, textureData, colorStepsConfig, baseOptions, personlizationOptions, personlizationConfig, Options, baseStepsConfig, flags } from "../constants";
 import Controls from "../customizers/controls";
 
+function CameraControl() {
+
+  const camera = useRef() 
+  
+  useFrame(({ camera }) => {
+    camera.position.set(0, 0, -100)
+    camera.lookAt(0, 0, 0)
+  })
+
+  return <OrthographicCamera makeDefault zoom={120} ref={camera} />;
+
+}
+
 export default function Fielder() {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
-  const [rotationValue, setRotationValue] = useState(0.35);
+  const [rotationValue, setRotationValue] = useState(Math.PI);
   const [currentMesh, setCurrentMesh] = useState("binding");
   const [colors, setColors] = useState(colorData);
   const [textures, setTextures] = useState(textureData);
@@ -293,12 +307,14 @@ export default function Fielder() {
     if(option === 'logo_style' && value === "Square Patch") {
       setColorSteps(prevSteps => ({
         ...prevSteps,
-        "Square Patch": true
+        "Square Patch": true,
+        "Square Patch Lines": true
       }));
     } else if(option === 'logo_style' && value !== "Square Patch") {
       setColorSteps(prevSteps => ({
         ...prevSteps,  
-        "Square Patch": false
+        "Square Patch": false,
+        "Square Patch LInes": false
       }));
     }
 
@@ -442,6 +458,19 @@ export default function Fielder() {
       }));
     }
 
+    if(option === 'web_style' && value === 'I-Web') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        "Web Plate": true
+      }));
+    } else if(option === 'web_style' && value !== 'I-Web') {
+      setColorSteps(prevSteps => ({
+        ...prevSteps,
+        "Web Plate": false
+      }));
+    }
+
+
   };
 
   const handleTabChange = (tab) => {
@@ -519,25 +548,25 @@ export default function Fielder() {
                         className="sc-cMljjf jjRdFm lower-canvas"
                         style={{ width: "750px", height: "750px" }}
                       >
-                        / Add ambient light
-                        <ambientLight intensity={0.3} color={'#ffffff'} />
+                        <CameraControl />
+                        <scene >
+                          <ambientLight intensity={0.3} color={'#ffffff'} />
+                          <directionalLight 
+                            intensity={0.25 * Math.PI} // convert direct intensity to radians
+                            color={'#ffffff'}
+                            // position={[0.5, 0, 0.866]} // 60 degrees
+                            position={[0, 0, 0.866]} // 60 degrees
+                          />
+                          <directionalLight 
+                            intensity={0.25 * Math.PI} // convert direct intensity to radians
+                            color={'#ffffff'}
+                            position={[0, 0, -0.866]} // 60 degrees
+                          />
 
-                        <directionalLight 
-                          intensity={0.25 * Math.PI} // convert direct intensity to radians
-                          color={'#ffffff'}
-                          position={[0.5, 0, 0.866]} // 60 degrees
-                        />
-
-                        <directionalLight 
-                          intensity={0.25 * Math.PI} // convert direct intensity to radians
-                          color={'#ffffff'}
-                          position={[-0.5, 0, -0.866]} // 60 degrees
-                        />
-
-                        {/* <pointLight /> */}
-                    
-                        <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} personalizeConfig={personlizationConfig} xPosition={xPosition} yPosition={yPosition} zPosition={zPosition} xRotation={xRotation} yRotation={yRotation} zRotation={zRotation} flags={flags} />
-                        {/* <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} personalizeConfig={personlizationConfig} flags={flags} /> */}
+                          <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} personalizeConfig={personlizationConfig} xPosition={xPosition} yPosition={yPosition} zPosition={zPosition} xRotation={xRotation} yRotation={yRotation} zRotation={zRotation} flags={flags} />
+                          {/* <New rot={rotationValue} base={baseConfig} colors={colors} textures={textures} personalize={personlizeConfig} personalizeConfig={personlizationConfig} flags={flags} /> */}
+                          
+                        </scene>
                         <OrbitControls
                           minPolarAngle={Math.PI / 2}
                           maxPolarAngle={Math.PI / 2}
@@ -843,7 +872,7 @@ export default function Fielder() {
                   </div>
                 </div>
               )}
-              {/* <Controls
+              <Controls
                 controls={{
                   xPosition,
                   yPosition,
@@ -858,7 +887,7 @@ export default function Fielder() {
                   setYRotation,
                   setZRotation,
                 }}
-              /> */}
+              />
             </div>
           </div>
         </div>

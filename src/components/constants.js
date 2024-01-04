@@ -6,7 +6,8 @@ import graycamo from '../assets/textures/camo grey/grey camoflauge.jpg'
 import redcamo from '../assets/textures/camo red/red camo.webp'
 import furredskincow from '../assets/textures/Cow skin Furred/cow skin furred.png'
 import crosspattern from '../assets/textures/cross pattern/cross.png'
-import goldshiny from '../assets/textures/gold shiny/base_base_BaseColor.png'
+// import goldshiny from '../assets/textures/gold shiny/base_base_BaseColor.png'
+import goldshiny from '../assets/textures/gold shiny/MetalGoldPaint002_COL_1K_METALNESS.png'
 import elephantskin from '../assets/textures/elephant skin/elephant skin.png'
 import invertedelephaantskin from '../assets/textures/Interved Elephant Skin/invert-elephant-skin.jpg'
 import redelephantskin from '../assets/textures/Red Elephant Skin/elephant skin.png'
@@ -536,6 +537,11 @@ export const meshOptions = {
     textures: {"Shiny Silver": silvershiny, "Shiny Gold": goldshiny , "Shiny Red": redshiny , "Shiny Blue": blueshiny, "Blue Pink Tie": bluepinktie , "Green Camo": greencamo , "Gray Camo": graycamo , "Red Camo": redcamo , "Reptile Skin": reptileskin , "Aligator Skin": alligatorskin, "Elephant Skin": elephantskin, "Black Snake": snakeblack , "Gray Snake": snakegray , "White Snake": snakewhite, "Red Snake": snakered, "Blue Snake": snakelblue , "Blonde Snake": snakeblonde , "Brown Snake": snakebrown , "Pink Snake": snakepink , "Purple Snake": snakepurple , "Tan Snake": snaketan , "Teal Snake": snaketeal , "Cross Pattern": crosspattern , "Stripe Pattern": stripepattern, },
     exclusive_textures: {"Furred Cow Skin": furredskincow, "Inverted Elephant Skin": invertedelephaantskin, "Red Elephant Skin": redelephantskin, },
   },
+  "Web Plate": {
+    colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Orange Tan": "#D3480F", "Oiled Chestnut": "#9B4E2B", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Sky Blue": "#0BB4C7", "Forest Green": "#334F30", "Mint": "#65DDA3", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
+    textures: {"Shiny Silver": silvershiny, "Shiny Gold": goldshiny , "Shiny Red": redshiny , "Shiny Blue": blueshiny, "Blue Pink Tie": bluepinktie , "Green Camo": greencamo , "Gray Camo": graycamo , "Red Camo": redcamo , "Reptile Skin": reptileskin , "Aligator Skin": alligatorskin, "Elephant Skin": elephantskin, "Black Snake": snakeblack , "Gray Snake": snakegray , "White Snake": snakewhite, "Red Snake": snakered, "Blue Snake": snakelblue , "Blonde Snake": snakeblonde , "Brown Snake": snakebrown , "Pink Snake": snakepink , "Purple Snake": snakepurple , "Tan Snake": snaketan , "Teal Snake": snaketeal , "Cross Pattern": crosspattern , "Stripe Pattern": stripepattern, },
+    exclusive_textures: {"Furred Cow Skin": furredskincow, "Inverted Elephant Skin": invertedelephaantskin, "Red Elephant Skin": redelephantskin, },
+  },
   wrist: {
     colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Orange Tan": "#D3480F", "Oiled Chestnut": "#9B4E2B", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Sky Blue": "#0BB4C7", "Forest Green": "#334F30", "Mint": "#65DDA3", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
     textures: {"Shiny Silver": silvershiny, "Shiny Gold": goldshiny , "Shiny Red": redshiny , "Shiny Blue": blueshiny, "Blue Pink Tie": bluepinktie , "Green Camo": greencamo , "Gray Camo": graycamo , "Red Camo": redcamo , "Reptile Skin": reptileskin , "Aligator Skin": alligatorskin, "Elephant Skin": elephantskin, "Black Snake": snakeblack , "Gray Snake": snakegray , "White Snake": snakewhite, "Red Snake": snakered, "Blue Snake": snakelblue , "Blonde Snake": snakeblonde , "Brown Snake": snakebrown , "Pink Snake": snakepink , "Purple Snake": snakepurple , "Tan Snake": snaketan , "Teal Snake": snaketeal , "Cross Pattern": crosspattern , "Stripe Pattern": stripepattern, },
@@ -547,6 +553,11 @@ export const meshOptions = {
     exclusive_textures: {"Furred Cow Skin": furredskincow, "Inverted Elephant Skin": invertedelephaantskin, "Red Elephant Skin": redelephantskin, },
   },
   "Square Patch": {
+    colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Turquoise": "#06C7DE", "Forest Green": "#334F30", "Seatle Green": "#508E88" , "Electric Green": "#96EB6B", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
+    textures: {},
+    exclusive_textures: null,
+  },
+  "Square Patch Lines": {
     colors: {"Black": "#1a1a1a", "Gray": "#84837E", "White": "#FFFFFF", "Blonde": "#FCD48F", "Yellow": "#EFD115", "Tan": "#E57E00", "Orange": "#FF6D1F", "Brown": "#694E3B", "Red": "#D21E1E", "Maroon": "#943535", "Pink": "#F07693", "Purple": "#58357D", "Navy Blue": "#262740", "Royal Blue": "#2143BF", "Turquoise": "#06C7DE", "Forest Green": "#334F30", "Seatle Green": "#508E88" , "Electric Green": "#96EB6B", "Light Gray": "#9D9D99", "Lime Green": "#29E600",},
     textures: {},
     exclusive_textures: null,
@@ -575,11 +586,13 @@ export const meshOptions = {
     palm: "#EBEBEB",
     Stiches: "#D3D3D3",
     webStyle: "#f0f0f0",
+    "Web Plate": "#EBEBEB",
     welt: "#E2E2E2", //Edgings
     wingtipThumb: "#EBEBEB",
     wingtipPinky: "#EBEBEB",
     wristPlate: "#E1E1E1",
     "Square Patch": "#E1E1E1",
+    "Square Patch Lines": "#E1E1E1",
     wrist: "#EBEBEB",
     // logo4_replace: "#808080", //Palm Logo
     // slice: "#f8f8f8", //Extension of Palm to Back
@@ -616,6 +629,7 @@ export const meshOptions = {
     logo_outline_color: null,
     Stiches: null,
     webStyle: null,
+    "Web Plate": null,
     logo_02: null, 
     wrist: null,
     wristPlate: null,
@@ -649,10 +663,12 @@ export const meshOptions = {
     logo_outline_color: false, 
     Stiches: true,
     webStyle: true,
+    "Web Plate": true,
     logo_02: true, 
     wrist: true,
     wristPlate: false,
-    "Square Patch": true,
+    "Square Patch": false,
+    "Square Patch Lines": false,
   }
 
   export const baseStepsConfig= {
