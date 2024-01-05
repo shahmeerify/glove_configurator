@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.3a915ca9.css",
-    "main.js": "/static/js/main.da5307ad.js",
+    "main.js": "/static/js/main.7f86bf08.js",
     "static/media/a_skin.png": "/static/media/a_skin.af62c3a717fc93adf4d3.png",
     "static/media/inlay_initialShadingGroup_Diffuse.png": "/static/media/inlay_initialShadingGroup_Diffuse.a0f266f6c82f689be04d.png",
     "static/media/snake skin brown.png": "/static/media/snake skin brown.408b2e4cb640cb253b16.png",
@@ -14,6 +14,7 @@
     "static/media/snake skin pink.png": "/static/media/snake skin pink.a4fa3479e6e8d6bfb061.png",
     "static/media/snake skin tan.png": "/static/media/snake skin tan.bc2f2b179737bb0ed31e.png",
     "static/media/snake skin blonde.png": "/static/media/snake skin blonde.6e615e54632b56e0a3fd.png",
+    "static/media/White Ostrich.png": "/static/media/White Ostrich.f432760aa4e6e1fe7c02.png",
     "static/media/snake skin white.png": "/static/media/snake skin white.8849f4f36043b04883aa.png",
     "static/media/snake skin grey.png": "/static/media/snake skin grey.4ad7c53bd15eeb6266b4.png",
     "static/media/snake skin teal.png": "/static/media/snake skin teal.7fa7916a9f0786a2e1e7.png",
@@ -72,10 +73,10 @@
     "static/media/reverse-k.png": "/static/media/reverse-k.d1d86c85362b06383d0a.png",
     "index.html": "/index.html",
     "main.3a915ca9.css.map": "/static/css/main.3a915ca9.css.map",
-    "main.da5307ad.js.map": "/static/js/main.da5307ad.js.map"
+    "main.7f86bf08.js.map": "/static/js/main.7f86bf08.js.map"
   },
   "entrypoints": [
     "static/css/main.3a915ca9.css",
-    "static/js/main.da5307ad.js"
+    "static/js/main.7f86bf08.js"
   ]
 }

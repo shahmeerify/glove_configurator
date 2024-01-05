@@ -223,6 +223,17 @@ export default function Fielder() {
        "Stamped Flag": false
       }));
     }
+    if(option === 'Thumb Logo/Graphic' && value === 'Thumb Flag (+$7)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Thumb Flag": true
+      }));
+    } else if(option === 'Thumb Logo/Graphic' && value !== 'Thumb Flag (+$7)') {
+      setPersonalizeSteps(prevSteps => ({
+        ...prevSteps,
+       "Thumb Flag": false
+      }));
+    }
     if(option === 'Thumb Logo/Graphic' && value === 'Custom Plate Number (+$7)') {
       setPersonalizeSteps(prevSteps => ({
         ...prevSteps,
